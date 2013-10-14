@@ -1,0 +1,1 @@
+This is a CMSC345 group project that uses Google maps to show a user the shortest distance between a start, stop, and intermediate locations. 
