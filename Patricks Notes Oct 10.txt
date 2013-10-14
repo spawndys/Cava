@@ -1,0 +1,25 @@
+* Hey guys, I just typed out some notes from our customer meeting today
+* (Mostly just to make sure I know how to commit something to github)
+
+Notes from our customer meeting on Oct 10 : 
+
+- Output should display total time it would take. Could determine this from the total lenght and a static speed. 
+-- Does not need to take into account the amount of time you stay at each location 
+
+- Should be able to input a starting time for the trip
+
+- Should be a standalone application, not web based. 
+
+- Should have some sort of user authentication
+-- Each user account should store previous searches and previously visited locations
+
+- Display output on google earth, no specific requirements for how it is displayed in the application
+
+- Should be able to Add/Mod/Del locations
+
+- Should be compatible with google earth api 
+
+- Locations should be stored as "state" -> "City" -> "Place"
+-- States should include MD, DC, and pennsylvania (Also note, we need to get a specific list of places from customer)
+
+- We need to create company name, logo, motto, gui mockup and give to customer. 
