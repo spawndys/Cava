@@ -1,0 +1,62 @@
+README
+----------------------------
+This is made from both mine (Patricks) and Daniels list of requirements from the slides
+and notes from our customer meeting. Look over them and add/change/delete anything you see fit. 
+Each one of these requirments will need to be place on our SRS docment in a grid like the one
+on page 6 already. If we each take a few, it shouldn't be too much work. I have already added 
+Layout1 - Layout5 as a example. 
+Remember that this list will change throughout the project. 
+According to the instructions, I believe we only have to have
+ten, but the more concrate requirments we have now, the easier it'll be later. 
+
+I put a ? next to a few of them, I'm not sure if these specific ones need to be in the SRS because 
+they don't really follow the good requirments guidelines in the lecture slides; or these requirements
+need to be fleshed out further. Some of these may be able to go under section three Non-Functional 
+Requirements in the SRS. 
+ 
+I numbered them all with their category and then just numbering them. We can use these numbers in 
+the SRS, unless anyone else can think of a better system, in which case, feel free to edit
+
+COMPLETE LIST OF REQUIREMENTS
+----------------------------
+
+Layout and GUI requirements : 
+*Layout1* Should be a standalone application, not web based. (?)
+*Layout2* Administrators Shall be able to add a new location in database (? - This and the next 2 are bascially the same, may be able to combine in SRS)
+*Layout3* Administrators Shall be able to modify exisiting locations in the database 
+*Layout4* Administrators Shall be able to delete exisiting locations from the database
+*Layout5* Locations shall be stored with a state, city, and exact location attribute (? - break up into 3 requirements)
+*Layout6* Possible first layer location storage should consisit of MD / PA / DC
+*Layout7* Interface shall display a list of all the locations in the database. 
+*Layout8* List of locations shall be able to hold more than 100 locations (? - max number?)
+*Layout9* Product should contain useful help files for users
+*Layout10* Product should contain useful help files for administrators
+
+
+Pre Run requirements : 
+*Pre1* Should be able to input a starting time for the trip
+*Pre2* User shall be able to select more than 20 locations from the database of locations (? - again, max number?)
+*Pre3* User shall be able to search for new locations to add (By entering state/city/location when needbe)
+*Pre4* User must identify which location is the start state
+*Pre5* User Must identify which location is the end state. 
+
+
+Post Run Requirements : 
+*Post1* Application should interact using google's API (?) 
+*Post2* The system will solve for the shorted straight line distance to visit all the sites
+
+
+output Requirements : 
+*Out1* Display output on google earth 7 
+*Out2* There shall be a line connecting all the locations in the shortest way. 
+*Out3* Output shall display total time the trip will take. Could determine this from the total lenght and a static speed. Does not need to take into account the amount of time you stay at each location 
+*Out4* Output should display all information we have about the sites (?)
+
+
+User Account Requirments : 
+*Account1* Users should be able to log in with a correct username and password combination
+*Account2* Users Shall be able to create new user accounts (?)
+*Account3* User Accounts shall hold a list of previous searches
+*Account4* User Accounts shall display a list of previously visited locations
+*Account5* New accounts should be set as either users or admins (admins can add-mod-del locations)
+
