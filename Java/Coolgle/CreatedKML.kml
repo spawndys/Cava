@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
+    <Document>
+        <name>CreatedKML.kml</name>
+        <open>1</open>
+        <Placemark>
+            <name>Path</name>
+            <LineString>
+                <extrude>0</extrude>
+                <tessellate>1</tessellate>
+                <coordinates>-76.512276,39.051826 -76.71187,39.25339 -76.54721,38.987873 -76.681694,39.071743</coordinates>
+            </LineString>
+        </Placemark>
+    </Document>
+</kml>

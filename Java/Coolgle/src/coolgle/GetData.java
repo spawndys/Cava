@@ -5,7 +5,7 @@
 // Example based on this code :  
 // https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
 
-package com.google.code.geocoder;
+package coolgle;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -38,13 +38,15 @@ import org.xml.sax.SAXException;
 ***********************************************/
 public class GetData 
 {
-	  // URL prefix to the geocoder
-	  private static final String GEOCODER_REQUEST_PREFIX_FOR_XML = "http://maps.google.com/maps/api/geocode/xml";
-
-	  public static final void main (String[] argv) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException 
+	  public String getData(String search) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException 
 	  {
-	    // query address
-	    String address = "UMBC";
+		String returnString = "";
+		  
+		// URL prefix to the geocoder
+		final String GEOCODER_REQUEST_PREFIX_FOR_XML = "http://maps.google.com/maps/api/geocode/xml";
+		  
+		// query address
+	    String address = search;
 
 	    System.out.println("Searching For  : " + address);
 	    
@@ -104,7 +106,9 @@ public class GetData
 		    	if("lng".equals(node.getNodeName())) 
 		    		lng = Float.parseFloat(node.getTextContent());
 		    }
-		    System.out.println("Latitude : " + lat + "\nLongitude : " + lng);
+		    System.out.println("Latitude : " + lat + "\nLongitude : " + lng + "\n");
+		    returnString += "" + lng + "," + lat + ",0";
 	    }
+		return returnString;
 	  }
 }
