@@ -1,0 +1,6 @@
+Remove mid location by X beside locations
+
+select multiple mid locations
+
+user/admin switch
+
