@@ -82,7 +82,7 @@ public class GetData
 	    
 	    if (resultNodeList.getLength() == 0)
 	    {	
-	    	System.out.println("ERROR : No location Found");
+	    	System.out.println("ERROR : No location Found\n");
 	    }
 	    else //If location Found
 	    {
