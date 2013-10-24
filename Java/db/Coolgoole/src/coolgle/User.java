@@ -11,6 +11,14 @@ package coolgle;
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- File that Simulates a user
 ***********************************************/
-public class User {
-
+public class USER {
+	//class variables
+	/**
+	 * constructor for USER object
+	 */
+	public USER(){
+		
+	}
+	
+	
 }

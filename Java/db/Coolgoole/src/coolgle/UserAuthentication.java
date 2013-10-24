@@ -13,5 +13,59 @@ package coolgle;
  ** for a user
 ***********************************************/
 public class UserAuthentication {
-
+	//class variables
+	/**
+	 * constructor for UserAuthentication object
+	 */
+	public UserAuthentication(){
+		
+	}
+	
+	
+	
+	/**
+	 * logUser
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void logUser(){}
+	/**addUser
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void addUser(){}
+	/**removeUser
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void removeUser(){}
+	/**promoteUser
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void promoteUser(){}
+	/**demoteUser
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void demoteUser(){}
+	/**addLocation
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void addLocation(){}
+	/**removeLocation
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	public void removeLocation(){}
+	
+	
 }

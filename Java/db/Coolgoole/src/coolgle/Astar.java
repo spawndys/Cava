@@ -1,6 +1,9 @@
 package coolgle;
+
+import java.util.ArrayList;
+
 /*****************************************
- ** File: Location
+ ** File: Astar
  ** Team Name: Cava++
  *Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu, 
@@ -9,27 +12,30 @@ package coolgle;
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Class that represents a location for a search
+ ** Decription- algorithm that finds shortest distance given a list of locations it must pass through
+ *with a defined start and end location
 ***********************************************/
-public class LOCATION {
-	//class variables
-	private String name;
-	private char key;
-	private float lat;
-	private float longitude;
-	
+public class Astar {
 	/**
 	 * constructor for UserAuthentication object
 	 */
-	public LOCATION(){
+	public Astar(){
 		
 	}
+	
 	/**
-	 * getKey()
+	 * sortShortestDistance
 	 * Description- 
 	 * Pre- 
 	 * Post -
 	 */
+	
+	public void sortShortestDistance(ArrayList<LOCATION> search){
+		//get start and end locations from arrayList
+		//sort locations start-end with shortest distance 
+		
+		
+	}
 	
 	
 	

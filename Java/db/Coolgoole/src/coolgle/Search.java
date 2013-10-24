@@ -1,4 +1,7 @@
 package coolgle;
+
+import java.util.ArrayList;
+
 /*****************************************
  ** File: Search
  ** Team Name: Cava++
@@ -11,6 +14,55 @@ package coolgle;
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Class that represents a users search
 ***********************************************/
-public class Search {
-
+public class SEARCH {
+	//class variables
+	ArrayList<LOCATION> locations = new ArrayList<LOCATION>();
+	float distance;
+	/**
+	 * constructor for SEARCH object
+	 */
+	public SEARCH(){
+		
+	}
+	
+	/**
+	 * hasShortest
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	
+	/**
+	 * getStart
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	
+	/**
+	 * getEnd
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	/**
+	 * addLocation
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	/**
+	 * removeLocation
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	/**
+	 * setKey
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	
+	
 }

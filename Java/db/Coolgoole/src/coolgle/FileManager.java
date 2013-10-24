@@ -13,29 +13,39 @@ package coolgle;
  ** and a txt File into search
 ***********************************************/
 public class FileManager {
+	//class variables
+	/**
+	 * constructor for FileManager object
+	 */
+	public FileManager(){
+		
+	}
+	
 	/**
 	 * pullLocation(String userId)
-	 * Description- search.txt to SEARCH
+	 * Description- search.txt to SEARCH (get database entry)
 	 * Pre-
 	 * Post-
 	 */
+	public void pullLocation(String userId){}
 	/**
 	 * addSearch(SEARCH search)
-	 * Description- SEARCH to search.txt 
+	 * Description- SEARCH to search.txt (add database entry)
 	 * Pre-
 	 * Post-
 	 */
+	public void addSearch(SEARCH search){}
 	/**removeUser()
-	 * Description- removes users searches
+	 * Description- removes users searches 
 	 * Pre- user exists
 	 * Post- removes text file for user
 	 */
-
+	public void removeUser(){}
 	/**addUser()
 	 * Description- adds file for users search
 	 * Pre- 
 	 * Post-adds text file for user
 	 */
-
+	public void addUser(){}
 	
 }
