@@ -4,3 +4,7 @@ select multiple mid locations
 
 user/admin switch
 
+no new locations for users
+
+search box with drop down menu
+
