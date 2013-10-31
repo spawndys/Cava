@@ -17,7 +17,7 @@ public class Driver {
 	//class constructors and variables
 	FileManager fileManager = new FileManager();
 	UserAuthentication userAuthentication = new UserAuthentication();
-	KmlCreator kmlCreator = new KmlCreator();
+	//KmlCreator kmlCreator = new KmlCreator(); //KML Creater is still being updated -
 	//gui req
 	
 	/**

@@ -34,7 +34,7 @@ public class FileManager {
 	 * Pre-
 	 * Post-
 	 */
-	public void addSearch(SEARCH search){}
+	public void addSearch(Search search){}
 	/**removeUser()
 	 * Description- removes users searches 
 	 * Pre- user exists

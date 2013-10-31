@@ -30,7 +30,7 @@ public class Astar {
 	 * Post -
 	 */
 	
-	public void sortShortestDistance(ArrayList<LOCATION> search){
+	public void sortShortestDistance(ArrayList<Location> search){
 		//get start and end locations from arrayList
 		//sort locations start-end with shortest distance 
 		

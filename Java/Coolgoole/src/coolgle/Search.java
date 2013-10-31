@@ -14,14 +14,14 @@ import java.util.ArrayList;
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Class that represents a users search
 ***********************************************/
-public class SEARCH {
+public class Search {
 	//class variables
-	ArrayList<LOCATION> locations = new ArrayList<LOCATION>();
+	ArrayList<Location> locations = new ArrayList<Location>();
 	float distance;
 	/**
 	 * constructor for SEARCH object
 	 */
-	public SEARCH(){
+	public Search(){
 		
 	}
 	

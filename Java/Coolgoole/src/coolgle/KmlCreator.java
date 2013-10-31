@@ -29,10 +29,57 @@ import de.micromata.opengis.kml.v_2_2_0.Style;
 public class KmlCreator 
 {
 	/**
-	 * constructor for SEARCH object
+	 * constructor for KmlCreator object
+	 * Takes in an arraylist of locations and the name of a file that will turn into the kml file. 
+	 * @throws IOException 
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
-	public KmlCreator(){
+	
+	public KmlCreator() 
+	{
+		//Nothing, use secondary Constructor 
+	}
+	
+	public KmlCreator(ArrayList<Location> locations, String fileName) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
+	{
+		// Create an array of location names : 
+		//ArrayList<String> Locations = new ArrayList<String>();
+			
+		// Create the kml object and document object to edit it
+		final Kml kml = new Kml();
+		final Document document = new Document();
+		kml.setFeature(document);
+
+		// Set the FileName of the document
+		document.setName(fileName);
+		document.setOpen(true);
+
+		// Create a new Path
+		final Placemark placemark1 = new Placemark();
+		document.getFeature().add(placemark1);
 		
+		// Name it whatever
+		placemark1.setName("Path"); //We can change this later. 
+		final LineString linestring1 = new LineString();
+		placemark1.setGeometry(linestring1);
+		linestring1.setExtrude(false);
+		linestring1.setTessellate(true);
+		List<Coordinate> coord1 = new ArrayList<Coordinate>();
+		linestring1.setCoordinates(coord1);
+		
+		// Add each location to the path 
+		for (int i = 0; i < locations.size(); i++)
+		{
+			coord1.add(new Coordinate(locations.get(i).getLatitude(),locations.get(i).getLongitude()));
+		}
+		
+		// Create The KML File
+		File newFile = new File (fileName);
+		
+		// Copy the data above into the file
+		kml.marshal(newFile);
 	}
 	/**
 	 * locationMapping
@@ -42,15 +89,18 @@ public class KmlCreator
 	 */
 	
 	
-	public static final void main (String argv[]) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
+	
+	
+	// Don't mind anything past here, testing stuff
+		
+	/*public static final void main (String argv[]) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
 	{
 		
-		//Name of the KML it will create
-		String FileName = "CreatedKML.kml";
-		
-		// Create an array of location names : 
-		ArrayList<String> Locations = new ArrayList<String>();
-		
+	}
+	
+	
+	public void TestingStuff()
+	{
 		// Read in the file
 		BufferedReader br = new BufferedReader(new FileReader("Locations.txt"));
 		String line;
@@ -68,42 +118,6 @@ public class KmlCreator
 			coords.add(converter.getData(Locations.get(i)));
 		}
 		
-		// Create the kml object and document object to edit it
-		final Kml kml = new Kml();
-		final Document document = new Document();
-		kml.setFeature(document);
-
-		// Set the FileName of the document
-		document.setName(FileName);
-		document.setOpen(true);
-
-		// Create a new Path
-		final Placemark placemark1 = new Placemark();
-		document.getFeature().add(placemark1);
-		
-		// Name it whatever
-		placemark1.setName("Path");
-		final LineString linestring1 = new LineString();
-		placemark1.setGeometry(linestring1);
-		linestring1.setExtrude(false);
-		linestring1.setTessellate(true);
-		List<Coordinate> coord1 = new ArrayList<Coordinate>();
-		linestring1.setCoordinates(coord1);
-		
-		// Add each location to the path 
-		for (int i = 0; i < Locations.size(); i++)
-		{
-			if (coords.get(i).compareTo("") == 0)
-				System.out.println("Cannot Find Location : " + Locations.get(i));
-			else
-				coord1.add(new Coordinate(coords.get(i)));
-		}
-		
-		// Create The KML File
-		File newFile = new File (FileName);
-		
-		// Copy the data above into the file
-		kml.marshal(newFile);
 		
 		// Open the File with it's default program
 		if (Desktop.isDesktopSupported())  
@@ -115,6 +129,6 @@ public class KmlCreator
 			// If error opening file, post error message to console. 
 			System.out.println("Error opening KML");
 		}
-		
 	}
+	*/
 }
