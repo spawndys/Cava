@@ -72,7 +72,7 @@ public class KmlCreator
 		// Add each location to the path 
 		for (int i = 0; i < locations.size(); i++)
 		{
-			coord1.add(new Coordinate(locations.get(i).getLatitude(),locations.get(i).getLongitude()));
+			coord1.add(new Coordinate(locations.get(i).getLongitude(),locations.get(i).getLatitude()));
 		}
 		
 		// Create The KML File
@@ -80,44 +80,6 @@ public class KmlCreator
 		
 		// Copy the data above into the file
 		kml.marshal(newFile);
-	}
-	/**
-	 * locationMapping
-	 * Description- 
-	 * Pre- 
-	 * Post -
-	 */
-	
-	
-	
-	
-	// Don't mind anything past here, testing stuff
-		
-	/*public static final void main (String argv[]) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
-	{
-		
-	}
-	
-	
-	public void TestingStuff()
-	{
-		// Read in the file
-		BufferedReader br = new BufferedReader(new FileReader("Locations.txt"));
-		String line;
-		while ((line = br.readLine()) != null) 
-		{
-			Locations.add(line);
-		}
-		br.close();
-
-		// Turn the array of location names into a lat/lng array using the GetData Class:  
-		GetData converter = new GetData();
-		ArrayList<String> coords = new ArrayList<String>();
-		for (int i = 0; i < Locations.size(); i++)
-		{
-			coords.add(converter.getData(Locations.get(i)));
-		}
-		
 		
 		// Open the File with it's default program
 		if (Desktop.isDesktopSupported())  
@@ -130,5 +92,46 @@ public class KmlCreator
 			System.out.println("Error opening KML");
 		}
 	}
-	*/
+	/**
+	 * locationMapping
+	 * Description- 
+	 * Pre- 
+	 * Post -
+	 */
+	
+	
+	// Testing Main
+		
+	public static final void main (String argv[]) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
+	{
+		// Make a new Geocoder to fill in Location Data
+		Geocoder converter = new Geocoder();
+		
+		// Read in the file
+		BufferedReader br = new BufferedReader(new FileReader("Locations.txt"));
+		String line;
+		
+		// Create locations arraylist to send into kmlCreator
+		ArrayList<Location> testLocations = new ArrayList<Location>();
+		
+		// Read file Location by location
+		while ((line = br.readLine()) != null) 
+		{
+			// Create a new location based on search term  
+			Location newLocation = converter.createLocation(line);
+			
+			// If found, add to locations array
+			if (newLocation.getName().compareTo("") != 0)
+				testLocations.add(newLocation);
+			
+			// Testing, print out location information
+			System.out.println(newLocation);
+		}
+		
+		// Close database file
+		br.close();
+		
+		//Create the kml for that location array and open it 
+		KmlCreator kml = new KmlCreator(testLocations, "testKml.kml");
+	}
 }
