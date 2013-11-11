@@ -17,7 +17,9 @@ import java.util.ArrayList;
 public class Search {
 	//class variables
 	ArrayList<Location> locations = new ArrayList<Location>();
+	Location start, end;
 	float distance;
+	boolean optimized;
 	/**
 	 * constructor for SEARCH object
 	 */
