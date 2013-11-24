@@ -1,4 +1,15 @@
+//DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
+
 package coolgle;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 /*****************************************
  ** File: Location
  ** Team Name: Cava++
@@ -42,7 +53,21 @@ public class Location {
 		address = "";
 	}
 	
+	//Enter line from database file
+	public Location(String fileInput)
+	{
+		String[] data = fileInput.split("\\|");
+		
+		name = data[0]; 
+		address =  data[1]; 
+		city = data[2]; 
+		state = data[3]; 
+		latitude = (Double.parseDouble(data[4]));
+		longitude = (Double.parseDouble(data[5]));
+	}
+	
 	//Secondary Constructor - Just enter Name
+	/*
 	public Location(String name)
 	{
 		this.name = name;
@@ -52,6 +77,7 @@ public class Location {
 		state = "";
 		address = "";
 	}
+	*/
 	
 	//Secondary Constructor - Enter All 
 	public Location(String name, double latitude, double longitude, String city, String state, String address)
@@ -132,4 +158,71 @@ public class Location {
 		
 	}
 	
+	// toString for printing to database file
+	public String fileToString()
+	{
+		String returnString = "";
+		returnString += "" + getName() + "|";
+		returnString += "" + getAddress() + "|";
+		returnString += "" + getCity() + "|";
+		returnString += "" + getState() + "|";
+		returnString += "" + getLatitude() + "|";
+		returnString += "" + getLongitude();
+		return returnString;
+		
+	}
+	
+	// Returns true if no errors, false if otherwise
+	public boolean printToFile(String fileName)
+	{
+		boolean success = true; 
+		try 
+		{
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+			writer.append(fileToString());
+			writer.newLine();
+			writer.close();
+		} 
+		catch (FileNotFoundException e) 
+		{	
+			success = false;
+			//e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			success = false;
+		}
+		return success;
+	}
+	
+	//Returns the distance in miles between the two locations
+	public double distanceTo(Location otherLocation)
+	{
+		double distance = 0.0;
+		double lon1 = getLongitude(); 
+		double lat1 = getLatitude(); 
+		double lon2 = otherLocation.getLongitude(); 
+		double lat2 = otherLocation.getLatitude(); 
+		
+		double theta = lon1 - lon2;
+		distance = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+		distance = Math.acos(distance);
+		distance = rad2deg(distance);
+		distance = distance * 60 * 1.1515;
+		
+		return distance;
+	}
+	
+	private double deg2rad(double deg) 
+	{
+		  return (deg * Math.PI / 180.0);
+	}
+
+	private double rad2deg(double rad) 
+	{
+		  return (rad * 180 / Math.PI);
+	}
+
+
+
 }
