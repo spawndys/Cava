@@ -8,12 +8,8 @@ package coolgle;
 
 import javax.swing.JOptionPane;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 /**
- *
  * @author rdg77_000
  */
 public class AddLocationGui extends javax.swing.JFrame 
@@ -93,19 +89,19 @@ public class AddLocationGui extends javax.swing.JFrame
         addLocationLabel.setText("Add / Location Properties");
 
         loNameLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loNameLabel.setText("Location Name: ");
+        loNameLabel.setText("Name: ");
 
         loCityLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loCityLabel.setText("Location City: ");
+        loCityLabel.setText("City: ");
 
         loStateLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loStateLabel.setText("Location State: ");
+        loStateLabel.setText("State: ");
 
         loLongLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loLongLabel.setText("Location Longitude: ");
+        loLongLabel.setText("Longitude: ");
 
         loLatLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loLatLabel.setText("Location Latitude: ");
+        loLatLabel.setText("Latitude: ");
 
         loLatText.setToolTipText("");
         loLatText.addActionListener(new java.awt.event.ActionListener() {
@@ -233,8 +229,7 @@ public class AddLocationGui extends javax.swing.JFrame
 
     private void saveLocationBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_saveLocationBtnActionPerformed
-        //int comfirm = JOptionPane.showConfirmDialog(null, "Do you want to add this new city to the list? (No to clear text field)");
-
+        boolean returnToMain = false; 
         // If status = 1 (Mod location) just save the data over the current data
         if ( status == 1 )
         {
@@ -258,6 +253,7 @@ public class AddLocationGui extends javax.swing.JFrame
 
                 // Copy into database and refresh main page
                 m_main.editLocation(newLoc);
+                returnToMain = true; 
             }
             
         }
@@ -280,26 +276,34 @@ public class AddLocationGui extends javax.swing.JFrame
                 geoCoderInput += (this.loCityText.getText().isEmpty() ? "" : ", " + this.loCityText.getText());
                 geoCoderInput += (this.loStateText.getText().isEmpty() ? "" : ", " + this.loStateText.getText());
                 Location newLocation = geo.createLocation( geoCoderInput );
-
-                // Ask the user if they really want to add the location the geocoder found. 
-                int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : \n" + 
-                                    geoCoderInput + "\nFound : \n" + newLocation + "\nIs this the location you'd like to add? ");
-                if (comfirm == 0) // Yes
+                
+                if (newLocation.getName().isEmpty())
                 {
-                    // Add location to database
-                    if ( !newLocation.printToFile("LocationDatabase.txt") )
-                    {
-                          System.out.println("Error occured printing location information to database. ");
-                    }
+                    JOptionPane.showMessageDialog(null, "Could not find a location with that information", "Failure", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
-                    // No
+                    // Ask the user if they really want to add the location the geocoder found. 
+                    int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : \n" + 
+                                        geoCoderInput + "\nFound : \n" + newLocation + "\nIs this the location you'd like to add? ");
+                    if (comfirm == 0) // Yes
+                    {
+                        // Add location to database
+                        if ( !newLocation.printToFile("LocationDatabase.txt") )
+                        {
+                              System.out.println("Error occured printing location information to database. ");
+                        }
+                        returnToMain = true; 
+                    }
+                    else
+                    {
+                        // No
+                    }
                 }
             }
-        } 
-        
-        this.setVisible(false);
+        }
+        if (returnToMain)
+            this.setVisible(false);
         // Refresh main admin gui
         m_main.populateLocationList();
  
