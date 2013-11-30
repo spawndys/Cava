@@ -28,7 +28,6 @@ World War II Memorial|17th Street Southwest|District of Columbia|DC|38.8894426|-
 Ford's Museum|517 10th Street Northwest|Washington|DC|38.8968174|-77.0258121
 U.S. Capitol|First Street Southeast|Washington|District of Columbia|38.8899389|-77.0090505
 Albert Einstein Memorial|2101 Constitution Avenue Northwest|Washington|DC|38.8924128|-77.0484415
-The White House|1600 Pennsylvania Ave NW|Washington|DC|38.8976831|-77.0364972
 Basilica of the National Shrine of the Immaculate Conception||Washington|District of Columbia|38.9333701|-77.0006558
 Vietnam Veterans Memorial||Washington|DC|38.8905667|-77.0470025
 Library of Congress|101 Independence Avenue Southeast|Washington|District of Columbia|38.8886836|-77.0047188
@@ -69,7 +68,7 @@ US Army Transportation Museum|300 Washington Boulevard|Newport News|Virginia|37.
 National Firearms Museum|11250 Waples Mill Road|Fairfax|Virginia|38.863061|-77.336036
 Natural Bridge Wax Museum|70 Wert Faulkner Highway|Natural Bridge Station|Virginia|37.6285949|-79.5427694
 Bradford Country Farm Museum|RR 14|Troy|Pennsylvania|41.7859079|-76.7880114
-Design Center Stuttgart|19 Willi-Bleicher-Straße|Stuttgart|BW|48.779166|9.172868
+Design Center Stuttgart|19 Willi-Bleicher-Straï¿½e|Stuttgart|BW|48.779166|9.172868
 International Print Center New York|508 West 26th Street|New York|New York|40.7498123|-74.0035012
 HERSHEY'S CHOCOLATE WORLD|251 Park Boulevard|Hershey|Pennsylvania|40.288136|-76.660366
 Fort Necessity National Battlefield||Farmington|PA|39.812516|-79.5912457
@@ -78,3 +77,4 @@ National Constitution Center|525 Arch Street|Philadelphia|Pennsylvania|39.953196
 National Liberty Museum|321 Chestnut Street|Philadelphia|Pennsylvania|39.948842|-75.146921
 Old Jail Museum|128 West Broadway|Jim Thorpe|Pennsylvania|40.8636993|-75.7465003
 Police Heritage Museum|54 West Market Street|York|Pennsylvania|39.9618175|-76.729337
+The White House|1600 Pennsylvania Avenue Northwest|Washington|District of Columbia|38.8976831|-77.0364972

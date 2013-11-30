@@ -3,30 +3,107 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package coolgle;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author rdg77_000
  */
-public class adminGui extends javax.swing.JFrame {
-
+public class adminGui extends javax.swing.JFrame 
+{
+    private ArrayList<Location> locationlist = new ArrayList<Location>();
+    
     /**
      * Creates new form GuiUI
      */
-    public adminGui() {
-              Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        		int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 30);
-		super.setLocation(xpos,  ypos);
+    public adminGui() 
+    {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+        int ypos = (int) (screen.getHeight() / 30);
+        super.setLocation(xpos,  ypos);
         initComponents();
+
+        /*
+        // Switch to user button
+        switchUserBtn.setText("Switch To User");
+
+        // User buttons
+        userDelBtn.setText("Delete Selected");
+        userModifyBtn.setText("Modify Selected");
+
+        // Location Buttons
+        newLocaBtn.setText("Add New Location");
+        loModiSelectBtn.setText("Modify Selected");
+        loDelBtn.setText("Delete Selected");
+        */
+        
+        // Populate the location list
+        populateLocationList();
     }
 
+    
+    private void newLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        // When user clicks new location button : 
+        //this.setVisible(false);
+        AddLocationGui addLoc = new AddLocationGui(this);
+        addLoc.setVisible(true);    
+    }
+    
+    private void modLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        // When user clicks mod location button : 
+        //this.setVisible(false);
+        AddLocationGui addLoc = new AddLocationGui(locationlist.get(locationDisplay.getSelectedIndex()), this);
+        addLoc.setVisible(true);      
+    }
+    
+    private void delLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        // When user clicks del location button : 
+        // Show warning message : 
+        String locationNameToDelete = locationlist.get(locationDisplay.getSelectedIndex()).getName();
+        int comfirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete \n \" " + locationNameToDelete + " \" " );
+        if (comfirm == 0)
+        {
+            // Selected YES
+            
+            // Delete location from arraylist
+            locationlist.remove( locationDisplay.getSelectedIndex() );
+            
+            // Create database
+            recreateDatabase();
+            
+            // Repopulate list
+            populateLocationList();
+        }
+        if (comfirm == 1)
+        {
+            // Selected NO
+        }
+        if (comfirm == 2)
+        {
+            // Selected CANCEL
+        }
+    
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +123,7 @@ public class adminGui extends javax.swing.JFrame {
         loModifyLabel = new javax.swing.JLabel();
         userModifyLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        localtionDisplay = new javax.swing.JList();
+        locationDisplay = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
         userDisplay = new javax.swing.JList();
         newLocaBtn = new javax.swing.JButton();
@@ -85,24 +162,53 @@ public class adminGui extends javax.swing.JFrame {
         userModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         userModifyLabel.setText("User Modification");
 
-        localtionDisplay.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        localtionDisplay.setModel(new javax.swing.AbstractListModel() {
+        locationDisplay.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        locationDisplay.setModel(new javax.swing.AbstractListModel() 
+        {
             //String[] strings = locationList.getNames();
-             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16", "Item 17", "Item 18", "Item 19", "Item 20", " " };
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16", "Item 17", "Item 18", "Item 19", "Item 20", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        localtionDisplay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(localtionDisplay);
+        locationDisplay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(locationDisplay);
 
         userDisplay.setModel(new javax.swing.AbstractListModel() {
             //String[] strings = userList.getString();
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Populating database..." };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(userDisplay);
 
+        newLocaBtn.setToolTipText("Add a new location to the database");
+        newLocaBtn.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+                newLocaBtnActionPerformed(evt);
+            }
+        });
+        
+        loDelBtn.setToolTipText("Delete the currently selected location from database");
+        loDelBtn.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+                delLocaBtnActionPerformed(evt);
+            }
+        });
+        
+        loModiSelectBtn.setToolTipText("View and modify location details");
+        loModiSelectBtn.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+                modLocaBtnActionPerformed(evt);
+            }
+        });
+
+        
         newLocaBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\add_new_location_button.jpg")); // NOI18N
 
         loDelBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\delete_selected_button.jpg")); // NOI18N
@@ -200,7 +306,8 @@ public class adminGui extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -225,13 +332,93 @@ public class adminGui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 new adminGui().setVisible(true);
             }
         });
         
     }
+    
+    public void populateLocationList()
+    {
+        try 
+        {        
+            // Clear out current list 
+            locationlist.clear();
+
+            // Fill in Location List
+            DefaultListModel listModel;
+            listModel = new DefaultListModel();
+            locationDisplay.setModel(listModel);
+            BufferedReader br;
+            try
+            {
+                br = new BufferedReader(new FileReader("LocationDatabase.txt"));
+                String locationString;
+                //ArrayList<Location> DatabaseLocations = new ArrayList<Location>();
+                // Read file Location by location
+                while ((locationString = br.readLine()) != null)
+                {
+                    Location newLocation = new Location(locationString);
+                    locationlist.add(newLocation);
+                    listModel.addElement(newLocation.getName());
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                System.out.println("Could Not find database File ");
+            }
+        } 
+        catch (IOException ex) 
+        {
+            System.out.println("Error openning database file. ");
+        }
+    }
+    
+    // Replaces the currently selected location with a new one
+    // Called from modify button -> save
+    public void editLocation(Location newLoc)
+    {
+        // Replace currently selected object in list with new location 
+        //(TODO : maybe put this in a copy function in location class)
+        locationlist.get( locationDisplay.getSelectedIndex() ).setAddress(newLoc.getAddress());
+        locationlist.get( locationDisplay.getSelectedIndex() ).setLatitude(newLoc.getLatitude());
+        locationlist.get( locationDisplay.getSelectedIndex() ).setLongitude(newLoc.getLongitude());
+        locationlist.get( locationDisplay.getSelectedIndex() ).setCity(newLoc.getCity());
+        locationlist.get( locationDisplay.getSelectedIndex() ).setState(newLoc.getState());
+        locationlist.get( locationDisplay.getSelectedIndex() ).setName(newLoc.getName());
+        
+         // Recreate database baesd on new arraylist
+        recreateDatabase();
+
+        // Repopulate list
+        populateLocationList();
+    }
+    
+    public void recreateDatabase()
+    {
+        // Clear old database file 
+        PrintWriter writer;
+        try 
+        {
+            writer = new PrintWriter("LocationDatabase.txt");
+            writer.print("");
+            writer.close();
+
+            // Repopulate database file from arraylist 
+            for (int i = 0; i < locationlist.size(); i++)
+                locationlist.get(i).printToFile("LocationDatabase.txt");
+
+        } 
+        catch (FileNotFoundException ex) 
+        {
+            System.out.println("Location Database Not Found");
+        }
+    }
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -242,7 +429,7 @@ public class adminGui extends javax.swing.JFrame {
     private javax.swing.JButton loDelBtn;
     private javax.swing.JButton loModiSelectBtn;
     private javax.swing.JLabel loModifyLabel;
-    private javax.swing.JList localtionDisplay;
+    private javax.swing.JList locationDisplay;
     private javax.swing.JButton newLocaBtn;
     private javax.swing.JButton switchUserBtn;
     private javax.swing.JButton userDelBtn;

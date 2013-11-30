@@ -8,22 +8,59 @@ package coolgle;
 
 import javax.swing.JOptionPane;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author rdg77_000
  */
-public class AddLocationGui extends javax.swing.JFrame {
-
+public class AddLocationGui extends javax.swing.JFrame 
+{
+    // Set to 0 if you're adding a location
+    // Set to 1 if you're modifying a location
+    private int status = 0;
+    private adminGui m_main;
     /**
      * Creates new form AddLocation
      */
-    public AddLocationGui() {
-              Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        		int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
-		super.setLocation(xpos,  ypos);
+    public AddLocationGui(adminGui mainFrame) 
+    {
+        setUp();
+        status = 0;
+        m_main = mainFrame; 
+    }
+    
+    // This will be used with the modify location screen, it will load the 
+    // add location screen with the data already pre-filled in. 
+    public AddLocationGui(Location newLocation, adminGui mainFrame) 
+    {
+        setUp();
+        
+        this.loNameText.setText(newLocation.getName());
+        this.loLatText.setText(String.valueOf(newLocation.getLatitude()));
+        this.loLongText.setText(String.valueOf(newLocation.getLongitude()));
+        this.loCityText.setText(newLocation.getCity()); 
+        this.loStateText.setText(newLocation.getState()); 
+        this.loAddressText.setText(newLocation.getAddress());
+        
+        status = 1; 
+        m_main = mainFrame; 
+    }
+    
+    // Called from all constructors 
+    public void setUp()
+    {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+        int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
+        super.setLocation(xpos,  ypos);            
         initComponents();
+        
+        // Makes it so that you can exit from pop up messages without closing the entire app 
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -33,8 +70,8 @@ public class AddLocationGui extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+    private void initComponents() 
+	 {
         addLocationLabel = new javax.swing.JLabel();
         loNameLabel = new javax.swing.JLabel();
         loCityLabel = new javax.swing.JLabel();
@@ -65,10 +102,10 @@ public class AddLocationGui extends javax.swing.JFrame {
         loStateLabel.setText("Location State: ");
 
         loLongLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loLongLabel.setText("Location Long: ");
+        loLongLabel.setText("Location Longitude: ");
 
         loLatLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        loLatLabel.setText("Location Lat: ");
+        loLatLabel.setText("Location Latitude: ");
 
         loLatText.setToolTipText("");
         loLatText.addActionListener(new java.awt.event.ActionListener() {
@@ -194,25 +231,78 @@ public class AddLocationGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loLatTextActionPerformed
 
-    private void saveLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveLocationBtnActionPerformed
-      int comfirm = JOptionPane.showConfirmDialog(null, "Do you want to add this new city to the list? (No to clear text field)");
-      if(comfirm == 0){
-           /*     Location newLocation = new Location( this.loNameText.getText(), 
-                                            this.loLatText.getText(),
-                                            this.loLongText.getText(),
-                                            this.loCityText.getText(), 
-                                            this.loStateText.getText(), 
-                                            this.loAddressText.getText());*/
-        }else if(comfirm == 1){
-            this.loNameText.setText("");
-            this.loLatText.setText("");
-            this.loLongText.setText("");
-            this.loCityText.setText(""); 
-            this.loStateText.setText(""); 
-            this.loAddressText.setText("");
+    private void saveLocationBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_saveLocationBtnActionPerformed
+        //int comfirm = JOptionPane.showConfirmDialog(null, "Do you want to add this new city to the list? (No to clear text field)");
+
+        // If status = 1 (Mod location) just save the data over the current data
+        if ( status == 1 )
+        {
+            // Error if not all data filled in 
+            if ((this.loNameText.getText().isEmpty() && this.loAddressText.getText().isEmpty()) ||
+                this.loLatText.getText().isEmpty() || this.loLongText.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Locations cannot be saved unless the following fields contain data:"
+                        + "\nLatitude\nLongitude\nName or Address", "Failure", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                // Make a new location given the data in the fields 
+                Location newLoc = new Location(
+                                  this.loNameText.getText(),
+                                  Double.parseDouble(this.loLatText.getText()),
+                                  Double.parseDouble(this.loLongText.getText()),
+                                  this.loCityText.getText(),
+                                  this.loStateText.getText(),
+                                  this.loAddressText.getText());
+
+                // Copy into database and refresh main page
+                m_main.editLocation(newLoc);
+            }
+            
         }
-        else{
-        }
+        // if status = 0 (Add location) launch geocoder to get all the current data, and make a new Location data. 
+        if ( status == 0 )
+        {
+            // Confirm that the user entered at least a name or address. 
+            if (this.loNameText.getText().isEmpty() && this.loAddressText.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Must enter either a name or address", "Failure", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                // Create new geocoder object 
+                Geocoder geo = new Geocoder();
+                // Search for the name
+                String geoCoderInput = "";
+                geoCoderInput += (this.loNameText.getText().isEmpty() ? "" : this.loNameText.getText());
+                geoCoderInput += (this.loAddressText.getText().isEmpty() ? "" : ", " + this.loAddressText.getText());
+                geoCoderInput += (this.loCityText.getText().isEmpty() ? "" : ", " + this.loCityText.getText());
+                geoCoderInput += (this.loStateText.getText().isEmpty() ? "" : ", " + this.loStateText.getText());
+                Location newLocation = geo.createLocation( geoCoderInput );
+
+                // Ask the user if they really want to add the location the geocoder found. 
+                int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : \n" + 
+                                    geoCoderInput + "\nFound : \n" + newLocation + "\nIs this the location you'd like to add? ");
+                if (comfirm == 0) // Yes
+                {
+                    // Add location to database
+                    if ( !newLocation.printToFile("LocationDatabase.txt") )
+                    {
+                          System.out.println("Error occured printing location information to database. ");
+                    }
+                }
+                else
+                {
+                    // No
+                }
+            }
+        } 
+        
+        this.setVisible(false);
+        // Refresh main admin gui
+        m_main.populateLocationList();
+ 
     }//GEN-LAST:event_saveLocationBtnActionPerformed
 
     private void loNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loNameTextActionPerformed
@@ -238,7 +328,8 @@ public class AddLocationGui extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -263,9 +354,11 @@ public class AddLocationGui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddLocationGui().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                //new AddLocationGui().setVisible(true);
             }
         });
     }

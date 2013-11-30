@@ -66,18 +66,6 @@ public class Location {
 		longitude = (Double.parseDouble(data[5]));
 	}
 	
-	//Secondary Constructor - Just enter Name
-	/*
-	public Location(String name)
-	{
-		this.name = name;
-		latitude = 0.0;
-		longitude = 0.0;
-		city = "";
-		state = "";
-		address = "";
-	}
-	*/
 	
 	//Secondary Constructor - Enter All 
 	public Location(String name, double latitude, double longitude, String city, String state, String address)
@@ -149,11 +137,11 @@ public class Location {
 	{
 		String returnString = "";
 		returnString += "Name : " + getName() + "\n";
-		returnString += "address : " + getAddress() + "\n";
-		returnString += "city : " + getCity() + "\n";
-		returnString += "state : " + getState() + "\n";
-		returnString += "latitude : " + getLatitude() + "\n";
-		returnString += "longitude : " + getLongitude() + "\n";
+		returnString += "Address : " + getAddress() + "\n";
+		returnString += "City : " + getCity() + "\n";
+		returnString += "State : " + getState() + "\n";
+		returnString += "Latitude : " + getLatitude() + "\n";
+		returnString += "Longitude : " + getLongitude() + "\n";
 		return returnString;
 		
 	}
