@@ -18,7 +18,7 @@ public class Search {
 	//class variables
 	ArrayList<Location> locations = new ArrayList<Location>();
 	Location start, end;
-	float distance;
+	double distance;
 	boolean optimized;
 	/**
 	 * constructor for SEARCH object
