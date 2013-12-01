@@ -3,13 +3,53 @@
     <Document>
         <name>Search1.kml</name>
         <open>1</open>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-80.2573746,40.1763464 -77.336036,38.863061 -77.0641479,38.9140633 -77.046874,38.9116924 -77.0082536,38.89754 -75.146921,39.948842</coordinates>
+                <coordinates>-77.0230596,38.8975095 -77.0476749,38.8878912 -76.4763719,38.9688803 -77.0258121,38.8968174</coordinates>
             </LineString>
+        </Placemark>
+        <Placemark>
+            <name>Smithsonian American Art Museum</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8.0&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <Point>
+                <coordinates>-77.0230596,38.8975095</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Korean War Veterans Memorial</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8.026929381635973&lt;br&gt;Distance Traveled : &lt;br&gt; 1 miles</description>
+            <Point>
+                <coordinates>-77.0476749,38.8878912</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Annapolis Maritime Museum</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8.594413365955385&lt;br&gt;Distance Traveled : &lt;br&gt; 32 miles</description>
+            <Point>
+                <coordinates>-76.4763719,38.9688803</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Ford's Museum</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 9.13888285159836&lt;br&gt;Distance Traveled : &lt;br&gt; 62 miles</description>
+            <Point>
+                <coordinates>-77.0258121,38.8968174</coordinates>
+            </Point>
         </Placemark>
     </Document>
 </kml>

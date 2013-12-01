@@ -20,6 +20,7 @@
 
 package coolgle;
 
+import de.micromata.opengis.kml.v_2_2_0.AltitudeMode;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,14 +31,18 @@ import java.util.List;
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LineString;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
+import de.micromata.opengis.kml.v_2_2_0.Point;
 
 public class KmlCreator 
 {
     // Name of kml file - set in constructor
     private String fileName; 
 
+    private static final int SPEED = 55; // In miles / hour
+    
     /**
      * KmlCreator
      * Description - constructor for kmlCreator
@@ -105,8 +110,37 @@ public class KmlCreator
             
             linestring1.setCoordinates(coord1);
             
-            // Add placemarks to show the arrival time
-            // TODO
+            // Add pointers to each location to display more information about them. 
+            double time = search.getStartTime(); 
+            int distance = 0; 
+            
+            // Points for the  Locations
+            
+            // For this, we will add the starting and ending locations to our arraylist of mid locations.
+            locations.add(0,search.getStart());
+            locations.add(locations.size(),search.getEnd());
+            int i = 0;
+            for ( i = 0; i < locations.size(); i++ ) 
+            {
+                double newDist = 0;
+                if (i > 0)
+                    newDist = locations.get(i).distanceTo(locations.get(i-1));
+                distance += Math.round(newDist);
+                if ( newDist != 0 )
+                    time += (newDist / SPEED);
+                
+                document.createAndAddStyle()
+                .createAndSetBalloonStyle();
+                
+                Placemark placemark = document.createAndAddPlacemark()
+                .withName(locations.get(i).getName()) //This is the name that shows when you're not clicked in on it. 
+                .withDescription("Estimated Arrival Time :  <br> " + time
+                                  + "<br>Distance Traveled : <br> " + distance + " miles");
+
+                Point point = placemark.createAndSetPoint();
+                List<Coordinate> coord = point.createAndSetCoordinates();
+                coord.add( coord1.get(i) ); 
+            }
             
             // Copy the data above into the file
             kml.marshal(newFile);

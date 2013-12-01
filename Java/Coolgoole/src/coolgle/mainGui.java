@@ -21,8 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class mainGui extends javax.swing.JFrame 
 {
-    //backend arraylist, kept synced with the current list of locations showned. 
+    // Backend arraylist, kept synced with the current list of locations showned. 
     private ArrayList<Location> locationList = new ArrayList<Location>();
+    // Active Search
     private Search search; 
     
     /**
@@ -226,9 +227,9 @@ public class mainGui extends javax.swing.JFrame
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(endLocationLabel)
                                         .addGap(3, 3, 3)))
-                                .addGap(50, 50, 50)
+                                .addGap(62, 62, 62)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22))
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(mapItBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))))
@@ -290,8 +291,6 @@ public class mainGui extends javax.swing.JFrame
 
         setEndLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setEndLocation.setText("End Here");
-        setEndLocation.setMaximumSize(new java.awt.Dimension(85, 25));
-        setEndLocation.setMinimumSize(new java.awt.Dimension(85, 25));
         setEndLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setEndLocationActionPerformed(evt);
@@ -470,11 +469,12 @@ public class mainGui extends javax.swing.JFrame
                             .addComponent(setEndLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(filterLabel)
-                            .addComponent(filterCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(containsLabel)
-                            .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(filterLabel)
+                                .addComponent(filterCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(containsLabel)))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -572,10 +572,11 @@ public class mainGui extends javax.swing.JFrame
         });
     }
     
+    // Called when user selects a time in the starting time dropdown
+    // Sets the starting time member vairable in the search and updates the right pane. 
     public void updateStartingTime()
     {
         search.setStartTime(8 + times.getSelectedIndex());
-        //JOptionPane.showMessageDialog(null, "Start Time is now : \n" + search.getStartTime());
         updateVisualDisplay();
     }
     
@@ -593,6 +594,8 @@ public class mainGui extends javax.swing.JFrame
        
     }
     
+    // Adds the selected item in the left list to the current search, updates the right list. 
+    // Shows error if the location is already in the trip. 
     public void updateMid()
     {
         //Make sure location isn't already in search. 
@@ -606,9 +609,17 @@ public class mainGui extends javax.swing.JFrame
             
     }
     
+    
+    // Removes the selected item from the right list from the current trip. 
     public void removeSelectedMidTrip()
     {
-        search.removeAtPosition( midLocationsList.getSelectedIndex() );
+        //If something is selected, remove it 
+        if (midLocationsList.getSelectedIndex() != -1)
+            search.removeAtPosition( midLocationsList.getSelectedIndex() );
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Nothing is selected", "Failure", JOptionPane.ERROR_MESSAGE);
+        }
         updateVisualDisplay();
     }
     
@@ -690,6 +701,10 @@ public class mainGui extends javax.swing.JFrame
         }
     }
     
+    
+    // Called when user clicks map it button, verifies that the trip has a starting/ending lcoation
+    // and at least one mid location
+    // If so, calls prepareTrip which sorts the trip & sends it to the kml creator. 
     public void validateTrip()
     {
         //Validate trip 
@@ -717,6 +732,11 @@ public class mainGui extends javax.swing.JFrame
             prepareTrip();
     }
     
+    
+    // Called after trip is validated from the validateTrip() function. 
+    // Creates a SearchManager object to sort the trip and then passes the 
+    // search to the kmlCreater class which creates a kml file based on the 
+    // search and opens the file. 
     public void prepareTrip()
     {
         // Sort trip if not sorted
@@ -733,12 +753,24 @@ public class mainGui extends javax.swing.JFrame
         newKml.openKml(newKml.FillKml(search));
     }
     
+    // Called when the user hits the view details button in the left pane of the main gui. 
+    // Shows error message if nothing is selected. 
     public void viewInfomation()
     {
-        AddLocationGui info = new AddLocationGui( locationList.get(MainLocationDisplay.getSelectedIndex()) );
-        info.setVisible(true);
+        if ( MainLocationDisplay.getSelectedIndex() != -1 )
+        {
+            AddLocationGui info = new AddLocationGui( locationList.get(MainLocationDisplay.getSelectedIndex()) );
+            info.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No location selected."
+                                            , "Failure", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
+    // Called after any vairable in the search object is changed. 
+    // It will update the right pane of the main gui to account for the change in information. 
     public void updateVisualDisplay()
     {
         timeDisplay.setText( String.valueOf(search.getStartTime()) );
@@ -752,6 +784,8 @@ public class mainGui extends javax.swing.JFrame
             listModel.addElement(search.getMidLocations().get(i).getName());
     }
     
+    // to be called when the user presses the clear search button, 
+    // clears feilds of search & updates the visuals in the right pane. 
     public void clearSearch()
     {
         search.clearData();

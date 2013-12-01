@@ -15,9 +15,13 @@ import javax.swing.JOptionPane;
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Class that represents a users search
 ***********************************************/
-public class Search {
+public class Search 
+{
 	//class variables
-	ArrayList<Location> locations = new ArrayList<Location>();
+	
+        // Arraylist of midlocations
+        ArrayList<Location> locations = new ArrayList<Location>();
+        
 	Location start, end;
 	double distance;
 	boolean optimized;
@@ -40,44 +44,62 @@ public class Search {
 	
 	/**
 	 * hasShortest
-	 * Description- 
-	 * Pre- 
-	 * Post -
+	 * Description- Returns whether or not the search has been optimized.
 	 */
         public boolean hasShortest()
         {
             return optimized;
         }
         
-        public void optimized(boolean isOptimized)
+        /**
+	 * setOptimized
+	 * Description - sets optimized to boolean parameter
+	 */
+        public void setOptimized(boolean isOptimized)
         {
             optimized = isOptimized;
         }
 	
+        /**
+	 * getMidLocations
+	 * Description - returns arraylist of midlocations. 
+	 */
         public ArrayList<Location> getMidLocations()
         {
             return locations; 
         }
         
+        /**
+	 * setStartTime
+	 * Description - Set start time to new double passed in
+	 */
         public void setStartTime(double newTime)
         {
             startTime = newTime; 
         }
         
+        /**
+	 * getStartTime
+	 * Description - Returns start time. 
+	 */
         public double getStartTime()
         {
             return startTime;
         }
+        
 	/*
 	 * getStart
-	 * Description- 
-	 * Pre- 
-	 * Post -
+	 * Description - Returns start location. 
 	 */
         public Location getStart()
         {
             return start;
         }
+        
+        /*
+	 * setStart
+	 * Description - Sets the start location 
+	 */
         public void setStart(Location newStart)
         {
             start = newStart; 
@@ -85,14 +107,17 @@ public class Search {
 	
 	/**
 	 * getEnd
-	 * Description- 
-	 * Pre- 
-	 * Post -
+	 * Description- Returns end location
 	 */
         public Location getEnd()
         {
             return end;
         }
+        
+        /*
+	 * setEnd
+	 * Description - Sets the end location 
+	 */
         public void setEnd(Location newEnd)
         {
             end = newEnd; 
@@ -100,9 +125,7 @@ public class Search {
         
 	/**
 	 * addLocation
-	 * Description- 
-	 * Pre- 
-	 * Post -
+	 * Description - Adds the given location to the arraylist of midlocation
 	 */
         public void addLocation(Location newLocation)
         {
@@ -117,9 +140,7 @@ public class Search {
         
 	/**
 	 * removeLocation
-	 * Description- 
-	 * Pre- 
-	 * Post -
+	 * Description - Removes the given location from the arraylist of mid locations. 
 	 */
         public boolean removeLocation(Location newLocation)
         {
@@ -136,22 +157,30 @@ public class Search {
             return removed; 
         }
         
+        
+        /**
+	 * removeAtPosition
+	 * Description - Removes the mid location at the given position. 
+	 */
         public void removeAtPosition(int pos)
         {
             locations.remove(pos);
         }
         
+        /**
+	 * getNumMidLocations
+	 * Description - Returns the number of mid locations. 
+	 */
         public int getNumMidLocations()
         {
             return locations.size();
         }
-	/**
-	 * setKey
-	 * Description- 
-	 * Pre- 
-	 * Post -
-	 */
 	
+        /**
+	 * isInSearch
+	 * Description - Returns whether or not the given location is in the
+         *               arraylist of mid locations. 
+	 */
         public boolean isInSearch(Location testLocation)
         {
             boolean alreadyListed = false; 
@@ -174,6 +203,12 @@ public class Search {
             return alreadyListed;
         }
         
+        
+        /**
+	 * clearData
+	 * Description - Resets all fields, to be used when user clicks
+         *               the clear search button in the main gui
+	 */
         public void clearData()
         {
             locations.clear();
