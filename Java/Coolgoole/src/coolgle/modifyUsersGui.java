@@ -50,7 +50,7 @@ public class modifyUsersGui extends javax.swing.JFrame {
         usrLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         usrLabel.setText("Username: ");
 
-        submitBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\submit_button.jpg")); // NOI18N
+        submitBtn.setIcon(new javax.swing.ImageIcon("Images\\submit button.jpg")); // NOI18N
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
@@ -66,7 +66,7 @@ public class modifyUsersGui extends javax.swing.JFrame {
         Label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         Label.setText("Modify Users");
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\logo.jpg")); // NOI18N
+        logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
         usrText.setToolTipText("");
         usrText.addActionListener(new java.awt.event.ActionListener() {

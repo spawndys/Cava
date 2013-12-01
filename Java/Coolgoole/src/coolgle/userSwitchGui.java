@@ -12,7 +12,8 @@ import java.awt.*;
  *
  * @author rdg77_000
  */
-public class userSwitchGui extends javax.swing.JFrame {
+public class userSwitchGui extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form userSwitch
@@ -43,7 +44,7 @@ public class userSwitchGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        switchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_button.jpg")); // NOI18N
+        switchBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_button.jpg")); // NOI18N
         switchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 switchBtnActionPerformed(evt);
@@ -59,7 +60,7 @@ public class userSwitchGui extends javax.swing.JFrame {
         pswdLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         pswdLabel.setText("User Password: ");
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\logo.jpg")); // NOI18N
+        logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
         Label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         Label.setText("System Switch");

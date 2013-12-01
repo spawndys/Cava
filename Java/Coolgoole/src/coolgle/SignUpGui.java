@@ -37,9 +37,9 @@ public class SignUpGui extends javax.swing.JFrame {
     private void initComponents() {
 
         logoLabel = new javax.swing.JLabel();
-        label1 = new javax.swing.JLabel();
-        label3 = new javax.swing.JLabel();
-        label2 = new javax.swing.JLabel();
+        signupLbl = new javax.swing.JLabel();
+        accountLbl = new javax.swing.JLabel();
+        coolglesLbl = new javax.swing.JLabel();
         pswdLabel = new javax.swing.JLabel();
         rePswdLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
@@ -52,17 +52,17 @@ public class SignUpGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\logo.jpg")); // NOI18N
+        logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
-        label1.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
-        label1.setText("Sign up for your own");
+        signupLbl.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
+        signupLbl.setText("Sign up for your own");
 
-        label3.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
-        label3.setText("Account");
+        accountLbl.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
+        accountLbl.setText("Account");
 
-        label2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        label2.setForeground(new java.awt.Color(102, 0, 0));
-        label2.setText("Coolgles");
+        coolglesLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        coolglesLbl.setForeground(new java.awt.Color(102, 0, 0));
+        coolglesLbl.setText("Coolgles");
 
         pswdLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         pswdLabel.setText("Password: ");
@@ -106,7 +106,7 @@ public class SignUpGui extends javax.swing.JFrame {
         userLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         userLabel.setText("Username: ");
 
-        submitBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\submit_button.jpg")); // NOI18N
+        submitBtn.setIcon(new javax.swing.ImageIcon("Images\\submit button.jpg")); // NOI18N
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
@@ -159,11 +159,11 @@ public class SignUpGui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(label1)
+                        .addComponent(signupLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2)))
+                        .addComponent(coolglesLbl)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label3)
+                .addComponent(accountLbl)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -176,9 +176,9 @@ public class SignUpGui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label1)
-                            .addComponent(label2)
-                            .addComponent(label3))))
+                            .addComponent(signupLbl)
+                            .addComponent(coolglesLbl)
+                            .addComponent(accountLbl))))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usrnameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,9 +305,9 @@ public class SignUpGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
-    private javax.swing.JLabel label1;
-    private javax.swing.JLabel label2;
-    private javax.swing.JLabel label3;
+    private javax.swing.JLabel signupLbl;
+    private javax.swing.JLabel coolglesLbl;
+    private javax.swing.JLabel accountLbl;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel pswdLabel;
     private javax.swing.JPasswordField pswdText;

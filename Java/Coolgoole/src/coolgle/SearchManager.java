@@ -21,12 +21,15 @@ public class SearchManager
                 
                 int size = search.locations.size();
                 
-                for(int i = 0; i < size; i++){
+                for(int i = 0; i < size; i++)
+                {
                         double shortestD = Double.MAX_VALUE;
                         int shortest = -1;
-                        for(int j = 0; j < search.locations.size(); j++){
+                        for(int j = 0; j < search.locations.size(); j++)
+                        {
                                 double dist = curr.distanceTo(search.locations.get(j));
-                                if((shortest==-1) || dist<shortestD){
+                                if((shortest==-1) || dist<shortestD)
+                                {
                                         shortest = j;
                                         shortestD = dist;
                                 }

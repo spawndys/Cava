@@ -47,9 +47,9 @@ public class adminSwitchGui extends javax.swing.JFrame {
         label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         label.setText("System Switch");
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\logo.jpg")); // NOI18N
+        logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
-        switchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_button.jpg")); // NOI18N
+        switchBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_button.jpg")); // NOI18N
         switchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 switchBtnActionPerformed(evt);

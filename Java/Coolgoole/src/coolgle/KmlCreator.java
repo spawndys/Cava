@@ -200,11 +200,11 @@ public class KmlCreator
         String AMPM = "AM";
         
         // If time is over a day, return to miliary time again
-        if (timeToPrint > 24)
+        if (timeToPrint >= 24)
              timeToPrint = timeToPrint % 24; 
         // Get Hours : 
         double hours = Math.floor(timeToPrint); 
-        if (hours > 13)
+        if (hours >= 12)
         {
             AMPM = "PM";
             hours -= 12;

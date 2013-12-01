@@ -141,7 +141,7 @@ public class AddLocationGui extends javax.swing.JFrame
             }
         });
 
-        saveLocationBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\save_location_button.jpg")); // NOI18N
+        saveLocationBtn.setIcon(new javax.swing.ImageIcon("Images\\save_location_button.jpg")); // NOI18N
         saveLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveLocationBtnActionPerformed(evt);
@@ -189,7 +189,7 @@ public class AddLocationGui extends javax.swing.JFrame
                         .addGap(30, 30, 98)
                         .addComponent(addLocationLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 57)
+                        .addGap(30, 30, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(saveLocationBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

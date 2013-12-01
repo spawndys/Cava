@@ -47,6 +47,7 @@ public class mainGui extends javax.swing.JFrame
         search = new Search(); 
         
         updateVisualDisplay();
+        
     }
 
     /**
@@ -103,6 +104,8 @@ public class mainGui extends javax.swing.JFrame
         label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label2.setText("<html>\nThe list of locations chosen is shown <br>\non the right panel, click Map It to <br>\nshow it on Google Earth!\n</html>");
 
+        switchAdminBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_admin_button.jpg"));
+
         label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label1.setText("<html>\nEnter the location information below <br>\nand we will show you the way!\n</html>");
 
@@ -113,6 +116,7 @@ public class mainGui extends javax.swing.JFrame
         welcomeLabel.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         welcomeLabel.setText("Welcome to");
 
+        clearSearchBtn.setIcon(new javax.swing.ImageIcon("Images\\clear_search_button.jpg"));
         clearSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearSearchBtnActionPerformed(evt);
@@ -132,6 +136,7 @@ public class mainGui extends javax.swing.JFrame
         prevList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         prevList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "New Search", "Previous Search 1", "Previous Search 2", "ect..." }));
 
+        helpBtn.setIcon(new javax.swing.ImageIcon("Images\\question_button.jpg"));
         helpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpBtnActionPerformed(evt);
@@ -164,6 +169,7 @@ public class mainGui extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        mapItBtn.setIcon(new javax.swing.ImageIcon("Images\\map_it_button.jpg"));
         mapItBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mapItBtnActionPerformed(evt);
@@ -282,7 +288,9 @@ public class mainGui extends javax.swing.JFrame
         jScrollPane1.setViewportView(MainLocationDisplay);
 
         setStartLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setStartLocation.setIcon(new javax.swing.ImageIcon("Images\\starting_location_button.jpg"));
         setStartLocation.setText("Begin Here");
+        setStartLocation.setPreferredSize(new java.awt.Dimension(93, 28));
         setStartLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setStartLocationActionPerformed(evt);
@@ -290,7 +298,9 @@ public class mainGui extends javax.swing.JFrame
         });
 
         setEndLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setEndLocation.setIcon(new javax.swing.ImageIcon("Images\\ending_location_button.jpg"));
         setEndLocation.setText("End Here");
+        setEndLocation.setPreferredSize(new java.awt.Dimension(93, 28));
         setEndLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setEndLocationActionPerformed(evt);
@@ -298,9 +308,11 @@ public class mainGui extends javax.swing.JFrame
         });
 
         addMiddleLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addMiddleLocation.setIcon(new javax.swing.ImageIcon("Images\\visit_button.jpg"));
         addMiddleLocation.setText("Visit");
         addMiddleLocation.setMaximumSize(new java.awt.Dimension(85, 25));
         addMiddleLocation.setMinimumSize(new java.awt.Dimension(85, 25));
+        addMiddleLocation.setPreferredSize(new java.awt.Dimension(93, 28));
         addMiddleLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addMiddleLocationActionPerformed(evt);
@@ -337,8 +349,10 @@ public class mainGui extends javax.swing.JFrame
         containsLabel.setText("Contains : ");
 
         viewInfo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        viewInfo.setIcon(new javax.swing.ImageIcon("Images\\view_info_button.jpg"));
         viewInfo.setText("View Details");
         viewInfo.setToolTipText("");
+        viewInfo.setPreferredSize(new java.awt.Dimension(93, 28));
         viewInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewInfoActionPerformed(evt);
@@ -459,8 +473,8 @@ public class mainGui extends javax.swing.JFrame
                             .addComponent(timeLabel)
                             .addComponent(times, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(setStartLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addMiddleLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -483,7 +497,7 @@ public class mainGui extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void helpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpBtnActionPerformed
-        // TODO add your handling code here:
+        viewHelp();
     }//GEN-LAST:event_helpBtnActionPerformed
 
     private void filterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTextActionPerformed
@@ -775,7 +789,8 @@ public class mainGui extends javax.swing.JFrame
     // It will update the right pane of the main gui to account for the change in information. 
     public void updateVisualDisplay()
     {
-        timeDisplay.setText( String.valueOf(search.getStartTime()) );
+        //timeDisplay.setText( String.valueOf(search.getStartTime()) );
+        timeDisplay.setText( times.getSelectedItem().toString() );
         startLocationDisplay.setText(search.getStart().getName());
         endLocationDisplay.setText(search.getEnd().getName());
     
@@ -798,6 +813,12 @@ public class mainGui extends javax.swing.JFrame
         
         midLocationsList.removeAll();
     }
+    
+    public void viewHelp()
+    {
+        JOptionPane.showMessageDialog(null, "Either select a past trip from the dropdown, or  \n"
+                                      + "use the controls below to plan a new trip.", "Help", JOptionPane.INFORMATION_MESSAGE);
+    }   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList MainLocationDisplay;

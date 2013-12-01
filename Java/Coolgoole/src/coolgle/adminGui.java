@@ -151,7 +151,7 @@ public class adminGui extends javax.swing.JFrame
         label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label2.setText("<html> The list of locations chosen is shown <br> on the right panel, click Map It to <br> show it on Google Earth! </html>");
 
-        switchUserBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_to_user.jpg")); // NOI18N
+        switchUserBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_user.jpg")); // NOI18N
 
         loModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         loModifyLabel.setText("Location Modification");
@@ -206,15 +206,15 @@ public class adminGui extends javax.swing.JFrame
         });
 
         
-        newLocaBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\add_new_location_button.jpg")); // NOI18N
+        newLocaBtn.setIcon(new javax.swing.ImageIcon("Images\\add_new_location_button.jpg")); // NOI18N
 
-        loDelBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\delete_selected_button.jpg")); // NOI18N
+        loDelBtn.setIcon(new javax.swing.ImageIcon("Images\\delete_selected_button.jpg")); // NOI18N
 
-        loModiSelectBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\modify_selected_button.jpg")); // NOI18N
+        loModiSelectBtn.setIcon(new javax.swing.ImageIcon("Images\\modify_selected_button.jpg")); // NOI18N
 
-        userDelBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\delete_selected_button.jpg")); // NOI18N
+        userDelBtn.setIcon(new javax.swing.ImageIcon("Images\\delete_selected_button.jpg")); // NOI18N
 
-        userModifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\modify_selected_button.jpg")); // NOI18N
+        userModifyBtn.setIcon(new javax.swing.ImageIcon("Images\\modify_selected_button.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

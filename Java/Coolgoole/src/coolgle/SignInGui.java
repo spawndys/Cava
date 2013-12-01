@@ -10,18 +10,21 @@ import java.awt.*;
  *
  * @author rdg77_000
  */
-public class SignInGui extends javax.swing.JFrame {
+public class SignInGui extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form SignIn
      */
-    public SignInGui() {
+    public SignInGui() 
+    {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        		int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
-		super.setLocation(xpos,  ypos);
-        initComponents();
+        Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+	int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
+	super.setLocation(xpos,  ypos);
+        
+        initComponents(); 
     }
 
     /**
@@ -45,7 +48,7 @@ public class SignInGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        signUpUpperImg.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\log_in_upper.png")); // NOI18N
+        signUpUpperImg.setIcon(new javax.swing.ImageIcon("Images\\logo_and_info.jpg")); // NOI18N
 
         usrnameLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         usrnameLabel.setText("Username: ");
@@ -77,7 +80,7 @@ public class SignInGui extends javax.swing.JFrame {
             }
         });
 
-        signInBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\sign_in_button.jpg")); // NOI18N
+        signInBtn.setIcon(new javax.swing.ImageIcon("Images\\sign_in_button.jpg")); // NOI18N
         signInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signInBtnActionPerformed(evt);
@@ -87,7 +90,7 @@ public class SignInGui extends javax.swing.JFrame {
         accountQuestionLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         accountQuestionLabel.setText("Don't have an account?");
 
-        signUpBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\sign_up_button.jpg")); // NOI18N
+        signUpBtn.setIcon(new javax.swing.ImageIcon("Images\\sign_up_button.jpg")); // NOI18N
         signUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpBtnActionPerformed(evt);
