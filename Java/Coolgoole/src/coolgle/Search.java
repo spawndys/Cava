@@ -1,6 +1,19 @@
+/*
+Notes while merging code :
+1.) Getting rid of the shortest coords arraylist
+If the search is optimized, the locations arraylist will be 
+in sorted order anyways, so when saving to the user file
+only the locations array will need to  be saved. 
+2.) Add userName as member var. 
+3.) No need for isValid function, seasrches can't be made in a invalid form. 
+4.) Kept your main commented out at the bottom of the file, should be deleted 
+once you don't need it anymore
+*/
+
 package coolgle;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /*****************************************
@@ -27,6 +40,8 @@ public class Search
 	boolean optimized;
         double startTime;
         
+        String userName;
+        
         // How many locations you can add to a trip, NOT including starting and ending locations. 
         private static final int TRIP_LIMIT = 30; 
         
@@ -40,8 +55,24 @@ public class Search
             optimized = false; 
             start = new Location();
             end = new Location();
+            userName = "";
 	}
-	
+        
+         /**
+	 * constructor for SEARCH object
+	 */
+	public Search(String userName, Location start, Location end, 
+			ArrayList<Location> locations)
+        {
+		this.userName = userName;
+		this.start = start;
+		this.end = end;
+		this.locations = locations;
+                startTime = 8.00;  // Default time in GUI 
+                optimized = false; 
+	}       
+        
+        
 	/**
 	 * hasShortest
 	 * Description- Returns whether or not the search has been optimized.
@@ -123,6 +154,11 @@ public class Search
             end = newEnd; 
         }
         
+        public String getUserName() 
+        {
+		return userName;
+	}
+
 	/**
 	 * addLocation
 	 * Description - Adds the given location to the arraylist of midlocation
@@ -229,5 +265,70 @@ public class Search
             returnString += " +" + getNumMidLocations() + " Other Locations ) ";
             return returnString;
         }
+        
+        // Writes the search to a users file, pass in name of user file (TODO)
+        // (I quickly fleshed out what this should do, I haven't tested it)
+        public String fileToString()
+        {
+                String msg;
+                msg = "**new search**" + '\n';
+ 
+                // Print add all locations
+                msg += start.fileToString();
+                Iterator<Location> itrA = locations.iterator();
+                while(itrA.hasNext())
+                {
+                        msg += itrA.next().toString() + "\n";
+                }
+                msg += end.fileToString();
+                
+                msg += "** end new search**\n";
+                return msg;
+	}
 	
 }
+
+
+
+	/*
+	public static void main(String[] args){
+		
+        String userName = "Dan";		
+
+        ArrayList<Location> locations = new ArrayList<Location>(); 
+        ArrayList<Coord> shortestCoords =  new ArrayList<Coord>();
+
+        //build search attributes
+        String name = "Tim";		
+        float x = (float) 3.24;
+        float y = (float) 5.25;
+        Coord coord = new Coord(x,y);
+        String city = "tim";
+        String state = "MD"; 
+        String address = "101 H rd";			
+        Location loc = new Location(name,coord,city,state,address);	
+        //label start
+        Location start = new Location(loc); 
+        locations.add(loc);
+        shortestCoords.add(new Coord(x,y));
+
+        name = "UMBC";		
+        x = (float) 6.24;
+        y = (float) 8.25;
+        coord = new Coord(x,y);
+        city = "balt";
+        state = "MD"; 
+        address = "901 C rd";
+        loc = new Location(name, coord, city, state, address);	
+        locations.add(loc);
+        shortestCoords.add(new Coord(x,y));		
+        //label end		
+        Location end = new Location(loc); 
+
+        //make search
+        Search search= new Search(userName, start, end, locations, shortestCoords);
+
+
+        System.out.println(search.toString());
+        System.out.println("done");
+*/

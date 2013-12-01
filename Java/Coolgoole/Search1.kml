@@ -12,43 +12,33 @@
         <Style>
             <BalloonStyle/>
         </Style>
-        <Style>
-            <BalloonStyle/>
-        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-77.0230596,38.8975095 -77.0476749,38.8878912 -76.4763719,38.9688803 -77.0258121,38.8968174</coordinates>
+                <coordinates>-84.6007665,33.7998283 -76.7332629,38.9267001 -77.0654671,38.6932927</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>Smithsonian American Art Museum</name>
+            <name>Kennedy</name>
             <description>Estimated Arrival Time :  &lt;br&gt; 8.0&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-77.0230596,38.8975095</coordinates>
+                <coordinates>-84.6007665,33.7998283</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Korean War Veterans Memorial</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8.026929381635973&lt;br&gt;Distance Traveled : &lt;br&gt; 1 miles</description>
+            <name>The National Capital Radio &amp; Television Museum</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 18.23080951649345&lt;br&gt;Distance Traveled : &lt;br&gt; 563 miles</description>
             <Point>
-                <coordinates>-77.0476749,38.8878912</coordinates>
+                <coordinates>-76.7332629,38.9267001</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Annapolis Maritime Museum</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8.594413365955385&lt;br&gt;Distance Traveled : &lt;br&gt; 32 miles</description>
+            <name>The National Colonial Farm</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 18.668654627444536&lt;br&gt;Distance Traveled : &lt;br&gt; 587 miles</description>
             <Point>
-                <coordinates>-76.4763719,38.9688803</coordinates>
-            </Point>
-        </Placemark>
-        <Placemark>
-            <name>Ford's Museum</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 9.13888285159836&lt;br&gt;Distance Traveled : &lt;br&gt; 62 miles</description>
-            <Point>
-                <coordinates>-77.0258121,38.8968174</coordinates>
+                <coordinates>-77.0654671,38.6932927</coordinates>
             </Point>
         </Placemark>
     </Document>

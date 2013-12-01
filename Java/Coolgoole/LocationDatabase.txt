@@ -78,6 +78,6 @@ National Liberty Museum|321 Chestnut Street|Philadelphia|Pennsylvania|39.948842|
 Old Jail Museum|128 West Broadway|Jim Thorpe|Pennsylvania|40.8636993|-75.7465003
 Police Heritage Museum|54 West Market Street|York|Pennsylvania|39.9618175|-76.729337
 The White House|1600 Pennsylvania Avenue Northwest|Washington|District of Columbia|38.8976831|-77.0364972
-University of Maryland, Baltimore County|1000 Hilltop Circle|Baltimore|Maryland|39.2566151|-76.7154264
 AACC|Anne Arundel Com Col Road|Arnold|Maryland|39.0500145|-76.5092596
 Thurgood Marshall Airport|7062 Elm Road|Baltimore|Maryland|39.180862|-76.6675476
+University of Maryland, Baltimore County|1000 Hilltop Circle|Baltimore|Maryland|39.2566151|-76.7154264

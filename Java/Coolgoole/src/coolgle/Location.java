@@ -30,8 +30,7 @@ public class Location
     //class variables
     private String name;
     private char key;
-    private double latitude;
-    private double longitude;
+    private Coord coord; 
 
     private String address; 
     private String city; 
@@ -43,8 +42,7 @@ public class Location
     public Location()
     {
             name = ""; 
-            latitude = 0.0;
-            longitude = 0.0;
+            coord = new Coord(0,0);
             city = "";
             state = "";
             address = "";
@@ -59,17 +57,26 @@ public class Location
             address =  data[1]; 
             city = data[2]; 
             state = data[3]; 
-            latitude = (Double.parseDouble(data[4]));
-            longitude = (Double.parseDouble(data[5]));
+            coord = new Coord(0,0);
+            coord.setLatitude((Double.parseDouble(data[4])));
+            coord.setLongitude((Double.parseDouble(data[5])));
     }
-
 
     //Secondary Constructor - Enter All 
     public Location(String name, double latitude, double longitude, String city, String state, String address)
     {
             this.name = name;
-            this.latitude = latitude;
-            this.longitude = longitude;
+            coord = new Coord (latitude, longitude);
+            this.city = city;
+            this.state = state;
+            this.address = address;
+    }
+    
+    //Secondary Constructor - Enter All with a coord instead of a lat/long pair
+    public Location(String name, Coord coords, String city, String state, String address)
+    {
+            this.name = name;
+            coord = new Coord(coords.getLatitude(), coords.getLongitude());
             this.city = city;
             this.state = state;
             this.address = address;
@@ -95,21 +102,21 @@ public class Location
     }
     public double getLatitude()
     {
-            return latitude;
+            return coord.getLatitude();
     }
     public double getLongitude()
     {
-            return longitude;
+            return coord.getLongitude();
     }
 
 
     public void setLongitude(double newLongitude)
     {
-            longitude = newLongitude;
+            coord.setLongitude(newLongitude);
     }
     public void setLatitude(double newLatitude)
     {
-            latitude = newLatitude;
+            coord.setLatitude(newLatitude);
     }
     public void setName(String newName)
     {
@@ -159,6 +166,8 @@ public class Location
     {
         return printToFile(fileName, true); 
     }
+    
+    
     // Returns true if no errors, false if otherwise
     public boolean printToFile(String fileName, boolean allowRepeats)
     {
@@ -241,9 +250,9 @@ public class Location
         boolean same = true; 
         
         //We only check the lat and long in case they changed the name
-        if ( latitude != otherLocation.getLatitude() )
+        if ( coord.getLatitude() != otherLocation.getLatitude() )
             same = false;
-        if ( longitude != otherLocation.getLongitude() )
+        if ( coord.getLongitude() != otherLocation.getLongitude() )
             same = false; 
         
         return same;

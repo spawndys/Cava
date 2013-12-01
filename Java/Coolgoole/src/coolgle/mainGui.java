@@ -260,9 +260,9 @@ public class mainGui extends javax.swing.JFrame
                 .addGap(10, 10, 10)
                 .addComponent(startLocationDisplay)
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(midLocationLabel)
-                    .addComponent(jButton1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(midLocationLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -747,6 +747,8 @@ public class mainGui extends javax.swing.JFrame
         }
         
         // TODO : Save this search in previous searches.
+        
+        
         
         // Create and open KML file
         KmlCreator newKml = new KmlCreator("Search1.kml");
