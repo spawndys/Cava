@@ -10,7 +10,7 @@ National Museum of American History|14th St and Constitution Avenue NW|Washingto
 National Postal Museum|2 Massachusetts Avenue Northeast|Washington|District of Columbia|38.89754|-77.0082536
 Hirshhorn Museum|700 Independence Avenue Southwest|Washington|DC|38.8880447|-77.0227978
 National Museum of Crime & Punishment|575 7th Street Northwest|Washington|District of Columbia|38.8967362|-77.0217654
-Smithsonian American Art Museum and National Portrait Gallery|800 G Street|Washington|District of Columbia|38.8981861|-77.0229423
+Smithsonian American Art Museum|800 G Street|Washington|District of Columbia|38.8981861|-77.0229423
 Renwick Gallery|1661 Pennsylvania Avenue Northwest|Washington|DC|38.8991098|-77.038879
 National Museum of the United States Navy|736 Sicard Street Southeast|Washington|District of Columbia|38.8733167|-76.9917234
 National Museum of African Art|950 Independence Avenue Southwest|Washington|District of Columbia|38.8879505|-77.0255154
@@ -68,9 +68,9 @@ US Army Transportation Museum|300 Washington Boulevard|Newport News|Virginia|37.
 National Firearms Museum|11250 Waples Mill Road|Fairfax|Virginia|38.863061|-77.336036
 Natural Bridge Wax Museum|70 Wert Faulkner Highway|Natural Bridge Station|Virginia|37.6285949|-79.5427694
 Bradford Country Farm Museum|RR 14|Troy|Pennsylvania|41.7859079|-76.7880114
-Design Center Stuttgart|19 Willi-Bleicher-Stra�e|Stuttgart|BW|48.779166|9.172868
+Design Center Stuttgart|19 Willi-Bleicher-Stra?e|Stuttgart|BW|48.779166|9.172868
 International Print Center New York|508 West 26th Street|New York|New York|40.7498123|-74.0035012
-HERSHEY'S CHOCOLATE WORLD|251 Park Boulevard|Hershey|Pennsylvania|40.288136|-76.660366
+Hershey's Chocolate World|251 Park Boulevard|Hershey|Pennsylvania|40.288136|-76.660366
 Fort Necessity National Battlefield||Farmington|PA|39.812516|-79.5912457
 Duncan & Miller Glass Museum|525 Jefferson Avenue|Washington|Pennsylvania|40.1763464|-80.2573746
 National Constitution Center|525 Arch Street|Philadelphia|Pennsylvania|39.9531962|-75.1490717
@@ -78,3 +78,6 @@ National Liberty Museum|321 Chestnut Street|Philadelphia|Pennsylvania|39.948842|
 Old Jail Museum|128 West Broadway|Jim Thorpe|Pennsylvania|40.8636993|-75.7465003
 Police Heritage Museum|54 West Market Street|York|Pennsylvania|39.9618175|-76.729337
 The White House|1600 Pennsylvania Avenue Northwest|Washington|District of Columbia|38.8976831|-77.0364972
+University of Maryland, Baltimore County|1000 Hilltop Circle|Baltimore|Maryland|39.2566151|-76.7154264
+AACC|Anne Arundel Com Col Road|Arnold|Maryland|39.0500145|-76.5092596
+Thurgood Marshall Airport|7062 Elm Road|Baltimore|Maryland|39.180862|-76.6675476

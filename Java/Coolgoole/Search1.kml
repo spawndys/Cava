@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
     <Document>
-        <name>CreatedKML.kml</name>
+        <name>Search1.kml</name>
         <open>1</open>
         <Placemark>
-            <name>Path</name>
+            <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-77.026024,38.88879 -77.03226,38.886757 -77.022644,38.897854 -77.01617,38.888214 -77.046875,38.911694 -77.02748,38.888138 -77.02305,38.898277 -77.06415,38.914062 -77.03007,38.891582 -77.03888,38.89911</coordinates>
+                <coordinates>-80.2573746,40.1763464 -77.336036,38.863061 -77.0641479,38.9140633 -77.046874,38.9116924 -77.0082536,38.89754 -75.146921,39.948842</coordinates>
             </LineString>
         </Placemark>
     </Document>

@@ -13,10 +13,9 @@
  **             Once a arraylist of the places the user wishes to visit is created. 
 ***********************************************/
 // To be used after user hits map it button
-// Example use : 
-//  - Create several Locations, add them to a arraylist named testLocations - 
+// Example use : - 
 // KmlCreator newKml = new KmlCreator("Search1.kml");
-// newKml.openKml(newKml.FillKml(testLocations));
+// newKml.openKml(newKml.FillKml(search));
 
 
 package coolgle;
@@ -52,16 +51,20 @@ public class KmlCreator
 
     /**
      * FillKml
-     * Description - Creates a path in the kml file with points given in input arraylist
-     * Parameters - arraylist of locations to add to the kml
+     * Description - Creates a path in the kml file with points given in input search object. 
+     * Parameters - Search ojbect 
      * Return - Kml File, of type File. Must import java.io.File to use it outside this class. 
-     * Pre - Arraylist has at least 2 locations in it, all locations in list have valid latitude and longitude. 
-     *       Note : Assumes locations are in sorted order, first location first, last last, and mid locations
-     *              in order to create the shortest path between the first and last hitting them all. 
+     * Pre - Arraylist in search has at least 1 mid location, a start location, and a end location
+     *       All locations in list have valid latitude and longitude. 
+     *       Note : Search should be optimized. 
+     * 
      * Post -kml file is ready to be sent into the openKml function. 
      */
-    public File FillKml(ArrayList<Location> locations) 
-    {
+    public File FillKml(Search search) 
+    { 
+        // Grab information from search 
+        ArrayList<Location> locations = search.getMidLocations();
+
         // Create The KML File
         File newFile = new File(fileName);
         try 
@@ -88,16 +91,22 @@ public class KmlCreator
             
             List<Coordinate> coord1 = new ArrayList<Coordinate>();
 
-            // Add each location to the path
+            // Add Start location to path
+            coord1.add(new Coordinate(search.getStart().getLongitude(),search.getStart().getLatitude()));
+            
+            // Add each Mid location to the path
             for (int i = 0; i < locations.size(); i++)
             {
                 coord1.add(new Coordinate(locations.get(i).getLongitude(),locations.get(i).getLatitude()));
             }
 
+            // Add End location to path
+            coord1.add(new Coordinate(search.getEnd().getLongitude(),search.getEnd().getLatitude()));
+            
             linestring1.setCoordinates(coord1);
             
             // Add placemarks to show the arrival time
-            
+            // TODO
             
             // Copy the data above into the file
             kml.marshal(newFile);

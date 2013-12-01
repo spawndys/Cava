@@ -45,6 +45,30 @@ public class AddLocationGui extends javax.swing.JFrame
         m_main = mainFrame; 
     }
     
+    // Called from mainGui page, only displays information, no editing. 
+    public AddLocationGui(Location newLocation) 
+    {
+        setUp();
+        
+        this.loNameText.setText(newLocation.getName());
+        this.loLatText.setText(String.valueOf(newLocation.getLatitude()));
+        this.loLongText.setText(String.valueOf(newLocation.getLongitude()));
+        this.loCityText.setText(newLocation.getCity()); 
+        this.loStateText.setText(newLocation.getState()); 
+        this.loAddressText.setText(newLocation.getAddress());
+        
+        this.loNameText.setEditable(false);
+        this.loLatText.setEditable(false);
+        this.loLongText.setEditable(false);
+        this.loCityText.setEditable(false);
+        this.loStateText.setEditable(false);
+        this.loAddressText.setEditable(false);
+        
+        saveLocationBtn.setText("OK");
+        
+        status = 2; 
+    }
+    
     // Called from all constructors 
     public void setUp()
     {
@@ -162,10 +186,10 @@ public class AddLocationGui extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(30, 30, 98)
                         .addComponent(addLocationLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(30, 30, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(saveLocationBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -178,12 +202,12 @@ public class AddLocationGui extends javax.swing.JFrame
                                     .addComponent(loAddressLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(loNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loLatText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loStateText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loLongText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(loNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loLatText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loStateText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loLongText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -289,11 +313,13 @@ public class AddLocationGui extends javax.swing.JFrame
                     if (comfirm == 0) // Yes
                     {
                         // Add location to database
-                        if ( !newLocation.printToFile("LocationDatabase.txt") )
+                        if ( !newLocation.printToFile("LocationDatabase.txt", false) )
                         {
                               System.out.println("Error occured printing location information to database. ");
+                              returnToMain = false; 
                         }
-                        returnToMain = true; 
+                        else
+                            returnToMain = true; 
                     }
                     else
                     {
@@ -302,10 +328,17 @@ public class AddLocationGui extends javax.swing.JFrame
                 }
             }
         }
-        if (returnToMain)
+        if ( status == 2 ) // From mainGui Page
+        {
             this.setVisible(false);
-        // Refresh main admin gui
-        m_main.populateLocationList();
+        }
+        if ( status == 0 || status == 1)
+        {
+            if (returnToMain)
+                this.setVisible(false);
+            // Refresh main admin gui
+            m_main.populateLocationList();
+        }
  
     }//GEN-LAST:event_saveLocationBtnActionPerformed
 

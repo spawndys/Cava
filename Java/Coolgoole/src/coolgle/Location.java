@@ -2,13 +2,16 @@
 
 package coolgle;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import javax.swing.JOptionPane;
 
 /*****************************************
  ** File: Location
@@ -151,20 +154,50 @@ public class Location
         return returnString;
     }
 
-    // Returns true if no errors, false if otherwise
+    
     public boolean printToFile(String fileName)
     {
+        return printToFile(fileName, true); 
+    }
+    // Returns true if no errors, false if otherwise
+    public boolean printToFile(String fileName, boolean allowRepeats)
+    {
         boolean success = true; 
+        
+        boolean alreadyInFile = false; 
         try 
         {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.append(fileToString());
-            writer.newLine();
-            writer.close();
+            // Check the file to see if the location already exists : 
+            BufferedReader br;
+
+            br = new BufferedReader(new FileReader("LocationDatabase.txt"));
+            String locationString;
+            while ((locationString = br.readLine()) != null)
+            {
+                Location newLocation = new Location(locationString);
+                if (isSame(newLocation)) // The location already exists in the file. 
+                {
+                    alreadyInFile = true; 
+                }
+            }
+            
+            if (!alreadyInFile || (alreadyInFile && allowRepeats))
+            {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+                writer.append(fileToString());
+                writer.newLine();
+                writer.close();
+            }
+            else // Already in file, don't add it again, show warning. 
+            {
+                JOptionPane.showMessageDialog(null, "This location is already in the file"
+                                              , "Failure", JOptionPane.ERROR_MESSAGE);
+                success = false;
+            }
         } 
         catch (FileNotFoundException e) 
         {	
-             success = false;
+             System.out.println("Could Not find database File ");
         } 
         catch (IOException e) 
         {
@@ -201,5 +234,18 @@ public class Location
     private double convertToDegrees(double radians) 
     {
         return( radians * 180 / Math.PI );
+    }
+    
+    public boolean isSame(Location otherLocation)
+    {
+        boolean same = true; 
+        
+        //We only check the lat and long in case they changed the name
+        if ( latitude != otherLocation.getLatitude() )
+            same = false;
+        if ( longitude != otherLocation.getLongitude() )
+            same = false; 
+        
+        return same;
     }
 }

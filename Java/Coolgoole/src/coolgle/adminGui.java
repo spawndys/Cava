@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class adminGui extends javax.swing.JFrame 
 {
+    //This is the backend arraylist that is kept in sync with the location database file. 
     private ArrayList<Location> locationlist = new ArrayList<Location>();
     
     /**
@@ -414,6 +415,7 @@ public class adminGui extends javax.swing.JFrame
             System.out.println("Location Database Not Found");
         }
     }
+   
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList jList1;

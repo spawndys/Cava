@@ -7,23 +7,45 @@
 package coolgle;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author rdg77_000
  */
-public class mainGui extends javax.swing.JFrame {
-
+public class mainGui extends javax.swing.JFrame 
+{
+    //backend arraylist, kept synced with the current list of locations showned. 
+    private ArrayList<Location> locationList = new ArrayList<Location>();
+    private Search search; 
+    
     /**
      * Creates new form mainGui
      */
-    public mainGui() {
-              Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        	int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 30);
-		super.setLocation(xpos,  ypos);
+    public mainGui() 
+    {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+        int ypos = (int) (screen.getHeight() / 30);
+        super.setLocation(xpos,  ypos);
         initComponents();
+        
+        // Populate Location List in bottom left
+        populateLocationList(filterCategory.getSelectedIndex(), filterText.getText());
+        
+        // Populate previous searches. TODO
+        
+        // Create the search object, to be edited and sent to KML Creator 
+        search = new Search(); 
+        
+        updateVisualDisplay();
     }
 
     /**
@@ -50,13 +72,7 @@ public class mainGui extends javax.swing.JFrame {
         startLabel = new javax.swing.JLabel();
         startLabel2 = new javax.swing.JLabel();
         startLabel3 = new javax.swing.JLabel();
-        locationText = new javax.swing.JTextField();
         timeLabel = new javax.swing.JLabel();
-        startLoLabel = new javax.swing.JLabel();
-        endLabel = new javax.swing.JLabel();
-        midLabel = new javax.swing.JLabel();
-        midLocationText = new javax.swing.JTextField();
-        endLocationText = new javax.swing.JTextField();
         times = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         mapItBtn = new javax.swing.JButton();
@@ -64,13 +80,27 @@ public class mainGui extends javax.swing.JFrame {
         startLocationLabel = new javax.swing.JLabel();
         midLocationLabel = new javax.swing.JLabel();
         endLocationLabel = new javax.swing.JLabel();
+        startLocationDisplay = new javax.swing.JLabel();
+        timeDisplay = new javax.swing.JLabel();
+        endLocationDisplay = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        midLocationsList = new javax.swing.JList();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        MainLocationDisplay = new javax.swing.JList();
+        setStartLocation = new javax.swing.JButton();
+        setEndLocation = new javax.swing.JButton();
+        addMiddleLocation = new javax.swing.JButton();
+        filterLabel = new javax.swing.JLabel();
+        filterText = new javax.swing.JTextField();
+        filterCategory = new javax.swing.JComboBox();
+        containsLabel = new javax.swing.JLabel();
+        viewInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label2.setText("<html>\nThe list of locations chosen is shown <br>\non the right panel, click Map It to <br>\nshow it on Google Earth!\n</html>");
-
-        switchAdminBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_to_admin_button.jpg")); // NOI18N
 
         label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label1.setText("<html>\nEnter the location information below <br>\nand we will show you the way!\n</html>");
@@ -82,7 +112,11 @@ public class mainGui extends javax.swing.JFrame {
         welcomeLabel.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         welcomeLabel.setText("Welcome to");
 
-        clearSearchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\clear_search_button.jpg")); // NOI18N
+        clearSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSearchBtnActionPerformed(evt);
+            }
+        });
 
         selectLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         selectLabel1.setText("Select");
@@ -94,9 +128,9 @@ public class mainGui extends javax.swing.JFrame {
         selectLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         selectLabel3.setText("Search");
 
-        prevList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        prevList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        prevList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "New Search", "Previous Search 1", "Previous Search 2", "ect..." }));
 
-        helpBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\question_button.jpg")); // NOI18N
         helpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpBtnActionPerformed(evt);
@@ -116,48 +150,19 @@ public class mainGui extends javax.swing.JFrame {
         startLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         startLabel3.setText("Search");
 
-        locationText.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        locationText.setToolTipText("");
-        locationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationTextActionPerformed(evt);
-            }
-        });
-
         timeLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         timeLabel.setText("Start Time: ");
 
-        startLoLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        startLoLabel.setText("Start Location: ");
-
-        endLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        endLabel.setText("End Location: ");
-
-        midLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        midLabel.setText("Mid Locations: ");
-
-        midLocationText.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        midLocationText.setToolTipText("");
-        midLocationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                midLocationTextActionPerformed(evt);
-            }
-        });
-
-        endLocationText.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        endLocationText.setToolTipText("");
-        endLocationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endLocationTextActionPerformed(evt);
-            }
-        });
-
         times.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        times.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00 am", "09:00 am", "10:00 am", "11:00 am", "12:00 pm", "01:00 pm", "02:00 pm", "03:00 pm", "04:00 pm", "05:00 pm", "06:00 pm", "07:00 pm", "08:00 pm", "09:00 pm", " " }));
+        times.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00 am", "09:00 am", "10:00 am", "11:00 am", "12:00 pm", "01:00 pm", "02:00 pm", "03:00 pm", "04:00 pm", "05:00 pm", "06:00 pm", "07:00 pm", "08:00 pm", "09:00 pm" }));
+        times.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timesActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        mapItBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\map_it_button.jpg")); // NOI18N
         mapItBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mapItBtnActionPerformed(evt);
@@ -174,47 +179,172 @@ public class mainGui extends javax.swing.JFrame {
 
         midLocationLabel.setBackground(new java.awt.Color(255, 255, 255));
         midLocationLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        midLocationLabel.setText("Mid Location");
+        midLocationLabel.setText("Mid Locations");
 
         endLocationLabel.setBackground(new java.awt.Color(255, 255, 255));
         endLocationLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         endLocationLabel.setText("End Location");
+
+        startLocationDisplay.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        startLocationDisplay.setText("Starting Location");
+
+        timeDisplay.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        timeDisplay.setText("Start Time");
+
+        endLocationDisplay.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        endLocationDisplay.setText("Ending Location");
+
+        midLocationsList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(midLocationsList);
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setText("Remove Selected");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(mapItBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(startLocationLabel)
-                            .addComponent(endLocationLabel)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(startTimeLabel)
-                                .addGap(9, 9, 9))
-                            .addComponent(midLocationLabel))
-                        .addGap(211, 211, 211))))
+                        .addGap(0, 258, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(startTimeLabel)
+                                        .addGap(9, 9, 9))
+                                    .addComponent(midLocationLabel)
+                                    .addComponent(startLocationLabel)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(endLocationLabel)
+                                        .addGap(3, 3, 3)))
+                                .addGap(50, 50, 50)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(mapItBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(timeDisplay)
+                            .addComponent(startLocationDisplay)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(endLocationDisplay)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(startTimeLabel)
-                .addGap(56, 56, 56)
+                .addGap(4, 4, 4)
+                .addComponent(timeDisplay)
+                .addGap(19, 19, 19)
                 .addComponent(startLocationLabel)
-                .addGap(54, 54, 54)
-                .addComponent(midLocationLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(startLocationDisplay)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(midLocationLabel)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(endLocationLabel)
-                .addGap(94, 94, 94)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(endLocationDisplay)
+                .addGap(52, 52, 52)
                 .addComponent(mapItBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
+
+        MainLocationDisplay.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(MainLocationDisplay);
+
+        setStartLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setStartLocation.setText("Begin Here");
+        setStartLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setStartLocationActionPerformed(evt);
+            }
+        });
+
+        setEndLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setEndLocation.setText("End Here");
+        setEndLocation.setMaximumSize(new java.awt.Dimension(85, 25));
+        setEndLocation.setMinimumSize(new java.awt.Dimension(85, 25));
+        setEndLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setEndLocationActionPerformed(evt);
+            }
+        });
+
+        addMiddleLocation.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addMiddleLocation.setText("Visit");
+        addMiddleLocation.setMaximumSize(new java.awt.Dimension(85, 25));
+        addMiddleLocation.setMinimumSize(new java.awt.Dimension(85, 25));
+        addMiddleLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMiddleLocationActionPerformed(evt);
+            }
+        });
+
+        filterLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        filterLabel.setText("Filter : ");
+
+        filterText.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        filterText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterTextActionPerformed(evt);
+            }
+        });
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                filterTextKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                filterTextKeyTyped(evt);
+            }
+        });
+
+        filterCategory.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        filterCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "Address", "City", "State" }));
+        filterCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterCategoryActionPerformed(evt);
+            }
+        });
+
+        containsLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        containsLabel.setText("Contains : ");
+
+        viewInfo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        viewInfo.setText("View Details");
+        viewInfo.setToolTipText("");
+        viewInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,76 +353,88 @@ public class mainGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(orLabel)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(selectLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(69, 69, 69)
-                                    .addComponent(prevList, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(helpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(selectLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(selectLabel3)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(startLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(welcomeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(welcomeLabel2))
+                            .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(selectLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectLabel3)
+                        .addGap(259, 259, 259))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(startLoLabel)
-                                    .addComponent(timeLabel)
-                                    .addComponent(midLabel)
-                                    .addComponent(endLabel))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(clearSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(switchAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(prevList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(midLocationText)
-                                    .addComponent(endLocationText)
-                                    .addComponent(times, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(helpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(orLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(filterLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(filterCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(containsLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(setStartLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(setEndLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(addMiddleLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(viewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(timeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(times, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(252, 252, 252))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(startLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(startLabel3))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(welcomeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(welcomeLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(clearSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(switchAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
+                                .addComponent(startLabel3)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(welcomeLabel2)
                             .addComponent(welcomeLabel))
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(switchAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -306,30 +448,34 @@ public class mainGui extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(prevList, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(helpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
+                        .addGap(18, 18, 18)
                         .addComponent(orLabel)
-                        .addGap(43, 43, 43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(startLabel)
                             .addComponent(startLabel2)
                             .addComponent(startLabel3))
-                        .addGap(46, 46, 46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(timeLabel)
                             .addComponent(times, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startLoLabel)
-                            .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                            .addComponent(setStartLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addMiddleLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(endLocationText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(endLabel))
-                        .addGap(29, 29, 29)
+                            .addComponent(setEndLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(midLocationText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(midLabel))
-                        .addGap(0, 116, Short.MAX_VALUE)))
+                            .addComponent(filterLabel)
+                            .addComponent(filterCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(containsLabel)
+                            .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)))
                 .addContainerGap())
         );
 
@@ -340,26 +486,59 @@ public class mainGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_helpBtnActionPerformed
 
-    private void locationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_locationTextActionPerformed
+    private void filterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTextActionPerformed
+        populateLocationList(filterCategory.getSelectedIndex(), filterText.getText());
+    }//GEN-LAST:event_filterTextActionPerformed
 
-    private void midLocationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midLocationTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_midLocationTextActionPerformed
+    private void filterTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyTyped
+        //
+    }//GEN-LAST:event_filterTextKeyTyped
 
-    private void endLocationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endLocationTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endLocationTextActionPerformed
+    private void timesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timesActionPerformed
+        updateStartingTime();
+    }//GEN-LAST:event_timesActionPerformed
+
+    private void filterCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterCategoryActionPerformed
+        populateLocationList(filterCategory.getSelectedIndex(), filterText.getText());
+    }//GEN-LAST:event_filterCategoryActionPerformed
+
+    private void setStartLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStartLocationActionPerformed
+        updateStart();
+    }//GEN-LAST:event_setStartLocationActionPerformed
+
+    private void setEndLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setEndLocationActionPerformed
+        updateEnd();
+    }//GEN-LAST:event_setEndLocationActionPerformed
+
+    private void addMiddleLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMiddleLocationActionPerformed
+        updateMid();
+    }//GEN-LAST:event_addMiddleLocationActionPerformed
+
+    private void filterTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyReleased
+        populateLocationList(filterCategory.getSelectedIndex(), filterText.getText());
+    }//GEN-LAST:event_filterTextKeyReleased
+
+    private void viewInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInfoActionPerformed
+        viewInfomation();
+    }//GEN-LAST:event_viewInfoActionPerformed
 
     private void mapItBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapItBtnActionPerformed
-        // TODO add your handling code here:
+        validateTrip();
     }//GEN-LAST:event_mapItBtnActionPerformed
+
+    private void clearSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSearchBtnActionPerformed
+        clearSearch();
+    }//GEN-LAST:event_clearSearchBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        removeSelectedMidTrip();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -384,41 +563,244 @@ public class mainGui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 new mainGui().setVisible(true);
             }
         });
     }
+    
+    public void updateStartingTime()
+    {
+        search.setStartTime(8 + times.getSelectedIndex());
+        //JOptionPane.showMessageDialog(null, "Start Time is now : \n" + search.getStartTime());
+        updateVisualDisplay();
+    }
+    
+    // Sets the searchs starting location to the currently selected one
+    public void updateStart()
+    {
+        //Make sure location isn't already in search. 
+        if ( !search.isInSearch(locationList.get(MainLocationDisplay.getSelectedIndex())) ) 
+        {
+            search.setStart(locationList.get(MainLocationDisplay.getSelectedIndex()));
+            updateVisualDisplay();
+        }
+        else  //Already in search
+            JOptionPane.showMessageDialog(null, "Location already in trip", "Failure", JOptionPane.ERROR_MESSAGE);
+       
+    }
+    
+    public void updateMid()
+    {
+        //Make sure location isn't already in search. 
+        if ( !search.isInSearch(locationList.get(MainLocationDisplay.getSelectedIndex())) ) 
+        {
+            search.addLocation(locationList.get(MainLocationDisplay.getSelectedIndex()));
+            updateVisualDisplay();
+        }
+        else  //Already in search
+            JOptionPane.showMessageDialog(null, "Location already in trip", "Failure", JOptionPane.ERROR_MESSAGE);
+            
+    }
+    
+    public void removeSelectedMidTrip()
+    {
+        search.removeAtPosition( midLocationsList.getSelectedIndex() );
+        updateVisualDisplay();
+    }
+    
+    // Sets the searchs starting location to the currently selected one
+    public void updateEnd()
+    {
+        //Make sure location isn't already in search. 
+        if ( !search.isInSearch(locationList.get(MainLocationDisplay.getSelectedIndex())) )
+        {
+            search.setEnd(locationList.get(MainLocationDisplay.getSelectedIndex()));
+            updateVisualDisplay();
+        }
+        else  //Already in search
+            JOptionPane.showMessageDialog(null, "Location already in trip", "Failure", JOptionPane.ERROR_MESSAGE);
+        
+    }
+    
+    
+    /* filterCategory :
+    * 0 - Name
+    * 1 - Address
+    * 2 - City
+    * 3 - State
+    */ 
+    public void populateLocationList(int filterCategory, String FilterText)
+    {
+        try 
+        {        
+            // Clear out current list 
+            locationList.clear();
 
+            // Fill in Location List
+            DefaultListModel listModel;
+            listModel = new DefaultListModel();
+            MainLocationDisplay.setModel(listModel);
+            BufferedReader br;
+            try
+            {
+                br = new BufferedReader(new FileReader("LocationDatabase.txt"));
+                String locationString;
+                //ArrayList<Location> DatabaseLocations = new ArrayList<Location>();
+                // Read file Location by location
+                while ((locationString = br.readLine()) != null)
+                {
+                    Location newLocation = new Location(locationString);
+                    // Does it match the filter? : 
+                    boolean toAdd = false; 
+                    if ( filterCategory == 0 && newLocation.getName().toLowerCase().contains(FilterText.toLowerCase()) ) 
+                    {
+                        toAdd = true; 
+                    }
+                    if ( filterCategory == 1 && newLocation.getAddress().toLowerCase().contains(FilterText.toLowerCase()) ) 
+                    {
+                        toAdd = true; 
+                    }
+                    if ( filterCategory == 2 && newLocation.getCity().toLowerCase().contains(FilterText.toLowerCase()) ) 
+                    {
+                        toAdd = true; 
+                    }
+                    if ( filterCategory == 3 && newLocation.getState().toLowerCase().contains(FilterText.toLowerCase()) ) 
+                    {
+                        toAdd = true; 
+                    }
+                    if (toAdd)
+                    {
+                        locationList.add(newLocation);
+                        listModel.addElement(newLocation.getName());
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                System.out.println("Could Not find database File ");
+            }
+        } 
+        catch (IOException ex) 
+        {
+            System.out.println("Error openning database file. ");
+        }
+    }
+    
+    public void validateTrip()
+    {
+        //Validate trip 
+        boolean validTrip = true; 
+        if (search.getNumMidLocations() <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "Add at least one mid location to continue"
+                                            , "Failure", JOptionPane.ERROR_MESSAGE);
+            validTrip = false; 
+        }
+        else if (search.getStart().getName().isEmpty() && search.getStart().getAddress().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Start Location"
+                                            , "Failure", JOptionPane.ERROR_MESSAGE);
+            validTrip = false; 
+        }
+        else if (search.getEnd().getName().isEmpty() && search.getEnd().getAddress().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Invalid End Location"
+                                            , "Failure", JOptionPane.ERROR_MESSAGE);
+            validTrip = false; 
+        }
+        
+        if (validTrip)
+            prepareTrip();
+    }
+    
+    public void prepareTrip()
+    {
+        // Sort trip if not sorted
+        if (!search.hasShortest())
+        {
+            SearchManager newSearchManager = new SearchManager();
+            newSearchManager.sortShortestDistance(search);
+        }
+        
+        // TODO : Save this search in previous searches.
+        
+        // Create and open KML file
+        KmlCreator newKml = new KmlCreator("Search1.kml");
+        newKml.openKml(newKml.FillKml(search));
+    }
+    
+    public void viewInfomation()
+    {
+        AddLocationGui info = new AddLocationGui( locationList.get(MainLocationDisplay.getSelectedIndex()) );
+        info.setVisible(true);
+    }
+
+    public void updateVisualDisplay()
+    {
+        timeDisplay.setText( String.valueOf(search.getStartTime()) );
+        startLocationDisplay.setText(search.getStart().getName());
+        endLocationDisplay.setText(search.getEnd().getName());
+    
+        DefaultListModel listModel;
+        listModel = new DefaultListModel();
+        midLocationsList.setModel(listModel);
+        for (int i = 0; i < search.getNumMidLocations(); i++)
+            listModel.addElement(search.getMidLocations().get(i).getName());
+    }
+    
+    public void clearSearch()
+    {
+        search.clearData();
+        updateVisualDisplay();
+        
+        // Set time dropdown back to 8AM 
+        times.setSelectedIndex(0);
+        
+        midLocationsList.removeAll();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList MainLocationDisplay;
+    private javax.swing.JButton addMiddleLocation;
     private javax.swing.JButton clearSearchBtn;
-    private javax.swing.JLabel endLabel;
+    private javax.swing.JLabel containsLabel;
+    private javax.swing.JLabel endLocationDisplay;
     private javax.swing.JLabel endLocationLabel;
-    private javax.swing.JTextField endLocationText;
+    private javax.swing.JComboBox filterCategory;
+    private javax.swing.JLabel filterLabel;
+    private javax.swing.JTextField filterText;
     private javax.swing.JButton helpBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
-    private javax.swing.JTextField locationText;
     private javax.swing.JButton mapItBtn;
-    private javax.swing.JLabel midLabel;
     private javax.swing.JLabel midLocationLabel;
-    private javax.swing.JTextField midLocationText;
+    private javax.swing.JList midLocationsList;
     private javax.swing.JLabel orLabel;
     private javax.swing.JComboBox prevList;
     private javax.swing.JLabel selectLabel1;
     private javax.swing.JLabel selectLabel2;
     private javax.swing.JLabel selectLabel3;
+    private javax.swing.JButton setEndLocation;
+    private javax.swing.JButton setStartLocation;
     private javax.swing.JLabel startLabel;
     private javax.swing.JLabel startLabel2;
     private javax.swing.JLabel startLabel3;
-    private javax.swing.JLabel startLoLabel;
+    private javax.swing.JLabel startLocationDisplay;
     private javax.swing.JLabel startLocationLabel;
     private javax.swing.JLabel startTimeLabel;
     private javax.swing.JButton switchAdminBtn;
+    private javax.swing.JLabel timeDisplay;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JComboBox times;
+    private javax.swing.JButton viewInfo;
     private javax.swing.JLabel welcomeLabel;
     private javax.swing.JLabel welcomeLabel2;
     // End of variables declaration//GEN-END:variables
