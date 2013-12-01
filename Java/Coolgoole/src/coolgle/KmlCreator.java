@@ -35,6 +35,7 @@ import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LineString;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
+import java.text.DecimalFormat;
 
 public class KmlCreator 
 {
@@ -133,8 +134,8 @@ public class KmlCreator
                 .createAndSetBalloonStyle();
                 
                 Placemark placemark = document.createAndAddPlacemark()
-                .withName(locations.get(i).getName()) //This is the name that shows when you're not clicked in on it. 
-                .withDescription("Estimated Arrival Time :  <br> " + time
+                .withName(locations.get(i).getName() + " (" + i + ")") //This is the name that shows when you're not clicked in on it. 
+                .withDescription("Estimated Arrival Time :  <br> " + printTime(time)
                                   + "<br>Distance Traveled : <br> " + distance + " miles");
 
                 Point point = placemark.createAndSetPoint();
@@ -181,5 +182,44 @@ public class KmlCreator
             // If error opening file, post error message to console.
             System.out.println("Error opening KML");
         }
+    }
+    
+    
+    /**
+     * printTime
+     * Description - Gives a nicely formatted time string
+     * Parameters - int time from search, for example, 8.50 ( = 8:30 AM)
+     * Return - string msg for example : 8:30 AM
+     * Pre - Google earth is installed on end users computer. 
+     * Post -Google Earth will be opened, centered in the path. 
+     */
+    public String printTime( double timeToPrint)
+    {
+        String msgTime = "";
+        
+        String AMPM = "AM";
+        
+        // If time is over a day, return to miliary time again
+        if (timeToPrint > 24)
+             timeToPrint = timeToPrint % 24; 
+        // Get Hours : 
+        double hours = Math.floor(timeToPrint); 
+        if (hours > 13)
+        {
+            AMPM = "PM";
+            hours -= 12;
+            timeToPrint -= 12; 
+        }
+        DecimalFormat df = new DecimalFormat("##");
+        
+        // Get Minutes : 
+        timeToPrint -= hours; // Just get minute part
+        double mins = timeToPrint; 
+        mins *= 60;
+        DecimalFormat df2 = new DecimalFormat("##");
+        
+        msgTime = df.format(hours) + ":" + df2.format(mins) + " " + AMPM;     
+        
+        return msgTime;
     }
 }

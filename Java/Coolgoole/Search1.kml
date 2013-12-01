@@ -12,33 +12,93 @@
         <Style>
             <BalloonStyle/>
         </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-84.6007665,33.7998283 -76.7332629,38.9267001 -77.0654671,38.6932927</coordinates>
+                <coordinates>-76.7880114,41.7859079 -76.7880114,41.7859079 -75.7465003,40.8636993 -75.1490717,39.9531962 -75.146921,39.948842 -76.729337,39.9618175 -80.2573746,40.1763464 -76.660366,40.288136 -76.660366,40.288136</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>Kennedy</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8.0&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <name>Bradford Country Farm Museum (0)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 9:0 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-84.6007665,33.7998283</coordinates>
+                <coordinates>-76.7880114,41.7859079</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>The National Capital Radio &amp; Television Museum</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 18.23080951649345&lt;br&gt;Distance Traveled : &lt;br&gt; 563 miles</description>
+            <name>Bradford Country Farm Museum (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 9:0 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-76.7332629,38.9267001</coordinates>
+                <coordinates>-76.7880114,41.7859079</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>The National Colonial Farm</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 18.668654627444536&lt;br&gt;Distance Traveled : &lt;br&gt; 587 miles</description>
+            <name>Old Jail Museum (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 10:31 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 84 miles</description>
             <Point>
-                <coordinates>-77.0654671,38.6932927</coordinates>
+                <coordinates>-75.7465003,40.8636993</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>National Constitution Center (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 11:48 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 154 miles</description>
+            <Point>
+                <coordinates>-75.1490717,39.9531962</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>National Liberty Museum (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 11:48 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 154 miles</description>
+            <Point>
+                <coordinates>-75.146921,39.948842</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Police Heritage Museum (5)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 1:20 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 238 miles</description>
+            <Point>
+                <coordinates>-76.729337,39.9618175</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Duncan &amp; Miller Glass Museum (6)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 4:44 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 425 miles</description>
+            <Point>
+                <coordinates>-80.2573746,40.1763464</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Hershey's Chocolate World (7)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:11 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 615 miles</description>
+            <Point>
+                <coordinates>-76.660366,40.288136</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Hershey's Chocolate World (8)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:11 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 615 miles</description>
+            <Point>
+                <coordinates>-76.660366,40.288136</coordinates>
             </Point>
         </Placemark>
     </Document>
