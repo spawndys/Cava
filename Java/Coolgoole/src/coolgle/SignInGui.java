@@ -5,10 +5,8 @@
 package coolgle;
 import java.awt.*;
 import javax.swing.JOptionPane;
-/**
- *
- * @author rdg77_000
- */
+
+
 public class SignInGui extends javax.swing.JFrame 
 {
 
@@ -175,46 +173,62 @@ public class SignInGui extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_pswdTextActionPerformed
 
+    
+    /**
+     * signInBtnActionPerformed
+     * Description - Called when user presses the sign in button
+     * Provides error messages if any of the following cases : 
+     * - Password or Username fields are blank
+     * - Password and username combination are not found in UID-pass file 
+     */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {
         String un = this.usernameText.getText();
         char[] pass = this.pswdText.getPassword();
-        boolean isAdmin = this.logAdminCheck.isSelected();
-        int userType = isAdmin ? 1 : 0;
         
-        //and check if it is valid
-        UserAuthentication newAuthenicator = new UserAuthentication();
-        boolean correctCredidentials = newAuthenicator.logUser(un, pass, userType); 
-        
-        if(correctCredidentials && this.logAdminCheck.isSelected()) 
-        {// admin
-             this.setVisible(false);
-            adminGui admin = new adminGui();
-            admin.setVisible(true);
-        } 
-        else if(correctCredidentials && this.logAdminCheck.isSelected() == false)
-        {//User
-            this.setVisible(false);
-            mainGui user = new mainGui();
-            user.setVisible(true);
-        }
-        else // Not correct Creds, show error message. 
+        if (un.isEmpty() || pass.length == 0)
         {
-             JOptionPane.showMessageDialog(null, "User name and password are incorrect \n"
-                                            + "Ensure all fields are correct including admin checkbox and try again\n"
-                                            + "Sign up for a new acccount by clicking the Sign Up Here button\n\n"
-                                            + "Note : Admins can reset passwords", "Invalid Login", JOptionPane.ERROR_MESSAGE);
+            //Enter info box
+             JOptionPane.showMessageDialog(null, "Please Enter a username and password", 
+                                            "Not enough information", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            boolean isAdmin = this.logAdminCheck.isSelected();
+            int userType = isAdmin ? 1 : 0;
+
+            //and check if it is valid
+            UserAuthentication newAuthenicator = new UserAuthentication();
+            boolean correctCredidentials = newAuthenicator.logUser(un, pass, userType); 
+
+            if(correctCredidentials && this.logAdminCheck.isSelected()) 
+            {// admin
+                 this.setVisible(false);
+                adminGui admin = new adminGui(un);
+                admin.setVisible(true);
+            } 
+            else if(correctCredidentials && this.logAdminCheck.isSelected() == false)
+            {//User
+                this.setVisible(false);
+                mainGui user = new mainGui(un);
+                user.setVisible(true);
+            }
+            else // Not correct Creds, show error message. 
+            {
+                 JOptionPane.showMessageDialog(null, "User name and password are incorrect \n"
+                                                + "Ensure all fields are correct including admin checkbox and try again\n"
+                                                + "Sign up for a new acccount by clicking the Sign Up Here button\n\n"
+                                                + "Note : Admins can reset passwords", "Invalid Login", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_signInBtnActionPerformed
 
     private void pswdTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswdTextFocusGained
-  
-        this.pswdText.setText("");
+        
     }//GEN-LAST:event_pswdTextFocusGained
 
     private void pswdTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswdTextFocusLost
-        if(this.pswdText.getPassword().equals(""))
-        this.pswdText.setText("Enter8num");
+        
     }//GEN-LAST:event_pswdTextFocusLost
 
     private void usernameTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTextFocusGained
@@ -234,40 +248,6 @@ public class SignInGui extends javax.swing.JFrame
     ho.setVisible(true);
     }//GEN-LAST:event_signUpBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignInGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignInGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignInGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignInGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignInGui().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accountQuestionLabel;

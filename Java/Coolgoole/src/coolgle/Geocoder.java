@@ -51,7 +51,6 @@ public class Geocoder
         // Create Object
     }
 
-    
     /**
      * createLocation
      * Description - Creates and returns a location object based on a input string

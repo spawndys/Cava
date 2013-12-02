@@ -21,11 +21,12 @@ public class mainGui extends javax.swing.JFrame
     private ArrayList<Location> locationList = new ArrayList<Location>();
     // Active Search
     private Search search; 
+    private static String user; 
     
     /**
      * Creates new form mainGui
      */
-    public mainGui() 
+    public mainGui(String userName) 
     {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frm = super.getSize();
@@ -44,6 +45,7 @@ public class mainGui extends javax.swing.JFrame
         
         updateVisualDisplay();
         
+        user = userName;
     }
 
     /**
@@ -101,6 +103,11 @@ public class mainGui extends javax.swing.JFrame
         label2.setText("<html>\nThe list of locations chosen is shown <br>\non the right panel, click Map It to <br>\nshow it on Google Earth!\n</html>");
 
         switchAdminBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_admin_button.jpg"));
+        switchAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                switchAdminBtnActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label1.setText("<html>\nEnter the location information below <br>\nand we will show you the way!\n</html>");
@@ -127,7 +134,7 @@ public class mainGui extends javax.swing.JFrame
         selectLabel2.setText("Previous");
 
         selectLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        selectLabel3.setText("Search");
+        selectLabel3.setText("Trip");
 
         prevList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         prevList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "New Search", "Previous Search 1", "Previous Search 2", "ect..." }));
@@ -150,7 +157,7 @@ public class mainGui extends javax.swing.JFrame
         startLabel2.setText("New");
 
         startLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        startLabel3.setText("Search");
+        startLabel3.setText("Trip");
 
         timeLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         timeLabel.setText("Start Time: ");
@@ -369,16 +376,15 @@ public class mainGui extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(welcomeLabel2))
                             .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(166, 166, 166))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(selectLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(selectLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectLabel3)
-                        .addGap(259, 259, 259))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selectLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selectLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selectLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -544,6 +550,10 @@ public class mainGui extends javax.swing.JFrame
         removeSelectedMidTrip();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void switchAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_switchAdminBtnActionPerformed
+        switchToAdminScreen();
+    }//GEN-LAST:event_switchAdminBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -577,10 +587,21 @@ public class mainGui extends javax.swing.JFrame
         {
             public void run() 
             {
-                new mainGui().setVisible(true);
+                new mainGui(user).setVisible(true);
             }
         });
     }
+    
+    /**
+     * switchToAdminScreen
+     * Description - Shows the adminSwitchScreen on top of the current screen. 
+     */
+    private void switchToAdminScreen()
+    {
+        adminSwitchGui switchToAdmin = new adminSwitchGui(this, user);
+        switchToAdmin.setVisible(true);      
+    }
+    
     
     // Called when user selects a time in the starting time dropdown
     // Sets the starting time member vairable in the search and updates the right pane. 
@@ -654,6 +675,13 @@ public class mainGui extends javax.swing.JFrame
     * 2 - City
     * 3 - State
     */ 
+    /**
+     * populateLocationList
+     * Description - Populates the location list (the list of locations the user can choose 
+     * to add to their current trip). Takes in a filter category (explained above) and a filterText
+     * which is the text of the filterText field. This is called when the screen is first loaded, and 
+     * every time the user makes a change to the filterText field
+     */
     public void populateLocationList(int filterCategory, String FilterText)
     {
         try 
@@ -816,6 +844,11 @@ public class mainGui extends javax.swing.JFrame
         midLocationsList.removeAll();
     }
     
+    /**
+     * viewHelp
+     * Description - Shown when the user presses the question mark icon next to the previous search dropdowns
+     * Shows a messagebox very briefly explaining the interface. 
+     */
     public void viewHelp()
     {
         JOptionPane.showMessageDialog(null, "Either select a past trip from the dropdown, or  \n"

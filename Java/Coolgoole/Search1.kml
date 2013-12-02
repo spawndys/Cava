@@ -23,42 +23,42 @@
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-80.2573746,40.1763464 -80.2573746,40.1763464 -76.5092596,39.0500145 -75.146921,39.948842 -75.146921,39.948842</coordinates>
+                <coordinates>-76.729337,39.9618175 -77.0090505,38.8899389 -77.030071,38.891583 -76.4537002,37.0194595 -77.046874,38.9116924</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>Duncan &amp; Miller Glass Museum (0)</name>
+            <name>Police Heritage Museum (0)</name>
             <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-80.2573746,40.1763464</coordinates>
+                <coordinates>-76.729337,39.9618175</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Duncan &amp; Miller Glass Museum (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <name>U.S. Capitol (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 9:22 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 76 miles</description>
             <Point>
-                <coordinates>-80.2573746,40.1763464</coordinates>
+                <coordinates>-77.0090505,38.8899389</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>AACC (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 11:54 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 214 miles</description>
+            <name>National Museum of American History (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 9:24 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 77 miles</description>
             <Point>
-                <coordinates>-76.5092596,39.0500145</coordinates>
+                <coordinates>-77.030071,38.891583</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>National Liberty Museum (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 1:38 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 310 miles</description>
+            <name>Virginia War Museum (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 11:49 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 210 miles</description>
             <Point>
-                <coordinates>-75.146921,39.948842</coordinates>
+                <coordinates>-76.4537002,37.0194595</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>National Liberty Museum (4)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 1:38 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 310 miles</description>
+            <name>The Phillips Collection (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 2:16 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 345 miles</description>
             <Point>
-                <coordinates>-75.146921,39.948842</coordinates>
+                <coordinates>-77.046874,38.9116924</coordinates>
             </Point>
         </Placemark>
     </Document>

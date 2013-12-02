@@ -17,6 +17,7 @@ public class UIManager
 {
 	public UIManager()
         {
+            displayLogInGui();
         }
         
         /**
@@ -27,7 +28,8 @@ public class UIManager
 	 */
 	private void displayLogInGui()
         {
-		
+		SignInGui logInPage = new SignInGui();
+                logInPage.setVisible(true);
 	}
 	/**displayUserGui()
 	 * Description- This will be a function to load an user screen

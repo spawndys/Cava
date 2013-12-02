@@ -1,5 +1,7 @@
 //DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
 
+// Name|adrress|city|state|latitude|long
+
 /*****************************************
  ** File: Location
  ** Team Name: Cava++

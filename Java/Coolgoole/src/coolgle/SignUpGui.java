@@ -2,17 +2,13 @@
  * Code behind the sign up gui. 
  * Sign up gui should only be called from the sign in gui 
  */
-
 package coolgle;
 
 import java.awt.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author rdg77_000
- */
-public class SignUpGui extends javax.swing.JFrame {
+public class SignUpGui extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form SignUp
@@ -212,12 +208,49 @@ public class SignUpGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usrnameTextActionPerformed
 
+    
+    /**
+     * submitBtnActionPerformed
+     * Description - Called when user presses the submit button
+     * Provides error messages if any of the following cases : 
+     * - Password fields are different 
+     * - Any field is empty 
+     * - Email does not contain "@" and "."
+     * - Username is already taken
+     * - Pass is under 2 chars long
+     * If no errors, creates the account and returns to the sign in screen. 
+     */
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-      
-      if(false){//!this.repswdText.getPassword().equals( this.pswdText.getPassword())){
-          JOptionPane.showMessageDialog(null, "make sure to enter same passward");
-      }else{
+      UserAuthentication checkDups = new UserAuthentication();
+      boolean nameTaken = checkDups.userExists(usrnameText.getText());
+      if( new String(repswdText.getPassword()).compareTo( new String(pswdText.getPassword()) ) != 0 )
+      {//!this.repswdText.getPassword().equals( this.pswdText.getPassword())){
+          JOptionPane.showMessageDialog(null, "Ensure both passwords match", "Error", JOptionPane.ERROR_MESSAGE);
+      }
+      else if (emailText.getText().isEmpty() || usrnameText.getText().isEmpty() || 
+              repswdText.getPassword().length == 0 || pswdText.getPassword().length == 0)
+      {
+          JOptionPane.showMessageDialog(null, "All fields must have data", "Error", JOptionPane.ERROR_MESSAGE);
+      }
+      else if( !(emailText.getText().contains("@") && emailText.getText().contains(".")) )
+      {
+          JOptionPane.showMessageDialog(null, "Email is not of correct format\n"
+                                            + "Ex : User@domain.com", "Error", JOptionPane.ERROR_MESSAGE);     
+      }
+      else if (repswdText.getPassword().length < 2)
+      {
+          JOptionPane.showMessageDialog(null, "Password must be at least 2 characters", "Error", JOptionPane.ERROR_MESSAGE); 
+      }
+      else if (nameTaken)
+      {
+          JOptionPane.showMessageDialog(null, "Name already taken", "Error", JOptionPane.ERROR_MESSAGE); 
+      }
+      else // Success 
+      {
           //User ho = new User(this.usrnameText.getText(), this.pswdText.getPassword(), this.emailText.getText());
+          UserAuthentication addUser = new UserAuthentication();
+          addUser.addUser(this.usrnameText.getText(), new String(this.pswdText.getPassword()), this.emailText.getText());
+          
           this.setVisible(false);
           SignInGui signin = new SignInGui();
           signin.setVisible(true);
@@ -230,14 +263,14 @@ public class SignUpGui extends javax.swing.JFrame {
     }//GEN-LAST:event_pswdTextActionPerformed
 
     private void usrnameTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usrnameTextFocusGained
-        if(this.usrnameText.getText().equals("Enter your username"));
-            this.usrnameText.setText("");
+       // if(this.usrnameText.getText().equals("Enter your username"));
+        //    this.usrnameText.setText("");
        
     }//GEN-LAST:event_usrnameTextFocusGained
 
     private void usrnameTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usrnameTextFocusLost
-       if(this.usrnameText.getText().equals(""))
-      this.usrnameText.setText("Enter your username");
+      // if(this.usrnameText.getText().equals(""))
+      //this.usrnameText.setText("Enter your username");
     }//GEN-LAST:event_usrnameTextFocusLost
 
     private void pswdTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswdTextFocusGained
@@ -245,63 +278,29 @@ public class SignUpGui extends javax.swing.JFrame {
     }//GEN-LAST:event_pswdTextFocusGained
 
     private void pswdTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswdTextFocusLost
-       if(this.pswdText.getPassword().equals(""))
-        this.pswdText.setText("Enter8num");
+       //if(this.pswdText.getPassword().equals(""))
+       // this.pswdText.setText("Enter8num");
     }//GEN-LAST:event_pswdTextFocusLost
 
     private void repswdTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_repswdTextFocusGained
-    this.repswdText.setText("");
+    //this.repswdText.setText("");
     }//GEN-LAST:event_repswdTextFocusGained
 
     private void repswdTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_repswdTextFocusLost
-        if(this.repswdText.getPassword().equals(""))
-            this.repswdText.setText("Enter8num");
+       // if(this.repswdText.getPassword().equals(""))
+         //   this.repswdText.setText("Enter8num");
     }//GEN-LAST:event_repswdTextFocusLost
 
     private void emailTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFocusGained
-        if(this.emailText.getText().equals("Enter your email address"))
-            this.emailText.setText("");
+       // if(this.emailText.getText().equals("Enter your email address"))
+       //     this.emailText.setText("");
     }//GEN-LAST:event_emailTextFocusGained
 
     private void emailTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFocusLost
-        if(this.emailText.getText().equals(""))
-            this.emailText.setText("Enter your email address");
+      //  if(this.emailText.getText().equals(""))
+        //    this.emailText.setText("Enter your email address");
     }//GEN-LAST:event_emailTextFocusLost
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUpGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUpGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUpGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUpGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignUpGui().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLabel;

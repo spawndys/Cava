@@ -20,7 +20,6 @@ public class Driver {
 	public static void main(String args[])
         {
 		UIManager UI = new UIManager();
-                
 		//CmdRouter Application = new CmdRouter(UI);
 	}
 	
