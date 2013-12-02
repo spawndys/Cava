@@ -1,5 +1,18 @@
 //DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
 
+/*****************************************
+ ** File: Location
+ ** Team Name: Cava++
+ *Date: 10/18/13
+ ** E-mail: Daniel Brandes bradan1@umbc.edu, 
+ ** Lizset Chavez <lizset1@umbc.edu>
+ ** Patrick Ritchie <ritc1@umbc.edu>,
+ ** Xiaofei He <xiaofei2@umbc.edu>,
+ ** Yo-Han Kim <ykim18@umbc.edu>,
+ ** Jim Millican <jmill1@umbc.edu>
+ ** Decription- Class that represents a location for a search
+***********************************************/
+
 package coolgle;
 
 import java.io.BufferedReader;
@@ -13,18 +26,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.swing.JOptionPane;
 
-/*****************************************
- ** File: Location
- ** Team Name: Cava++
- *Date: 10/18/13
- ** E-mail: Daniel Brandes bradan1@umbc.edu, 
- ** Lizset Chavez <lizset1@umbc.edu>
- ** Patrick Ritchie <ritc1@umbc.edu>,
- ** Xiaofei He <xiaofei2@umbc.edu>,
- ** Yo-Han Kim <ykim18@umbc.edu>,
- ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Class that represents a location for a search
-***********************************************/
 public class Location 
 {
     //class variables
@@ -235,16 +236,20 @@ public class Location
         return distance;
     }
 
+    // Converts given degrees into radians, should only be called internally from distanceTo function
     private double convertToRadians(double degrees) 
     {
         return( degrees * Math.PI / 180.0 );
     }
 
+    // Converts given radians into degrees, should only be called internally from distanceTo function
     private double convertToDegrees(double radians) 
     {
         return( radians * 180 / Math.PI );
     }
     
+    // Compares the current location to another one 
+    // Since you can change the name and other details, only compare the lat/long
     public boolean isSame(Location otherLocation)
     {
         boolean same = true; 

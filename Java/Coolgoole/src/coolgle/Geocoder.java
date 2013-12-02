@@ -10,15 +10,16 @@
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Geocoder functions, used to turn a name string into a location object. 
-***********************************************/
-// NOTE : 
-// Google's API is javascript based, in order for us to use java, 
-// I found a library we can use that has the same functionally in java : 
+***********************************************
+* Desc : This class is used to turn a string into a location object, 
+* grabbing the rest of the information from Google's geocoding service. 
+* Should only be called from AddLocationGui Class
+* ***********************************************/
+// NOTE : Makes use of the library found here : 
 // https://code.google.com/p/geocoder-java/
-// Example based on this code :  
+// Example Code Found here : 
 // https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
 
-// Should only be used in AddLocationGui Class
 
 package coolgle;
 
@@ -94,6 +95,7 @@ public class Geocoder
             if (resultNodeList.getLength() == 0)
             {
                 // Err : No location Found from search term
+                // Just return a empty location, which can be handled later
             }
             else 
             {

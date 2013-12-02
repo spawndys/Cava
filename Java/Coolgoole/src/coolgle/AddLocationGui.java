@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Loads the AdLocation Screen. 
+ * Handles these cases : 
+ * - View Infomation button from mainGui
+ * - AdminGui -> Add Location
+ * - AdminGui -> Modify Location
  */
 
 package coolgle;
@@ -40,6 +42,10 @@ public class AddLocationGui extends javax.swing.JFrame
         this.loCityText.setText(newLocation.getCity()); 
         this.loStateText.setText(newLocation.getState()); 
         this.loAddressText.setText(newLocation.getAddress());
+        
+        // No changing the latitude and longtitude
+        this.loLatText.setEditable(false);
+        this.loLongText.setEditable(false);
         
         status = 1; 
         m_main = mainFrame; 

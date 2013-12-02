@@ -1,3 +1,5 @@
+// Given a search, the searchManager sorts it into the shortest path
+
 package coolgle;
 
 import java.util.ArrayList;
@@ -21,8 +23,7 @@ public class SearchManager
                 
                 int size = search.locations.size();
                 
-                for(int i = 0; i < size; i++)
-                {
+                for(int i = 0; i < size; i++){
                         double shortestD = Double.MAX_VALUE;
                         int shortest = -1;
                         for(int j = 0; j < search.locations.size(); j++)

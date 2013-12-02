@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Code behind the sign up gui. 
+ * Sign up gui should only be called from the sign in gui 
  */
 
 package coolgle;
@@ -18,12 +17,14 @@ public class SignUpGui extends javax.swing.JFrame {
     /**
      * Creates new form SignUp
      */
-    public SignUpGui() {
-              Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        		int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
-		super.setLocation(xpos,  ypos);
+    public SignUpGui() 
+    {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+        int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
+        super.setLocation(xpos,  ypos);
+        
         initComponents();
     }
 

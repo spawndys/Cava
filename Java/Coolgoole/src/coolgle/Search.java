@@ -1,13 +1,6 @@
 /*
-Notes while merging code :
-1.) Getting rid of the shortest coords arraylist
-If the search is optimized, the locations arraylist will be 
-in sorted order anyways, so when saving to the user file
-only the locations array will need to  be saved. 
-2.) Add userName as member var. 
-3.) No need for isValid function, seasrches can't be made in a invalid form. 
-4.) Kept your main commented out at the bottom of the file, should be deleted 
-once you don't need it anymore
+ * Search object
+ * Each use has a collection of different searches
 */
 
 package coolgle;
@@ -266,12 +259,21 @@ public class Search
             return returnString;
         }
         
-        // Writes the search to a users file, pass in name of user file (TODO)
-        // (I quickly fleshed out what this should do, I haven't tested it)
+        // Returns a string that can be printed into the users file.
+        // The returned string will look something along the lines of 
+        // "
+        // 8
+        // The Kreeger Museum|2401 Foxhall Road Northwest|Washington|District of Columbia|38.9217585|-77.0892007
+        // Fairfax Museum & Visitors Center|10209 Main Street|Fairfax|Virginia|38.8444887|-77.3005546
+        // Thurgood Marshall Airport|7062 Elm Road|Baltimore|Maryland|39.180862|-76.6675476
+        // "
+        // The first location is the starting location, last is ending, middles are mid, ect..
+        // The first number is the start time of the trip 
+        // Trips will be sorted and valid before they need to be saved. 
         public String fileToString()
         {
                 String msg;
-                msg = "**new search**" + '\n';
+                msg = "" + getStartTime() + '\n';
  
                 // Print add all locations
                 msg += start.fileToString();
@@ -282,7 +284,7 @@ public class Search
                 }
                 msg += end.fileToString();
                 
-                msg += "** end new search**\n";
+                msg += "\n";
                 return msg;
 	}
 	

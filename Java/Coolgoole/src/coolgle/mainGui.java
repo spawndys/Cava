@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Main Gui class, handles all the visual effects and backend code 
+ * of creating a trip. 
  */
 
 package coolgle;
@@ -15,10 +14,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author rdg77_000
- */
+
 public class mainGui extends javax.swing.JFrame 
 {
     // Backend arraylist, kept synced with the current list of locations showned. 
@@ -758,7 +754,13 @@ public class mainGui extends javax.swing.JFrame
         {
             SearchManager newSearchManager = new SearchManager();
             newSearchManager.sortShortestDistance(search);
+            
+            //NOTE (TODO)
+            // There is an issue that after a search is sorted, the 
+            // Starting and end locations are added to the list of mid
+            // Locations.
         }
+        
         
         // TODO : Save this search in previous searches.
         

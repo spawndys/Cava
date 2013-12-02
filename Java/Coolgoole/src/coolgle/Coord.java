@@ -1,5 +1,5 @@
-//Merge Notes : 
-//Changed the lat and long field here to doubles istead of floats. 
+// To only be used by location class, stores a coordinate 
+// Which is a pair of lats and longs
 
 package coolgle;
 

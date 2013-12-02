@@ -1,11 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Sign in form, this is the first thing the user sees
  */
 
 package coolgle;
 import java.awt.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author rdg77_000
@@ -176,20 +175,35 @@ public class SignInGui extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_pswdTextActionPerformed
 
-    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
-        this.usernameText.getText();
-        this.pswdText.getPassword();
+    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        String un = this.usernameText.getText();
+        char[] pass = this.pswdText.getPassword();
+        boolean isAdmin = this.logAdminCheck.isSelected();
+        int userType = isAdmin ? 1 : 0;
         
-                //and check if it is valid  and admin
-        if(true && this.logAdminCheck.isSelected()) {// admin
+        //and check if it is valid
+        UserAuthentication newAuthenicator = new UserAuthentication();
+        boolean correctCredidentials = newAuthenicator.logUser(un, pass, userType); 
+        
+        if(correctCredidentials && this.logAdminCheck.isSelected()) 
+        {// admin
              this.setVisible(false);
             adminGui admin = new adminGui();
             admin.setVisible(true);
-            } 
-        else if(true){
+        } 
+        else if(correctCredidentials && this.logAdminCheck.isSelected() == false)
+        {//User
             this.setVisible(false);
             mainGui user = new mainGui();
             user.setVisible(true);
+        }
+        else // Not correct Creds, show error message. 
+        {
+             JOptionPane.showMessageDialog(null, "User name and password are incorrect \n"
+                                            + "Ensure all fields are correct including admin checkbox and try again\n"
+                                            + "Sign up for a new acccount by clicking the Sign Up Here button\n\n"
+                                            + "Note : Admins can reset passwords", "Invalid Login", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_signInBtnActionPerformed
 
