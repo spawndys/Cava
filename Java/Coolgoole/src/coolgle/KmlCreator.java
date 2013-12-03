@@ -12,7 +12,7 @@
  ** Decription- Used to create the kml file and display the data in google earth
  **             Once a arraylist of the places the user wishes to visit is created. 
 ***********************************************/
-// To be used after user hits map it button
+// To be used after user hits map it button, takes a search and actually maps it on google earth
 // Example use : - 
 // KmlCreator newKml = new KmlCreator("Search1.kml");
 // newKml.openKml(newKml.FillKml(search));
@@ -200,11 +200,11 @@ public class KmlCreator
         String AMPM = "AM";
         
         // If time is over a day, return to miliary time again
-        if (timeToPrint > 24)
+        if (timeToPrint >= 24)
              timeToPrint = timeToPrint % 24; 
         // Get Hours : 
         double hours = Math.floor(timeToPrint); 
-        if (hours > 13)
+        if (hours >= 12)
         {
             AMPM = "PM";
             hours -= 12;
