@@ -26,15 +26,14 @@ public class Search
 	//class variables
 	
         // Arraylist of midlocations
-        ArrayList<Location> locations = new ArrayList<Location>();
-        
-	Location start, end;
-	double distance;
-	boolean optimized;
-        double startTime;
-        
-        String userName;
-        
+    private ArrayList<Location> locations = new ArrayList<Location>();
+    private ArrayList<Coord> shortestPath = new ArrayList<Coord>(); 
+	private Location start, end;
+	private double distance;
+	private boolean optimized;
+    private double startTime;
+    private String userName;
+
         // How many locations you can add to a trip, NOT including starting and ending locations. 
         private static final int TRIP_LIMIT = 30; 
         
@@ -51,21 +50,40 @@ public class Search
             userName = "";
 	}
         
-         /**
+   
+
+	public Search(String startTime, String userName, Location start, Location end, 
+			ArrayList<Location> locations, ArrayList<Coord> shortestPath)
+        {
+		
+		this.startTime = Double.parseDouble(startTime);
+		this.userName = userName;
+		this.start = start;
+		this.end = end;
+		this.locations = locations;
+		this.shortestPath = shortestPath;
+       // startTime = 8.00;  // Default time in GUI 
+       // optimized = false;
+		
+	}       
+    /**
 	 * constructor for SEARCH object
 	 */
 	public Search(String userName, Location start, Location end, 
 			ArrayList<Location> locations)
         {
+		
 		this.userName = userName;
 		this.start = start;
 		this.end = end;
 		this.locations = locations;
-                startTime = 8.00;  // Default time in GUI 
-                optimized = false; 
-	}       
+		this.shortestPath = shortestPath;
+       // startTime = 8.00;  // Default time in GUI 
+       // optimized = false;
+		
+	}   
         
-        
+	
 	/**
 	 * hasShortest
 	 * Description- Returns whether or not the search has been optimized.
@@ -272,27 +290,61 @@ public class Search
         // Trips will be sorted and valid before they need to be saved. 
         public String fileToString()
         {
-                String msg;
-                msg = "" + getStartTime() + '\n';
- 
+               
+        		String msg;
+                msg = "StartTime " + this.startTime + '\n';
+                msg += start.fileToString() + '\n';
                 // Print add all locations
-                msg += start.fileToString();
                 Iterator<Location> itrA = locations.iterator();
                 while(itrA.hasNext())
                 {
-                        msg += itrA.next().toString() + "\n";
+                	msg += itrA.next().fileToString() + '\n';
                 }
-                msg += end.fileToString();
+                msg += end.fileToString() + '\n';
+               
+                // Print shortest Path (1 line)
+                Iterator<Coord> itrB = shortestPath.iterator();
+                msg += "shortestCoords" + '\n';
+                while(itrB.hasNext())
+                {	
+                	String temp = itrB.next().toString();
+                			System.out.println("temp is " + temp);
+                	msg += temp ;
+                	
+                	if(itrB.hasNext()){
+                		msg += " ; ";
+                	}
+                }
                 
-                msg += "\n";
+                msg += " | \n";
+                //System.out.println("ret is " + msg);
+                //System.out.println("end ret " + msg);
                 return msg;
 	}
 	
-}
 
 
 
-	/*
+
+	
+	
+
+	public void setLocations(ArrayList<Location> locations) {
+			this.locations = locations;
+		}
+
+		public void setShortestPath(ArrayList<Coord> shortestPath) {
+			this.shortestPath = shortestPath;
+		}
+
+		public void setDistance(double distance) {
+			this.distance = distance;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
 	public static void main(String[] args){
 		
         String userName = "Dan";		
@@ -308,10 +360,10 @@ public class Search
         String city = "tim";
         String state = "MD"; 
         String address = "101 H rd";			
-        Location loc = new Location(name,coord,city,state,address);	
+        Location loc = new Location(name,address,city,state, coord);	
         //label start
         Location start = new Location(loc); 
-        locations.add(loc);
+       // locations.add(loc);
         shortestCoords.add(new Coord(x,y));
 
         name = "UMBC";		
@@ -321,16 +373,18 @@ public class Search
         city = "balt";
         state = "MD"; 
         address = "901 C rd";
-        loc = new Location(name, coord, city, state, address);	
-        locations.add(loc);
+        loc = new Location(name,address,city,state, coord);	
+        //locations.add(loc);
         shortestCoords.add(new Coord(x,y));		
         //label end		
         Location end = new Location(loc); 
 
         //make search
-        Search search= new Search(userName, start, end, locations, shortestCoords);
+        Search search = new Search("3",userName, start, end, locations, shortestCoords);
 
-
-        System.out.println(search.toString());
+        System.out.println("main  print");
+        System.out.println(search.fileToString());
         System.out.println("done");
-*/
+
+	}
+}

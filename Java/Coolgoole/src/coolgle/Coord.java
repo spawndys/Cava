@@ -1,5 +1,5 @@
-// To only be used by location class, stores a coordinate 
-// Which is a pair of lats and longs
+//Merge Notes : 
+//Changed the lat and long field here to doubles istead of floats. 
 
 package coolgle;
 
@@ -18,6 +18,11 @@ public class Coord
         {
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+        public Coord(String latitude, String longitude)
+        {
+        	this.latitude = Double.parseDouble(latitude);
+        	this.longitude = Double.parseDouble(longitude);
 	}
 
 	public double getLatitude() 

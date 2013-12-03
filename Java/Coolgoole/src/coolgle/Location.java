@@ -1,20 +1,5 @@
 //DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
 
-// Name|adrress|city|state|latitude|long
-
-/*****************************************
- ** File: Location
- ** Team Name: Cava++
- *Date: 10/18/13
- ** E-mail: Daniel Brandes bradan1@umbc.edu, 
- ** Lizset Chavez <lizset1@umbc.edu>
- ** Patrick Ritchie <ritc1@umbc.edu>,
- ** Xiaofei He <xiaofei2@umbc.edu>,
- ** Yo-Han Kim <ykim18@umbc.edu>,
- ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Class that represents a location for a search
-***********************************************/
-
 package coolgle;
 
 import java.io.BufferedReader;
@@ -28,6 +13,18 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.swing.JOptionPane;
 
+/*****************************************
+ ** File: Location
+ ** Team Name: Cava++
+ *Date: 10/18/13
+ ** E-mail: Daniel Brandes bradan1@umbc.edu, 
+ ** Lizset Chavez <lizset1@umbc.edu>
+ ** Patrick Ritchie <ritc1@umbc.edu>,
+ ** Xiaofei He <xiaofei2@umbc.edu>,
+ ** Yo-Han Kim <ykim18@umbc.edu>,
+ ** Jim Millican <jmill1@umbc.edu>
+ ** Decription- Class that represents a location for a search
+***********************************************/
 public class Location 
 {
     //class variables
@@ -50,8 +47,17 @@ public class Location
             state = "";
             address = "";
     }
-
-    //Enter line from database file
+	public Location(Location loc)
+	{
+		this.name = loc.name;
+		this.coord = loc.coord;
+		this.city = loc.city;
+		this.state = loc.state;
+		this.address = loc.address;
+	}
+   
+	
+	//Enter line from database file
     public Location(String fileInput)
     {
             String[] data = fileInput.split("\\|");
@@ -76,7 +82,7 @@ public class Location
     }
     
     //Secondary Constructor - Enter All with a coord instead of a lat/long pair
-    public Location(String name, Coord coords, String city, String state, String address)
+    public Location(String name, String address, String city, String state,  Coord coords)
     {
             this.name = name;
             coord = new Coord(coords.getLatitude(), coords.getLongitude());
@@ -152,15 +158,15 @@ public class Location
     }
 
     // toString for printing to database file
-    public String fileToString()
+    public String fileToString() //get shortest Coords()
     {
         String returnString = "";
-        returnString += "" + getName() + "|";
-        returnString += "" + getAddress() + "|";
-        returnString += "" + getCity() + "|";
-        returnString += "" + getState() + "|";
-        returnString += "" + getLatitude() + "|";
-        returnString += "" + getLongitude();
+        returnString += getName() + " | ";
+        returnString += getAddress() + " | ";
+        returnString += getCity() + " | ";
+        returnString += getState() + " | ";
+        returnString += getLatitude() + "  ";
+        returnString += getLongitude();
         return returnString;
     }
 
@@ -238,20 +244,16 @@ public class Location
         return distance;
     }
 
-    // Converts given degrees into radians, should only be called internally from distanceTo function
     private double convertToRadians(double degrees) 
     {
         return( degrees * Math.PI / 180.0 );
     }
 
-    // Converts given radians into degrees, should only be called internally from distanceTo function
     private double convertToDegrees(double radians) 
     {
         return( radians * 180 / Math.PI );
     }
     
-    // Compares the current location to another one 
-    // Since you can change the name and other details, only compare the lat/long
     public boolean isSame(Location otherLocation)
     {
         boolean same = true; 
