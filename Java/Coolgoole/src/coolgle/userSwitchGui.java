@@ -1,29 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Switch to Admin View Dialog
  */
+
 
 package coolgle;
 
 import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author rdg77_000
- */
-public class userSwitchGui extends javax.swing.JFrame {
-
+public class userSwitchGui extends javax.swing.JFrame 
+{
+    private static String user; 
+    private adminGui mainFrame; // Screen that caused this one to appear
+    
     /**
      * Creates new form userSwitch
      */
-    public userSwitchGui() {
-              Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frm = super.getSize();
-        		int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
-		int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
-		super.setLocation(xpos,  ypos);
+    public userSwitchGui(adminGui m_main, String userName) 
+    {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	Dimension frm = super.getSize();
+        int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
+	int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
+	super.setLocation(xpos,  ypos);
         initComponents();
+        
+        // Makes it so that you can exit from pop up messages and this window without closing the entire app 
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        user = userName;
+        mainFrame = m_main;
     }
 
     /**
@@ -43,23 +50,18 @@ public class userSwitchGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        switchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_button.jpg")); // NOI18N
+        switchBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_button.jpg")); // NOI18N
         switchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 switchBtnActionPerformed(evt);
             }
         });
 
-        pwrdText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwrdTextActionPerformed(evt);
-            }
-        });
 
         pswdLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         pswdLabel.setText("User Password: ");
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\logo.jpg")); // NOI18N
+        logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
         Label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         Label.setText("System Switch");
@@ -106,47 +108,22 @@ public class userSwitchGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void switchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_switchBtnActionPerformed
-        // TODO add your handling code here:
+        // Validate PW : 
+        UserAuthentication validatePW = new UserAuthentication();
+        if (validatePW.logUser(user, pwrdText.getPassword(), 0))
+        {
+            mainGui userView = new mainGui(user);
+            userView.setVisible(true);
+            mainFrame.setVisible(false);
+            this.setVisible(false);
+        }
+        else // Wrong PW 
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Password", "Failure", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_switchBtnActionPerformed
 
-    private void pwrdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwrdTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pwrdTextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(userSwitchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(userSwitchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(userSwitchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(userSwitchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new userSwitchGui().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label;

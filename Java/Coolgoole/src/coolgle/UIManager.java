@@ -10,23 +10,34 @@ package coolgle;
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Interface for user to use to interact with
+***********************************************
+* Is created from driver class, is class that begins to show the gui
 ***********************************************/
-public class UIManager {
-	/**
+public class UIManager 
+{
+	public UIManager()
+        {
+            displayLogInGui();
+        }
+        
+        /**
 	 * displayLogInGui()
 	 * Description- This will be a function to load login screen
 	 * Pre-
 	 * Post-
 	 */
-	private void displayLogInGui(){
-		
+	private void displayLogInGui()
+        {
+		SignInGui logInPage = new SignInGui();
+                logInPage.setVisible(true);
 	}
 	/**displayUserGui()
 	 * Description- This will be a function to load an user screen
 	 * Pre-
 	 * Post-
 	 */
-	private void displayUserGui(){
+	private void displayUserGui()
+        {
 		
 	}
 	/**displayAdminGui()
@@ -34,7 +45,8 @@ public class UIManager {
 	 * Pre-
 	 * Post-
 	 */
-	private void displayAdminInGui(){
+	private void displayAdminInGui()
+        {
 	
 	}
 	/**
@@ -43,7 +55,8 @@ public class UIManager {
 	 * Pre-
 	 * Post-
 	 */
-	private void displaySearchInGui(){
+	private void displaySearchInGui()
+        {
 		
 	}
 }
