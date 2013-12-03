@@ -44,7 +44,7 @@ public class SearchManager
                 search.setLocations(temp) ;
                 search.setOptimized(true);
                 
-                search.distance = totalDist + search.end.distanceTo(search.locations.get(search.locations.size()-1)); //add distance from last element to ending location.
+                search.setDistance(totalDist + search.getEnd().distanceTo(search.getMidLocations().get(search.getMidLocations().size()-1))); //add distance from last element to ending location.
         }
 }
 
