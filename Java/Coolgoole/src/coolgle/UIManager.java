@@ -20,7 +20,7 @@ public class UIManager
             displayLogInGui();
         }
         
-        /**
+     /**
 	 * displayLogInGui()
 	 * Description- This will be a function to load login screen
 	 * Pre-
@@ -37,7 +37,7 @@ public class UIManager
 	 * Post-
 	 */
 	private void displayUserGui()
-        {
+    {
 		
 	}
 	/**displayAdminGui()

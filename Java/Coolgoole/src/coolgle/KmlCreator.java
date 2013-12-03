@@ -11,12 +11,13 @@
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Used to create the kml file and display the data in google earth
  **             Once a arraylist of the places the user wishes to visit is created. 
-***********************************************/
-// To be used after user hits map it button, takes a search and actually maps it on google earth
+
+// Additional: To be used after user hits map it button, takes a search and actually 
+ * maps it on google earth
 // Example use : - 
 // KmlCreator newKml = new KmlCreator("Search1.kml");
 // newKml.openKml(newKml.FillKml(search));
-
+*/
 
 package coolgle;
 

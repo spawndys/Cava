@@ -9,9 +9,7 @@
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Geocoder functions, used to turn a name string into a location object. 
-***********************************************
-* Desc : This class is used to turn a string into a location object, 
+* Description : This class is used to turn a string into a location object, 
 * grabbing the rest of the information from Google's geocoding service. 
 * Should only be called from AddLocationGui Class
 * ***********************************************/

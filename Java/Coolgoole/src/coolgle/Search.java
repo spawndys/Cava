@@ -1,7 +1,3 @@
-/*
-* Search object
-* Each use has a collection of different searches
-*/
 
 package coolgle;
 
@@ -51,7 +47,7 @@ public class Search
         }
         
         /**
-         * constructor for SEARCH object, pass in username, everything else is set to default
+         * Blank constructor for creating with just userName
          */
         public Search(String un)
         {
@@ -64,7 +60,8 @@ public class Search
         }
         
    
-
+        /**
+         * Initialized constructor for creating  valid search (Coord included) */
         public Search(String startTime, String userName, Location start, Location end,
                         ArrayList<Location> locations, ArrayList<Coord> shortestPath)
         {
@@ -78,9 +75,8 @@ public class Search
                 optimized = false;
                 
         }
-    /**
-         * constructor for SEARCH object
-         */
+        /**
+         * Initialized constructor for creating  valid search (Coord not included) */
         public Search(String userName, Location start, Location end,
                         ArrayList<Location> locations)
         {
@@ -137,7 +133,7 @@ public class Search
             return startTime;
         }
         
-        /*
+        /**
          * getStart
          * Description - Returns start location.
          */
@@ -146,7 +142,7 @@ public class Search
             return start;
         }
         
-        /*
+        /**
          * setStart
          * Description - Sets the start location
          */
@@ -164,7 +160,7 @@ public class Search
             return end;
         }
         
-        /*
+        /**
          * setEnd
          * Description - Sets the end location
          */
@@ -172,7 +168,9 @@ public class Search
         {
             end = newEnd;
         }
-        
+        /**
+         * Description - getUserName
+         */
         public String getUserName()
         {
                 return userName;
@@ -274,8 +272,8 @@ public class Search
             startTime = 8;
         }
         
-        // Override of toString
-        // This should be used in the the pervious search dropdown.
+        /** Description - Override of toString
+        // This should be used in the the pervious search dropdown.*/
         public String toString()
         {
             String returnString = "";
@@ -285,8 +283,8 @@ public class Search
             return returnString;
         }
         
-        // Returns a string that can be printed into the users file.
-        // The returned string will look something along the lines of
+        /** Description - Returns a string that can be printed into the users file.
+        // Additional: The returned string will look something along the lines of
         // "
         // 8
         // The Kreeger Museum|2401 Foxhall Road Northwest|Washington|District of Columbia|38.9217585|-77.0892007
@@ -295,7 +293,7 @@ public class Search
         // "
         // The first location is the starting location, last is ending, middles are mid, ect..
         // The first number is the start time of the trip
-        // Trips will be sorted and valid before they need to be saved.
+        // Trips will be sorted and valid before they need to be saved.*/
         public String fileToString()
         {
                 String msg;
@@ -327,27 +325,40 @@ public class Search
 
                 return msg;
         }
-
+        /**
+         * setter for locations
+         * @param locations
+         */
         public void setLocations(ArrayList<Location> locations) 
         {
                 this.locations = locations;
         }
-
+        /**
+         * setter for ShortestPath
+         * @param locations
+         */
         public void setShortestPath(ArrayList<Coord> shortestPath) 
         {
                 this.shortestPath = shortestPath;
         }
-
+        /**
+         * setter for distance
+         */
         public void setDistance(double distance) 
         {
                 this.distance = distance;
         }
-
+        /**
+         * setter for userName
+         */
         public void setUserName(String userName) 
         {
                 this.userName = userName;
         }
-
+        /**
+         * main tester
+         * @param args
+         */
         public static void main(String[] args){
                 
         String userName = "Dan";                

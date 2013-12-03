@@ -1,5 +1,15 @@
-// Given a search, the searchManager sorts it into the shortest path
-
+/*****************************************
+** File: Search
+** Team Name: Cava++
+*Date: 10/18/13
+** E-mail: Daniel Brandes bradan1@umbc.edu,
+** Lizset Chavez <lizset1@umbc.edu>
+** Patrick Ritchie <ritc1@umbc.edu>,
+** Xiaofei He <xiaofei2@umbc.edu>,
+** Yo-Han Kim <ykim18@umbc.edu>,
+** Jim Millican <jmill1@umbc.edu>
+** Decription- Given a search, the searchManager sorts it into the shortest path
+***********************************************/
 package coolgle;
 
 import java.util.ArrayList;
@@ -7,11 +17,9 @@ import java.util.ArrayList;
 public class SearchManager
 {
         /**
-* sortShortestDistance
-* Description-
-* Pre-
-* Post -
-*/
+         * sortShortestDistance
+         * Description-  need valid search, sort locations start-end with shortest distance
+         */
         
         public void sortShortestDistance(Search search)
         {
