@@ -165,7 +165,7 @@ public class Location
         returnString += getAddress() + " | ";
         returnString += getCity() + " | ";
         returnString += getState() + " | ";
-        returnString += getLatitude() + " ";
+        returnString += getLatitude() + " | ";
         returnString += getLongitude();
         return returnString;
     }

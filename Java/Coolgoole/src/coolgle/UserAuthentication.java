@@ -115,7 +115,8 @@ public class UserAuthentication
                 } 
             
                 // Then create the user file : 
-                // TODO
+                FileManager fm = new FileManager();
+                fm.addUserFile(name);
                 
             }
             else

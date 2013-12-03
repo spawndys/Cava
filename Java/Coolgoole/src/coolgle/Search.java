@@ -26,13 +26,13 @@ public class Search
         //class variables
         
         // Arraylist of midlocations
-    private ArrayList<Location> locations = new ArrayList<Location>();
-    private ArrayList<Coord> shortestPath = new ArrayList<Coord>();
+        private ArrayList<Location> locations = new ArrayList<Location>();
+        private ArrayList<Coord> shortestPath = new ArrayList<Coord>();
         private Location start, end;
         private double distance;
         private boolean optimized;
-    private double startTime;
-    private String userName;
+        private double startTime;
+        private String userName;
 
         // How many locations you can add to a trip, NOT including starting and ending locations.
         private static final int TRIP_LIMIT = 30;
@@ -50,6 +50,19 @@ public class Search
             userName = "";
         }
         
+        /**
+         * constructor for SEARCH object, pass in username, everything else is set to default
+         */
+        public Search(String un)
+        {
+            //Default Contructor
+            startTime = 8.00; // Default time in GUI
+            optimized = false;
+            start = new Location();
+            end = new Location();
+            userName = un;
+        }
+        
    
 
         public Search(String startTime, String userName, Location start, Location end,
@@ -62,8 +75,7 @@ public class Search
                 this.end = end;
                 this.locations = locations;
                 this.shortestPath = shortestPath;
-       // startTime = 8.00; // Default time in GUI
-       // optimized = false;
+                optimized = false;
                 
         }
     /**
@@ -72,15 +84,11 @@ public class Search
         public Search(String userName, Location start, Location end,
                         ArrayList<Location> locations)
         {
-                
                 this.userName = userName;
                 this.start = start;
                 this.end = end;
                 this.locations = locations;
                 this.shortestPath = shortestPath;
-       // startTime = 8.00; // Default time in GUI
-       // optimized = false;
-                
         }
         
         
@@ -226,7 +234,7 @@ public class Search
         /**
          * isInSearch
          * Description - Returns whether or not the given location is in the
-* arraylist of mid locations.
+         * arraylist of mid locations.
          */
         public boolean isInSearch(Location testLocation)
         {
@@ -254,7 +262,7 @@ public class Search
         /**
          * clearData
          * Description - Resets all fields, to be used when user clicks
-* the clear search button in the main gui
+         * the clear search button in the main gui
          */
         public void clearData()
         {
@@ -271,9 +279,9 @@ public class Search
         public String toString()
         {
             String returnString = "";
-            returnString += "" + getStart().getName() + " -> ";
-            returnString += "" + getEnd().getName() + " ( ";
-            returnString += " +" + getNumMidLocations() + " Other Locations ) ";
+            returnString += "" + getStart().getName().substring(0, Math.min(getStart().getName().length(), 16)) + " -> ";
+            returnString += "" + getEnd().getName().substring(0, Math.min(getEnd().getName().length(), 16)) + " (";
+            returnString += " +" + getNumMidLocations() + " Mid Points) ";
             return returnString;
         }
         
@@ -290,8 +298,7 @@ public class Search
         // Trips will be sorted and valid before they need to be saved.
         public String fileToString()
         {
-               
-                        String msg;
+                String msg;
                 msg = "StartTime " + this.startTime + '\n';
                 msg += start.fileToString() + '\n';
                 // Print add all locations
@@ -317,33 +324,29 @@ public class Search
                 }
                 
                 msg += " | \n";
-                //System.out.println("ret is " + msg);
-                //System.out.println("end ret " + msg);
+
                 return msg;
         }
-        
 
+        public void setLocations(ArrayList<Location> locations) 
+        {
+                this.locations = locations;
+        }
 
+        public void setShortestPath(ArrayList<Coord> shortestPath) 
+        {
+                this.shortestPath = shortestPath;
+        }
 
+        public void setDistance(double distance) 
+        {
+                this.distance = distance;
+        }
 
-        
-        
-
-        public void setLocations(ArrayList<Location> locations) {
-                        this.locations = locations;
-                }
-
-                public void setShortestPath(ArrayList<Coord> shortestPath) {
-                        this.shortestPath = shortestPath;
-                }
-
-                public void setDistance(double distance) {
-                        this.distance = distance;
-                }
-
-                public void setUserName(String userName) {
-                        this.userName = userName;
-                }
+        public void setUserName(String userName) 
+        {
+                this.userName = userName;
+        }
 
         public static void main(String[] args){
                 

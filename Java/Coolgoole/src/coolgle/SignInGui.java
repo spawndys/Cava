@@ -22,6 +22,8 @@ public class SignInGui extends javax.swing.JFrame
 	super.setLocation(xpos,  ypos);
         
         initComponents(); 
+        
+        pswdText.setText("");
     }
 
     /**

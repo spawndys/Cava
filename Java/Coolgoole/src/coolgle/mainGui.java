@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -41,7 +42,7 @@ public class mainGui extends javax.swing.JFrame
         // Populate previous searches. TODO
         
         // Create the search object, to be edited and sent to KML Creator 
-        search = new Search(); 
+        search = new Search(userName); 
         
         updateVisualDisplay();
         
@@ -137,7 +138,11 @@ public class mainGui extends javax.swing.JFrame
         selectLabel3.setText("Trip");
 
         prevList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        prevList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "New Search", "Previous Search 1", "Previous Search 2", "ect..." }));
+        prevList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectPrevTrip(evt);
+            }
+        });
 
         helpBtn.setIcon(new javax.swing.ImageIcon("Images\\question_button.jpg"));
         helpBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -554,6 +559,10 @@ public class mainGui extends javax.swing.JFrame
         switchToAdminScreen();
     }//GEN-LAST:event_switchAdminBtnActionPerformed
 
+    private void selectPrevTrip(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPrevTrip
+        changeTrip();
+    }//GEN-LAST:event_selectPrevTrip
+
     /**
      * @param args the command line arguments
      */
@@ -602,7 +611,14 @@ public class mainGui extends javax.swing.JFrame
         switchToAdmin.setVisible(true);      
     }
     
-    
+    // When something is selected from pervious search dropdown : 
+    public void changeTrip()
+    {
+        FileManager fm = new FileManager();
+        if (prevList.getSelectedIndex() > 0)
+            search = fm.getPrev( user, prevList.getSelectedIndex() );
+        updateVisualDisplay();
+    }
     // Called when user selects a time in the starting time dropdown
     // Sets the starting time member vairable in the search and updates the right pane. 
     public void updateStartingTime()
@@ -790,9 +806,11 @@ public class mainGui extends javax.swing.JFrame
         }
         
         
-        // TODO : Save this search in previous searches.
+        // Save this search in previous searches.
+        FileManager fm = new FileManager();
+        fm.addSearch(search);
         
-        
+        updateVisualDisplay();
         
         // Create and open KML file
         KmlCreator newKml = new KmlCreator("Search1.kml");
@@ -829,6 +847,29 @@ public class mainGui extends javax.swing.JFrame
         midLocationsList.setModel(listModel);
         for (int i = 0; i < search.getNumMidLocations(); i++)
             listModel.addElement(search.getMidLocations().get(i).getName());
+        
+        // Update Previous Search Dropdown : 
+        FileManager fm1 = new FileManager();
+        int i = 1;
+        
+        DefaultComboBoxModel comboModel;
+        comboModel = new DefaultComboBoxModel();
+        prevList.setModel(comboModel);
+        comboModel.addElement( "Custom Search" );
+        
+        Search pastSearch = fm1.getPrev(search.getUserName(), i);
+        boolean cont = true;
+        while (cont)
+        {
+            pastSearch = fm1.getPrev(search.getUserName(), i);
+            if (pastSearch.getNumMidLocations() != 0)
+            {
+                comboModel.addElement( pastSearch.toString() );
+                i++;
+            }
+            else
+                cont = false;
+        }
     }
     
     // to be called when the user presses the clear search button, 

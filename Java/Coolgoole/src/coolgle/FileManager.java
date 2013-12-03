@@ -1,24 +1,7 @@
-/*
-Notes while merging code :
-1.) I have all the code for adding / deleting locations from the main
-locationDatabase.txt in the addLocationGui.java file, since that's where we update
-the locations from anyways. You can move it in here if you'd like, but it should be
-fine there.
-2.) Here's what I was thinking the file manager would do, in addition to what you already have coded.
-2a.) print current searches to the user's file. Called from mainGui.java (There is a TODO note where it should be)
-2b.) Load the previous searches of the user into the previous search dropdown
-(Can be called from the mainGui.java constructor)
-2c.) Maybe other stuff related to user authentication....??
-3.) I left your main method at the bottom but commented out
-
-To keep things constant, just use the location.fileToString() method. That returns a nicely formatted string to be
-printed to a file. You can also use that same string in the constuctor to return a location with those attri.s
-*/
-
-
 package coolgle;
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 /*****************************************
 ** File: KMlCreator
 ** Team Name: Cava++
@@ -35,7 +18,10 @@ import java.util.*;
 public class FileManager
 {
         //class variables
-        private String path = "C:\\Users\\Owner\\Documents\\GitHub\\Cava\\Java\\Coolgoole\\";
+        private static final String PATH = "UserFiles\\";
+        private static final int MAX_PREVIOUS_TRIPS = 10;
+        private static final String SUFFIX = ".txt";
+                
         /**
          * constructor for FileManager object
          */
@@ -60,191 +46,78 @@ public class FileManager
                         //find out how many searchs there are
                 return null;
         }
+        
         public Search getPrev( String userName, int searchIndex)
-    {
-        try {                                        
-                String temp;
-                temp = path;
-                String newLine = "StartTime";
-                String endMidLocs = "shortestCoords";
-                Location mid;
-                //get user name
-                temp += userName+ ".txt";
-                //System.out.println(temp.toString());                        
+        {
+            Search prevSearch = new Search();
+            try 
+            {                                        
+                String temp = PATH + userName + SUFFIX;
+                String newLine = "StartTime";           //This is the indicator that we've reached a new search
+                String endMidLocs = "shortestCoords";   //This is the indicator that we've reached the end of a seach
+                Location mid;                
                 File file = new File(temp);
                 
-                //System.out.println("file full is" + a);
-                //System.out.println("path is " + path);
-                System.out.println("file exits is " + file.exists());
-                if(file.exists()){                
-                        //getPrev search with index
-                        Scanner line = new Scanner(file);
+                String startTime = "";
+                ArrayList<Location> locations = new ArrayList<Location>();
+                                                                
+                if(file.exists())
+                {                
+                        BufferedReader br = new BufferedReader(new FileReader(temp));
                         //get all lines from file
-                        int index =0;
-                        while(line.hasNext()){
-                                String currLine = line.nextLine();
-                                Scanner inLine = new Scanner(currLine);
+                        int index = 0;
+                        String currLine;
+                        while ((currLine = br.readLine()) != null)
+                        {
                                 //align scanner to searchIndex
-                                if(inLine.next().equals(newLine)){
-                                        System.out.println("**newSearch**" );
-                                        index ++;
-                                        String locName;
-                                        Coord coord;
-                                        String address = "";
-                                        String city;
-                                        String state;
-                                        Location loc;
-                                        String msg;
-                                        String lat;
-                                        String lon;
-                                        Coord locCoord;
-                                        String startTime;
-                                        ArrayList<Location> locations = new ArrayList<Location>();
-                                        ArrayList<Coord> shortestPath = new ArrayList<Coord>();
-                                        if(index == searchIndex){
-                                                String tempTxt;
-                                                //make search object
-                                                Search prevSearch = new Search();
-                                                //System.out.println("currLine is " + currLine);
+                                if( currLine.startsWith(newLine) ) // If start of a search
+                                {
+                                        index++;
+                                        if(index == searchIndex) //If this is the right search
+                                        {
+                                                startTime = currLine;
                                                 
-                                                //get userName                                                
-                                                inLine = new Scanner(currLine);
-                                                System.out.println("currLine is" + currLine);
-                                                inLine.next();
-                                                startTime= inLine.next();
-                                                System.out.println("startTime is" + startTime);
+                                                String startingTime = currLine.substring(10);
+                                                //prevSearch.setStartTime(Integer.parseInt(startingTime));
                                                 
-
-                                                //get start location components
-                                                currLine = line.nextLine();
-                                                System.out.println("currLine is" + currLine);
-                                                inLine = new Scanner(currLine);
-                                                //get name
-                                                locName = inLine.next();
-                                                inLine.next();                                        
-                                                msg = "";
-                                                while(!msg.equals("|")){
-                                                        msg = inLine.next();
-                                                        if(!msg.equals("|")){
-                                                                address += msg + " ";                
-                                                        }
+                                                //Then as long as the next line isn't the end of search line, make locations
+                                                boolean hasMoreLocation = true;
+                                                while (hasMoreLocation)
+                                                {
+                                                    currLine = br.readLine();
+                                                    if (currLine.compareTo(endMidLocs) == 0)
+                                                        hasMoreLocation = false;
+                                                    else //Its a location
+                                                    {
+                                                        Location newLocation = new Location(currLine);
+                                                        locations.add(newLocation);
+                                                    }
                                                 }
-                                                System.out.println("address is" + address);
-                                                //get city                                                
-                                                city = inLine.next();
-                                                inLine.next();
-                                                //get state                                                
-                                                state = inLine.next();
-                                                inLine.next();
-                                                //get Coord
-                                                lat = inLine.next();
-                                                lon = inLine.next();
-                                                locCoord = new Coord(lat,lon);
-                                                Location start = new Location(locName, address, city, state, locCoord);
-                                                System.out.println("start is " + start.fileToString());
-                                                
-                                                
-                                                //get end location components
-                                                currLine = line.nextLine();
-                                                System.out.println("currLine is" + currLine);
-                                                inLine = new Scanner(currLine);
-                                                //get name
-                                                locName = inLine.next();
-                                                inLine.next();                                        
-                                                msg = "";
-                                                while(!msg.equals("|")){
-                                                        msg = inLine.next();
-                                                        if(!msg.equals("|")){
-                                                                address += msg + " ";                
-                                                        }
+                                                prevSearch.setStart(locations.get(0));
+                                                locations.remove(0);
+                                                prevSearch.setEnd(locations.get(locations.size() - 1));
+                                                locations.remove(locations.size() - 1);
+                                                for ( int i = 0; i < locations.size(); i++ )
+                                                {
+                                                     prevSearch.addLocation(locations.get(i));
                                                 }
-                                                System.out.println("address is" + address);
-                                                //get city                                                
-                                                city = inLine.next();
-                                                inLine.next();
-                                                //get state                                                
-                                                state = inLine.next();
-                                                inLine.next();
-                                                //get Coord
-                                                lat = inLine.next();
-                                                lon = inLine.next();
-                                                locCoord = new Coord(lat,lon);
-                                                Location end = new Location(locName, address, city, state, locCoord);                                                
-                                                System.out.println("end is " + end.fileToString());
-                                        
-                                                //check for mid locations
-                                                currLine = line.nextLine();
-                                                while(!currLine.equals(endMidLocs)){
-                                                        //add mid location
-                                                        //get end location components
-                                                        currLine = line.nextLine();
-                                                        System.out.println("currLine is" + currLine);
-                                                        inLine = new Scanner(currLine);
-                                                        //get name
-                                                        locName = inLine.next();
-                                                        inLine.next();                                        
-                                                        msg = "";
-                                                        while(!msg.equals("|")){
-                                                                msg = inLine.next();
-                                                                if(!msg.equals("|")){
-                                                                        address += msg + " ";                
-                                                                }
-                                                        }
-                                                        System.out.println("address is" + address);
-                                                        //get city                                                
-                                                        city = inLine.next();
-                                                        inLine.next();
-                                                        //get state                                                
-                                                        state = inLine.next();
-                                                        inLine.next();
-                                                        //get Coord
-                                                        lat = inLine.next();
-                                                        lon = inLine.next();
-                                                        locCoord = new Coord(lat,lon);
-                                                        mid = new Location(locName, address, city, state, locCoord);                                                
-                                                        locations.add(mid);
-                                                        System.out.println("end is " + end.fileToString());
-                                                }
-                                                //get shortestCoords line
-                                                System.out.println("currLine is" + currLine);
-                                                currLine = line.nextLine();
-                                                //get pairs of coords till done
-                                                inLine = new Scanner(currLine);
-                                                msg = "";
-                                                //System.out.println("inLine is " + inLine.next());
-                                                //System.out.println("inLine is " + inLine.next());
-                                                //System.out.println("inLine is " + inLine.next());
-                                                //System.out.println("inLine is " + inLine.next());
-                                                while(!msg.equals("|")){                
-                                                        lat= inLine.next();
-                                                        lon= inLine.next();
-                                                        msg = inLine.next();
-                                                        locCoord = new Coord(lat,lon);
-                                                        shortestPath.add(locCoord);
-                                                }
-                                                
-                                                
-                                                System.out.println("***shortestPath size is " + shortestPath.size());
-                                                prevSearch = new Search(startTime, userName, start, end, locations, shortestPath);
-                                                System.out.println("***finished is " + prevSearch.fileToString());                                
-                                                return prevSearch;
                                         }
                                 }                                
                         }                        
-                                
-                        
-                        
                 }
-                else{
+                else
+                {
                         System.out.println("File not found(addSearch)");                                
                 }
                 
-        } catch (IOException e) {
-                
+        } 
+        catch (IOException e) 
+        {
                 System.out.println("File error");
         }
-        return null;
-}
+            
+        return prevSearch;
+        }
         
         public boolean isFull(File file)
         {
@@ -258,11 +131,11 @@ public class FileManager
                                 String currLine = line.nextLine();
                                 Scanner inLine = new Scanner(currLine);
                                 //find new search token
-                                if(inLine.next().equals(newLine)){
-                                        System.out.println("**Found**" );
+                                if(inLine.next().equals(newLine))
+                                {
                                         searchCount +=1;
-                                        System.out.println("SearchCount is " + searchCount);
-                                        if(searchCount>=7){
+                                        if(searchCount >= MAX_PREVIOUS_TRIPS)
+                                        {
                                                 return true;
                                         }
                                 }                                
@@ -285,46 +158,41 @@ public class FileManager
          * Pre- user must exist
          * Post- adds a valid completed search to users history
          */
-        public void addSearch(Search search){
-                try {                
-        
+        public void addSearch(Search search)
+        {
+                try 
+                {                
                         String line;                        
-                        String temp;
-                        temp = path;
-                        //get user name
-                        temp += search.getUserName()+ ".txt";
-                        System.out.println(temp.toString());                        
+                        String temp = PATH + search.getUserName() + SUFFIX;               
                         File file = new File(temp);
-                        
-                        //System.out.println("file full is" + a);
-                        System.out.println("path is " + path);
-                        System.out.println("file exits is " + file.exists());
-                        if(file.exists()){
-                                boolean full = isFull(file);
-                                if(full){
-                                        //remove last search and put in new one
-                                        
-                                        System.out.println("File is full please remove an entry");
-                                
-                                
+
+                        if( file.exists() )
+                        {
+                                if( isFull(file) )
+                                {
+                                        JOptionPane.showMessageDialog(null, "File is full, cannot save search"
+                                        , "Failure", JOptionPane.ERROR_MESSAGE);
                                 }
-                                else{
+                                else
+                                {                                   
                                         //append data to end of file
-                                        System.out.println("File found");
-                                        //TODO: check for valid search first
                                         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));                                
                                         out.write(search.fileToString().replaceAll("\n", System.lineSeparator()));                                
                                         out.close();
-                                        System.out.println("Search added");
                                 }
                         }
-                        else{
-                                System.out.println("File not found(addSearch)");                                
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "User (" + search.getUserName() + ") file not found, Cannot save seach"
+                                    , "Failure", JOptionPane.ERROR_MESSAGE);                     
                         }
                         
-         } catch (IOException e) {
+         } 
+         catch (IOException e) 
+         {
                  
-                 System.out.println("File error");
+                 JOptionPane.showMessageDialog(null, "IOException when opening file, search will not be saved"
+                                        , "Failure", JOptionPane.ERROR_MESSAGE);
          }
                 
         }
@@ -334,18 +202,19 @@ public class FileManager
          * Pre- user exists
          * Post- removes text file for user
          */
-        public void removeUserFile(String userName){
+        public void removeUserFile(String userName)
+        {
                 //REMOVES new user SEARCH file
-                String temp;
-                temp = path;
-                temp += userName;
+                String temp = "";
+                temp += PATH + userName + SUFFIX;
                 File file = new File(temp);                
-                if(file.exists()){
-                        System.out.println("user does not exist");
+                if( !file.exists() )
+                {
+                        JOptionPane.showMessageDialog(null, "User File Doesn't Exist", "Failure", JOptionPane.ERROR_MESSAGE);
                 }
-                else{
-                        file.deleteOnExit();        
-                        System.out.println("file deleted");
+                else
+                {
+                        file.deleteOnExit();
                 }
         }
         
@@ -354,104 +223,27 @@ public class FileManager
          * Pre-
          * Post-adds text file for user
          */
-        public void addUserFile(String userName){
-                //adds new user SEARCH file
-                String temp;
-                temp = path;
-                temp += userName;                
-                System.out.println("temp is " + temp);
-                File file = new File(temp);
-                
-                try {
-                        System.out.println(temp.toString());
-                        if(file.exists()){
-                                System.out.println("file already exists");
-                        }
-                        else{
-                                file.createNewFile();
-                                System.out.println("file created");
-                                
-                        }
-                } catch (IOException e) {
-                        System.out.println(e.toString());
-                        System.out.println("file cant be created");
-                }                        
-        }
-        
-        
-        public static void main(String[] args)
+        public void addUserFile(String userName)
         {
-                FileManager fm = new FileManager();
-
-                ArrayList<Location> locations = new ArrayList<Location>();
-                ArrayList<Coord> shortestCoords = new ArrayList<Coord>();
-        
-                //build search attributes
-                String userName = "Dan";                
-                //fm.addUserFile(userName);
-                
-                String name = "Tim";
-                float x = (float) 3.24;
-                float y = (float) 5.25;
-                Coord coord = new Coord(x,y);
-                String city = "tim";
-                String state = "MD";
-                String address = "101 H rd";                        
-                Location start = new Location(name,address,city,state, coord);        
-                //mid1
-                //Location loc = new Location(name,coord,city,state,address);        
-                //locations.add(loc);
-                shortestCoords.add(new Coord(x,y));
-                
-                //make search
-                
-                name = "UMBC";                
-                x = (float) 6.24;
-                y = (float) 8.25;
-                coord = new Coord(x,y);
-                city = "balt";
-                state = "MD";
-                address = "901 C rd";
-                Location end = new Location(name,address,city,state, coord);
-                //mid2
-                //locations.add(loc);
-                shortestCoords.add(new Coord(x,y));                
-                        
-                
-                
-                
-                Search search ;//= new Search("4", userName, start, end, locations,shortestCoords);                
-                //System.out.println("**appending existing search**");
-                //try existing user
-                //fm.addUserFile(userName);
-                //fm.addSearch(search);
-                //label end                
-                
-                
-                
-                //get a prev search
-                search = fm.getPrev(userName, 3);
-                System.out.println("**main print**");
-                System.out.println(search.fileToString());
-                
-                
-                //try non existing user
-                userName = "Tom";
-                
-                
-                /*search = new Search(userName, start, end, locations);                        
-                System.out.println("**add to non exist user**");
-                fm.addSearch(search);
-                
-                //add new user
-                search = new Search(userName, start, end, locations);                        
-                System.out.println("**add new user**");
-                fm.addUserFile(userName);
-                
-                //remove new user
-                System.out.println("**removing user**");
-                fm.removeUserFile(userName);*/
-                System.out.println("**done**");
+                //adds new user SEARCH file
+                String temp = "";
+                temp += PATH + userName + SUFFIX;                
+                File file = new File(temp);
+                try 
+                {
+                        if(file.exists())
+                        {
+                                JOptionPane.showMessageDialog(null, "File Already Exists", "Failure", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else
+                        {
+                                file.createNewFile();
+                        }
+                } 
+                catch (IOException e) 
+                {
+                        JOptionPane.showMessageDialog(null, "IOException Error", "Failure", JOptionPane.ERROR_MESSAGE);
+                }                        
         }
         
 }
