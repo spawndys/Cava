@@ -17,12 +17,10 @@ Desc : This should be the only class with a main function
 ***********************************************/
 public class Driver {
 
-<<<<<<< HEAD
-	public static void main(String args[]){
-=======
+
 	public static void main(String args[])
         {
->>>>>>> dc22fdc9509c95aff4980a00a65b600f69549083
+
 		UIManager UI = new UIManager();
 		//CmdRouter Application = new CmdRouter(UI);
 	}

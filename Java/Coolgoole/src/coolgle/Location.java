@@ -1,20 +1,5 @@
 //DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
 
-// Name|adrress|city|state|latitude|long
-
-/*****************************************
- ** File: Location
- ** Team Name: Cava++
- *Date: 10/18/13
- ** E-mail: Daniel Brandes bradan1@umbc.edu, 
- ** Lizset Chavez <lizset1@umbc.edu>
- ** Patrick Ritchie <ritc1@umbc.edu>,
- ** Xiaofei He <xiaofei2@umbc.edu>,
- ** Yo-Han Kim <ykim18@umbc.edu>,
- ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Class that represents a location for a search
-***********************************************/
-
 package coolgle;
 
 import java.io.BufferedReader;
@@ -28,44 +13,65 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.swing.JOptionPane;
 
-public class Location 
+/*****************************************
+** File: Location
+** Team Name: Cava++
+*Date: 10/18/13
+** E-mail: Daniel Brandes bradan1@umbc.edu,
+** Lizset Chavez <lizset1@umbc.edu>
+** Patrick Ritchie <ritc1@umbc.edu>,
+** Xiaofei He <xiaofei2@umbc.edu>,
+** Yo-Han Kim <ykim18@umbc.edu>,
+** Jim Millican <jmill1@umbc.edu>
+** Decription- Class that represents a location for a search
+***********************************************/
+public class Location
 {
     //class variables
     private String name;
     private char key;
-    private Coord coord; 
+    private Coord coord;
 
-    private String address; 
-    private String city; 
-    private String state; 
+    private String address;
+    private String city;
+    private String state;
 
     /**
-     * Default Constructor for location object : 
-     */
+* Default Constructor for location object :
+*/
     public Location()
     {
-            name = ""; 
+            name = "";
             coord = new Coord(0,0);
             city = "";
             state = "";
             address = "";
     }
-
-    //Enter line from database file
+        public Location(Location loc)
+        {
+                this.name = loc.name;
+                this.coord = loc.coord;
+                this.city = loc.city;
+                this.state = loc.state;
+                this.address = loc.address;
+        }
+   
+        
+        //Enter line from database file
     public Location(String fileInput)
     {
             String[] data = fileInput.split("\\|");
 
-            name = data[0]; 
-            address =  data[1]; 
-            city = data[2]; 
-            state = data[3]; 
+            name = data[0];
+            address = data[1];
+            city = data[2];
+            state = data[3];
             coord = new Coord(0,0);
             coord.setLatitude((Double.parseDouble(data[4])));
             coord.setLongitude((Double.parseDouble(data[5])));
     }
 
-    //Secondary Constructor - Enter All 
+    //Secondary Constructor - Enter All
     public Location(String name, double latitude, double longitude, String city, String state, String address)
     {
             this.name = name;
@@ -76,7 +82,7 @@ public class Location
     }
     
     //Secondary Constructor - Enter All with a coord instead of a lat/long pair
-    public Location(String name, Coord coords, String city, String state, String address)
+    public Location(String name, String address, String city, String state, Coord coords)
     {
             this.name = name;
             coord = new Coord(coords.getLatitude(), coords.getLongitude());
@@ -152,34 +158,34 @@ public class Location
     }
 
     // toString for printing to database file
-    public String fileToString()
+    public String fileToString() //get shortest Coords()
     {
         String returnString = "";
-        returnString += "" + getName() + "|";
-        returnString += "" + getAddress() + "|";
-        returnString += "" + getCity() + "|";
-        returnString += "" + getState() + "|";
-        returnString += "" + getLatitude() + "|";
-        returnString += "" + getLongitude();
+        returnString += getName() + " | ";
+        returnString += getAddress() + " | ";
+        returnString += getCity() + " | ";
+        returnString += getState() + " | ";
+        returnString += getLatitude() + " ";
+        returnString += getLongitude();
         return returnString;
     }
 
     
     public boolean printToFile(String fileName)
     {
-        return printToFile(fileName, true); 
+        return printToFile(fileName, true);
     }
     
     
     // Returns true if no errors, false if otherwise
     public boolean printToFile(String fileName, boolean allowRepeats)
     {
-        boolean success = true; 
+        boolean success = true;
         
-        boolean alreadyInFile = false; 
-        try 
+        boolean alreadyInFile = false;
+        try
         {
-            // Check the file to see if the location already exists : 
+            // Check the file to see if the location already exists :
             BufferedReader br;
 
             br = new BufferedReader(new FileReader("LocationDatabase.txt"));
@@ -187,9 +193,9 @@ public class Location
             while ((locationString = br.readLine()) != null)
             {
                 Location newLocation = new Location(locationString);
-                if (isSame(newLocation)) // The location already exists in the file. 
+                if (isSame(newLocation)) // The location already exists in the file.
                 {
-                    alreadyInFile = true; 
+                    alreadyInFile = true;
                 }
             }
             
@@ -200,18 +206,18 @@ public class Location
                 writer.newLine();
                 writer.close();
             }
-            else // Already in file, don't add it again, show warning. 
+            else // Already in file, don't add it again, show warning.
             {
                 JOptionPane.showMessageDialog(null, "This location is already in the file"
                                               , "Failure", JOptionPane.ERROR_MESSAGE);
                 success = false;
             }
-        } 
-        catch (FileNotFoundException e) 
-        {	
+        }
+        catch (FileNotFoundException e)
+        {        
              System.out.println("Could Not find database File ");
-        } 
-        catch (IOException e) 
+        }
+        catch (IOException e)
         {
              success = false;
         }
@@ -222,14 +228,14 @@ public class Location
     public double distanceTo(Location otherLocation)
     {
         double distance = 0.0;
-        double lon1 = getLongitude(); 
-        double lat1 = getLatitude(); 
-        double lon2 = otherLocation.getLongitude(); 
-        double lat2 = otherLocation.getLatitude(); 
+        double lon1 = getLongitude();
+        double lat1 = getLatitude();
+        double lon2 = otherLocation.getLongitude();
+        double lat2 = otherLocation.getLatitude();
 
         double theta = lon1 - lon2;
-        distance = Math.sin(convertToRadians(lat1)) * Math.sin(convertToRadians(lat2)) + 
-                   Math.cos(convertToRadians(lat1)) * Math.cos(convertToRadians(lat2)) * 
+        distance = Math.sin(convertToRadians(lat1)) * Math.sin(convertToRadians(lat2)) +
+                   Math.cos(convertToRadians(lat1)) * Math.cos(convertToRadians(lat2)) *
                    Math.cos(convertToRadians(theta));
         distance = Math.acos(distance);
         distance = convertToDegrees(distance);
@@ -238,29 +244,25 @@ public class Location
         return distance;
     }
 
-    // Converts given degrees into radians, should only be called internally from distanceTo function
-    private double convertToRadians(double degrees) 
+    private double convertToRadians(double degrees)
     {
         return( degrees * Math.PI / 180.0 );
     }
 
-    // Converts given radians into degrees, should only be called internally from distanceTo function
-    private double convertToDegrees(double radians) 
+    private double convertToDegrees(double radians)
     {
         return( radians * 180 / Math.PI );
     }
     
-    // Compares the current location to another one 
-    // Since you can change the name and other details, only compare the lat/long
     public boolean isSame(Location otherLocation)
     {
-        boolean same = true; 
+        boolean same = true;
         
         //We only check the lat and long in case they changed the name
         if ( coord.getLatitude() != otherLocation.getLatitude() )
             same = false;
         if ( coord.getLongitude() != otherLocation.getLongitude() )
-            same = false; 
+            same = false;
         
         return same;
     }

@@ -20,6 +20,11 @@ public class Coord
 		this.longitude = longitude;
 	}
 
+	public Coord(String latitude, String longitude) {
+		this.latitude = Double.parseDouble(latitude);
+		this.longitude = Double.parseDouble(longitude);
+		}
+
 	public double getLatitude() 
         {
 		return latitude;
