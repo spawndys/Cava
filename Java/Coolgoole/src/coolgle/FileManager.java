@@ -303,10 +303,9 @@ public class FileManager
 				boolean full = isFull(file);
 				if(full){
 					//remove last search and put in new one
-					
+					//
 					System.out.println("File is full please remove an entry");
-				
-				
+
 				}
 				else{
 					//append data to end of file
