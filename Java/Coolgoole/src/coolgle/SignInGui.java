@@ -274,9 +274,9 @@ public class SignInGui extends javax.swing.JFrame
      * @param evt
      */
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
-    this.setVisible(false);
-   SignUpGui ho = new SignUpGui();
-    ho.setVisible(true);
+    	this.setVisible(false);
+    	SignUpGui ho = new SignUpGui();
+    	ho.setVisible(true);
     }//GEN-LAST:event_signUpBtnActionPerformed
 
 

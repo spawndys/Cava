@@ -1,5 +1,6 @@
 package coolgle;
 /*****************************************
+ template edited from netbeans
  ** File: Gui
  ** Team Name: Cava++
  *Date: 10/18/13
@@ -28,7 +29,7 @@ public class UIManager
 	 */
 	private void displayLogInGui()
         {
-		SignInGui logInPage = new SignInGui();
+			SignInGui logInPage = new SignInGui();
                 logInPage.setVisible(true);
 	}
 	/**displayUserGui()

@@ -236,8 +236,12 @@ public class FileManager
 		} 
 		catch (IOException e) 
 		{
+			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null, "IOException Error", "Failure", JOptionPane.ERROR_MESSAGE);
 		}                        
+	}
+	public static void main(){
+		
 	}
 
 }
