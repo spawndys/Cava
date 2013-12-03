@@ -1,7 +1,7 @@
 /*
- * The admin console class. 
- * Used to edit location database and commicate with 
- * User Authenication for user related queries. 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package coolgle;
 
@@ -15,17 +15,18 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+/**
+ * @author rdg77_000
+ */
 public class adminGui extends javax.swing.JFrame 
 {
     //This is the backend arraylist that is kept in sync with the location database file. 
     private ArrayList<Location> locationlist = new ArrayList<Location>();
     
-    private static String user; 
-    
     /**
      * Creates new form GuiUI
      */
-    public adminGui(String userName) 
+    public adminGui() 
     {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frm = super.getSize();
@@ -34,17 +35,25 @@ public class adminGui extends javax.swing.JFrame
         super.setLocation(xpos,  ypos);
         initComponents();
 
-        user = userName;
+        /*
+        // Switch to user button
+        switchUserBtn.setText("Switch To User");
+
+        // User buttons
+        userDelBtn.setText("Delete Selected");
+        userModifyBtn.setText("Modify Selected");
+
+        // Location Buttons
+        newLocaBtn.setText("Add New Location");
+        loModiSelectBtn.setText("Modify Selected");
+        loDelBtn.setText("Delete Selected");
+        */
         
         // Populate the location list
         populateLocationList();
-        populateUserList();
     }
 
-    /**
-     * newLocaBtnActionPerformed
-     * Description - When admin clicks on the add a new location button, launch the addLocation dialog.
-     */
+    
     private void newLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {
         // When user clicks new location button : 
@@ -53,76 +62,42 @@ public class adminGui extends javax.swing.JFrame
         addLoc.setVisible(true);    
     }
     
-    /**
-     * userModifyBtnActionPerformed
-     * Description - When admin clicks on the mod location button, run the modUser method. 
-     */
-    private void userModifyBtnActionPerformed(java.awt.event.ActionEvent evt) 
-    {
-        modUser();
-    }
-    
-    /**
-     * userModifyBtnActionPerformed
-     * Description - When admin clicks on the delete location button, run the delUser method. 
-     */
-    private void userDelBtnActionPerformed(java.awt.event.ActionEvent evt) 
-    {
-        delUser();
-    }
-    
-    /**
-     * modLocaBtnActionPerformed
-     * Description - When admin clicks on the mod location button, 
-     * lanch the addLocation dialog with the current selection loaded in. 
-     */
     private void modLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {
+        // When user clicks mod location button : 
+        //this.setVisible(false);
         AddLocationGui addLoc = new AddLocationGui(locationlist.get(locationDisplay.getSelectedIndex()), this);
         addLoc.setVisible(true);      
     }
     
-    /**
-     * switchUserBtnActionPerformed
-     * Description - Lunches the switch to user dialog
-     */
-    private void switchUserBtnActionPerformed(java.awt.event.ActionEvent evt) 
-    {
-        userSwitchGui switchToUser = new userSwitchGui(this, user);
-        switchToUser.setVisible(true);      
-    }
-    
-    /**
-     * delLocaBtnActionPerformed
-     * Description - Shows warning message, if admin still wants to delete location, delete it. 
-     * Shows a warning if nothing is selected
-     */
     private void delLocaBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {
         // When user clicks del location button : 
         // Show warning message : 
-        if (locationDisplay.getSelectedIndex() != -1) 
+        String locationNameToDelete = locationlist.get(locationDisplay.getSelectedIndex()).getName();
+        int comfirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete \n \" " + locationNameToDelete + " \" " );
+        if (comfirm == 0)
         {
-            String locationNameToDelete = locationlist.get(locationDisplay.getSelectedIndex()).getName();
-            int comfirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete \n \" " + locationNameToDelete + " \" " );
-            if (comfirm == 0)
-            {
-                // Selected YES
-
-                // Delete location from arraylist
-                locationlist.remove( locationDisplay.getSelectedIndex() );
-
-                // Create database
-                recreateDatabase();
-
-                // Repopulate list
-                populateLocationList();
-            }
+            // Selected YES
+            
+            // Delete location from arraylist
+            locationlist.remove( locationDisplay.getSelectedIndex() );
+            
+            // Create database
+            recreateDatabase();
+            
+            // Repopulate list
+            populateLocationList();
         }
-        else
+        if (comfirm == 1)
         {
-            JOptionPane.showMessageDialog(null, "Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
+            // Selected NO
         }
+        if (comfirm == 2)
+        {
+            // Selected CANCEL
+        }
+    
     }
     
     
@@ -176,7 +151,7 @@ public class adminGui extends javax.swing.JFrame
         label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label2.setText("<html> The list of locations chosen is shown <br> on the right panel, click Map It to <br> show it on Google Earth! </html>");
 
-        switchUserBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_user.jpg")); // NOI18N
+        switchUserBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\switch_to_user.jpg")); // NOI18N
 
         loModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         loModifyLabel.setText("Location Modification");
@@ -212,33 +187,6 @@ public class adminGui extends javax.swing.JFrame
             }
         });
         
-        userModifyBtn.setToolTipText("View Information or modify the currently selected user");
-        userModifyBtn.addActionListener(new java.awt.event.ActionListener() 
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt) 
-            {
-                userModifyBtnActionPerformed(evt);
-            }
-        });
-             
-        switchUserBtn.setToolTipText("Switch to user view");
-        switchUserBtn.addActionListener(new java.awt.event.ActionListener() 
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt) 
-            {
-                switchUserBtnActionPerformed(evt);
-            }
-        });
-        
-        userDelBtn.setToolTipText("Permanently Delete the select User");
-        userDelBtn.addActionListener(new java.awt.event.ActionListener() 
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt) 
-            {
-                userDelBtnActionPerformed(evt);
-            }
-        });
-        
         loDelBtn.setToolTipText("Delete the currently selected location from database");
         loDelBtn.addActionListener(new java.awt.event.ActionListener() 
         {
@@ -258,15 +206,15 @@ public class adminGui extends javax.swing.JFrame
         });
 
         
-        newLocaBtn.setIcon(new javax.swing.ImageIcon("Images\\add_new_location_button.jpg")); // NOI18N
+        newLocaBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\add_new_location_button.jpg")); // NOI18N
 
-        loDelBtn.setIcon(new javax.swing.ImageIcon("Images\\delete_selected_button.jpg")); // NOI18N
+        loDelBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\delete_selected_button.jpg")); // NOI18N
 
-        loModiSelectBtn.setIcon(new javax.swing.ImageIcon("Images\\modify_selected_button.jpg")); // NOI18N
+        loModiSelectBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\modify_selected_button.jpg")); // NOI18N
 
-        userDelBtn.setIcon(new javax.swing.ImageIcon("Images\\delete_selected_button.jpg")); // NOI18N
+        userDelBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\delete_selected_button.jpg")); // NOI18N
 
-        userModifyBtn.setIcon(new javax.swing.ImageIcon("Images\\modify_selected_button.jpg")); // NOI18N
+        userModifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\output\\output\\modify_selected_button.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,33 +301,44 @@ public class adminGui extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * populateUserList
-     * Description - Called whenever there is a change to the UID-pass file. 
-     * Refreshes the user list to match the newest changes 
+     * @param args the command line arguments
      */
-    public void populateUserList()
+    public static void main(String args[]) 
     {
-            // Fill in User List
-            DefaultListModel listModel;
-            listModel = new DefaultListModel();
-            userDisplay.setModel(listModel);
-            
-            UserAuthentication userNames = new UserAuthentication();
-            ArrayList<String> allNames = userNames.getNames();
-            
-            for ( int i = 0; i < allNames.size(); i++ )
-            {
-                listModel.addElement( allNames.get(i) );
-                //System.out.println(allNames.get(i));
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-   }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(adminGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(adminGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(adminGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(adminGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                new adminGui().setVisible(true);
+            }
+        });
+        
+    }
     
-            
-     /**
-     * populateLocationList
-     * Description - Called whenever there is a change to the locationDatabase file. 
-     * Refreshes the location list to match the newest changes 
-     */        
     public void populateLocationList()
     {
         try 
@@ -436,11 +395,6 @@ public class adminGui extends javax.swing.JFrame
         populateLocationList();
     }
     
-    /**
-     * recreateDatabase
-     * Description - Syncs the locationDatabase.txt file with the data in the display. 
-     * Called whenever there is a change in the display. 
-     */   
     public void recreateDatabase()
     {
         // Clear old database file 
@@ -459,49 +413,6 @@ public class adminGui extends javax.swing.JFrame
         catch (FileNotFoundException ex) 
         {
             System.out.println("Location Database Not Found");
-        }
-    }
-    
-    /**
-     * modUser
-     * Description - Launches the addLocation dialog with the currently selected item loaded in
-     */ 
-    public void modUser()
-    {
-        if (userDisplay.getSelectedIndex() != -1)
-        {
-            modifyUsersGui modUser = new modifyUsersGui( this, userDisplay.getSelectedValue().toString() );
-            modUser.setVisible(true);     
-        }
-        else // No user selected 
-        {
-            JOptionPane.showMessageDialog(null, "No user selected", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    /**
-     * delUser
-     * Description - Deletes the selected user. 
-     * Shows warning in the following cases : 
-     * - Always (Asks if admin is sure they want to delete)
-     * - Nothing is selected
-     */ 
-    public void delUser()
-    {
-        if (userDisplay.getSelectedIndex() != -1)
-        {
-            int comfirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete \n \" " 
-                                                        + userDisplay.getSelectedValue().toString() + " \" " );
-            if (comfirm == 0)
-            {
-                UserAuthentication delUser = new UserAuthentication();
-                delUser.removeUser(userDisplay.getSelectedValue().toString(), true); //Remove file as well 
-                populateUserList();
-            }
-        }
-        else // No user selected 
-        {
-            JOptionPane.showMessageDialog(null, "No user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
    
