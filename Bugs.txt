@@ -1,0 +1,11 @@
+Known Bugs:
+*cant save an edited prev search
+*Prints errors randomly
+*Guis have empty methods and TODO stubs
+*UImanager not finished
+
+Things that need to be tested:
+*window flow
+*user authentication
+*add/edit/remove current/prev searchs
+*promo/demoteuser

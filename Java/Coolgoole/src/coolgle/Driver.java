@@ -16,13 +16,9 @@ Desc : This should be the only class with a main function
 ***********************************************/
 public class Driver {
 
-
 	public static void main(String args[])
         {
+			UIManager UI = new UIManager();
+        }
 
-		UIManager UI = new UIManager();
-	}
-	
-	
-	
 }
