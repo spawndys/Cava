@@ -23,6 +23,7 @@ public class SearchManager
         
         public void sortShortestDistance(Search search)
         {
+        	if(search.hasShortest()) return;
                 //get start and end locations from search
                 //sort locations start-end with shortest distance
                 ArrayList<Location> temp = new ArrayList<Location>();
@@ -54,4 +55,8 @@ public class SearchManager
                 
                 search.setDistance(totalDist + search.getEnd().distanceTo(search.getMidLocations().get(search.getMidLocations().size()-1))); //add distance from last element to ending location.
         }
+        
+        //public static void main(String args[]){
+        //	Search s = new Search();
+        //}
 }
