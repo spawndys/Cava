@@ -167,12 +167,6 @@ public class AddLocationGui extends javax.swing.JFrame
             }
         });
 
-        loNameText.setToolTipText("");
-        loNameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loNameTextActionPerformed(evt);
-            }
-        });
 
         saveLocationBtn.setIcon(new javax.swing.ImageIcon("Images\\save_location_button.jpg")); // NOI18N
         saveLocationBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -181,36 +175,13 @@ public class AddLocationGui extends javax.swing.JFrame
             }
         });
 
-        loCityText.setToolTipText("");
-        loCityText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loCityTextActionPerformed(evt);
-            }
-        });
-
-        loStateText.setToolTipText("");
-        loStateText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loStateTextActionPerformed(evt);
-            }
-        });
-
-        loLongText.setToolTipText("");
-        loLongText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loLongTextActionPerformed(evt);
-            }
-        });
-
+        loNameText.setToolTipText("Ex: The White House");
+        loCityText.setToolTipText("Ex: Baltimore");
+        loStateText.setToolTipText("Ex: Maryland");
         loAddressLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         loAddressLabel.setText("Location Address: ");
+        loAddressText.setToolTipText("Ex: 1000 Hilltop Circle");
 
-        loAddressText.setToolTipText("");
-        loAddressText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loAddressTextActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -381,28 +352,8 @@ public class AddLocationGui extends javax.swing.JFrame
             // Refresh main admin gui
             m_main.populateLocationList();
         }
- 
+
     }//GEN-LAST:event_saveLocationBtnActionPerformed
-
-    private void loNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loNameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loNameTextActionPerformed
-
-    private void loCityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loCityTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loCityTextActionPerformed
-
-    private void loStateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loStateTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loStateTextActionPerformed
-
-    private void loLongTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loLongTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loLongTextActionPerformed
-
-    private void loAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loAddressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loAddressTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

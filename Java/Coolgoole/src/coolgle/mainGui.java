@@ -99,6 +99,8 @@ public class mainGui extends javax.swing.JFrame
                                 
 		updateVisualDisplay();
                 
+                
+                //Allows the logout or close popup to appear when closing window
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 this.addWindowListener(new java.awt.event.WindowAdapter() 
                 {
@@ -709,6 +711,10 @@ public class mainGui extends javax.swing.JFrame
         //changeTrip();
     }//GEN-LAST:event_changeTrip
 
+        /**
+	 * logOut
+	 * Description - To be called when user exits screen, asks if user wants to log out or completely close
+	 */
 	public void logOut()
         {
             SignInGui logOut = new SignInGui();

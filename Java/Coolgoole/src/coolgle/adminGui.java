@@ -30,6 +30,7 @@ public class adminGui extends javax.swing.JFrame
     //This is the backend arraylist that is kept in sync with the location database file. 
     private ArrayList<Location> locationlist = new ArrayList<Location>();
     
+    //Currently logged in user
     private static String user; 
     
     /**
@@ -50,29 +51,30 @@ public class adminGui extends javax.swing.JFrame
         populateLocationList();
         populateUserList();
         
+        //Allows the logout or close popup to appear when closing window
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                this.addWindowListener(new java.awt.event.WindowAdapter() 
-                {
-                @Override
-                public void windowClosing(java.awt.event.WindowEvent windowEvent) 
-                {
-                    Object[] options = {"Log out","Exit"};
-                    int n = JOptionPane.showOptionDialog(null, 
-                        "Exit?", "Exit",JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[1]);
-                    
-                    if (n == 1)
-                    {
-                        System.exit(0);
-                    }
-                    else // Log out
-                    {
-                         logOut();
-                    }
-                }});
+        this.addWindowListener(new java.awt.event.WindowAdapter() 
+        {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+        {
+            Object[] options = {"Log out","Exit"};
+            int n = JOptionPane.showOptionDialog(null, 
+                "Exit?", "Exit",JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
+
+            if (n == 1)
+            {
+                System.exit(0);
+            }
+            else // Log out
+            {
+                 logOut();
+            }
+        }});
     }
 
     /**
@@ -87,6 +89,10 @@ public class adminGui extends javax.swing.JFrame
         addLoc.setVisible(true);    
     }
     
+    /**
+    * logOut
+    * Description - To be called when user exits screen, asks if user wants to log out or completely close
+    */
     public void logOut()
     {
         SignInGui logOut = new SignInGui();
