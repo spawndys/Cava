@@ -281,7 +281,7 @@ public class Location
 		}
 		catch (FileNotFoundException e)
 		{        
-			System.out.println("Could Not find database File ");
+			JOptionPane.showMessageDialog(null, "Database file not found", "Failure", JOptionPane.ERROR_MESSAGE); 
 		}
 		catch (IOException e)
 		{

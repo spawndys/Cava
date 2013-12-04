@@ -37,6 +37,7 @@ import de.micromata.opengis.kml.v_2_2_0.LineString;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 public class KmlCreator 
 {
@@ -150,7 +151,7 @@ public class KmlCreator
         } 
         catch (FileNotFoundException ex) 
         {
-            System.out.println("FileNotFoundException");
+            JOptionPane.showMessageDialog(null, "KML - FileNotFoundException", "Failure", JOptionPane.ERROR_MESSAGE); 
         } 
 
         return newFile; 
@@ -175,13 +176,13 @@ public class KmlCreator
             }
             catch (IOException ex) 
             {
-                System.out.println("IOException");
+                JOptionPane.showMessageDialog(null, "KML - IOException", "Failure", JOptionPane.ERROR_MESSAGE); 
             }
         }
         else
         {
             // If error opening file, post error message to console.
-            System.out.println("Error opening KML");
+            JOptionPane.showMessageDialog(null, "Cannot open KML file", "Failure", JOptionPane.ERROR_MESSAGE); 
         }
     }
     
@@ -205,19 +206,27 @@ public class KmlCreator
              timeToPrint = timeToPrint % 24; 
         // Get Hours : 
         double hours = Math.floor(timeToPrint); 
-        if (hours >= 12)
+        if (hours > 12)
         {
             AMPM = "PM";
             hours -= 12;
             timeToPrint -= 12; 
         }
-        DecimalFormat df = new DecimalFormat("##");
+        if (hours == 12)
+            AMPM = "PM";
+        if (hours == 12)
+        {
+            AMPM = "AM";
+            hours = 12;
+        }
+        
+        DecimalFormat df = new DecimalFormat("00");
         
         // Get Minutes : 
         timeToPrint -= hours; // Just get minute part
         double mins = timeToPrint; 
         mins *= 60;
-        DecimalFormat df2 = new DecimalFormat("##");
+        DecimalFormat df2 = new DecimalFormat("00");
         
         msgTime = df.format(hours) + ":" + df2.format(mins) + " " + AMPM;     
         

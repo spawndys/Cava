@@ -27,7 +27,7 @@ public class FileManager
 	 */
 	public FileManager()
 	{
-
+            //Nothing
 	}
 
 	/**
@@ -43,15 +43,13 @@ public class FileManager
 		try 
 		{                                        
 			String temp = PATH + userName + SUFFIX;
-			String newLine = "StartTime";           //This is the indicator that we've reached a new search
-			String endMidLocs = "shortestCoords";   //This is the indicator that we've reached the end of a seach
-			Location mid;                
+			String newLine = "StartTime ";           //This is the indicator that we've reached a new search
+			String endMidLocs = "***endSearch";   //This is the indicator that we've reached the end of a seach               
 			File file = new File(temp);
 
-			String startTime = "";
 			ArrayList<Location> locations = new ArrayList<Location>();
 
-			if(file.exists())
+			if( file.exists() )
 			{                
 				BufferedReader br = new BufferedReader(new FileReader(temp));
 				//get all lines from file
@@ -65,10 +63,8 @@ public class FileManager
 						index++;
 						if(index == searchIndex) //If this is the right search
 						{
-							startTime = currLine;
-
-							String startingTime = currLine.substring(10);
-							//prevSearch.setStartTime(Integer.parseInt(startingTime));
+                                                        String startingTime = currLine.substring(newLine.length());
+							prevSearch.setStartTime(Double.valueOf(startingTime));
 
 							//Then as long as the next line isn't the end of search line, make locations
 							boolean hasMoreLocation = true;
@@ -93,24 +89,31 @@ public class FileManager
 							}
 						}
 					}                                
-				}                        
+				}
+                                br.close();
 			}
 			else
 			{
-				System.out.println("File not found(addSearch)");                                
+				JOptionPane.showMessageDialog(null, "Get Previous - File Not Found \n Could not access " 
+                                        + userName + " Search " + searchIndex
+					, "Failure", JOptionPane.ERROR_MESSAGE);                              
 			}
 
 		} 
 		catch (IOException e) 
 		{
-			System.out.println("File error");
+			JOptionPane.showMessageDialog(null, "File IOException Error"
+					, "Failure", JOptionPane.ERROR_MESSAGE);  
 		}
 
+                prevSearch.setUserName(userName);
+                prevSearch.setOptimized(false);
+                
 		return prevSearch;
 	}
 
 	/**
-	 * Description- need non empty file, shows if file has  7 searchs(full) or less
+	 * Description- need non empty file, shows if file has MAX_PREVIOUS_TRIPS searches (full) or less
 	 * 
 	 */
 	public boolean isFull(File file)
@@ -121,7 +124,8 @@ public class FileManager
 		try {
 			Scanner line = new Scanner(file);
 			//get all lines from file
-			while(line.hasNext()){
+			while(line.hasNext())
+                        {
 				String currLine = line.nextLine();
 				Scanner inLine = new Scanner(currLine);
 				//find new search token
@@ -133,14 +137,14 @@ public class FileManager
 						return true;
 					}
 				}                                
-			}                        
+			}
+                        line.close();
 		}
-		catch (FileNotFoundException e) {
-			System.out.println(e.toString());
-			System.out.println("file not found(error)");
+		catch (FileNotFoundException e) 
+                {
+			JOptionPane.showMessageDialog(null, "IsFull - File Not Found Exception"
+					, "Failure", JOptionPane.ERROR_MESSAGE);  
 		}
-
-		//System.out.println("search count is "+ searchCount);
 
 		return false;
 	}
@@ -155,8 +159,7 @@ public class FileManager
 	public void addSearch(Search search)
 	{
 		try 
-		{                
-			String line;                        
+		{                                       
 			String temp = PATH + search.getUserName() + SUFFIX;               
 			File file = new File(temp);
 
@@ -211,6 +214,20 @@ public class FileManager
 			file.deleteOnExit();
 		}
 	}
+        
+        
+        public boolean userFileExists(String userName)
+        {
+            boolean findFound = false;
+            String temp = "";
+            temp += PATH + userName + SUFFIX;
+            File file = new File(temp);                
+            if( file.exists() )
+            {
+                findFound = true;
+            }
+            return findFound;
+        }
 
 	/**addUser()
 	 * Description- adds file for users search
@@ -236,12 +253,9 @@ public class FileManager
 		} 
 		catch (IOException e) 
 		{
-			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null, "IOException Error", "Failure", JOptionPane.ERROR_MESSAGE);
 		}                        
 	}
-	public static void main(){
-		
-	}
+        
 
 }

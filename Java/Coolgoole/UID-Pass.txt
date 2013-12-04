@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 spawn|123456|djtb250@hotmail.com|0
 1|11|1@hotmail.com|0
 2|22|djtb250@hotmail.com|0
+=======
+Pat|123456|@.|1
+>>>>>>> a6472fc71fdc048e2c3d55b0c3bd920882a951c9

@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
 
 public class SignUpGui extends javax.swing.JFrame 
 {
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private static int USER_MAX_LEN = 25; 
+
+        // Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel emailLabel;
 	private javax.swing.JTextField emailText;
 	private javax.swing.JLabel signupLbl;
@@ -233,6 +235,7 @@ public class SignUpGui extends javax.swing.JFrame
 	}//GEN-LAST:event_usrnameTextActionPerformed
 
 
+        
 	/**
 	 * submitBtnActionPerformed
 	 * Description - Called when user presses the submit button
@@ -244,11 +247,12 @@ public class SignUpGui extends javax.swing.JFrame
 	 * - Pass is under 2 chars long
 	 * If no errors, creates the account and returns to the sign in screen. 
 	 */
-	private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+	private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) 
+        {//GEN-FIRST:event_submitBtnActionPerformed
 		UserAuthentication checkDups = new UserAuthentication();
 		boolean nameTaken = checkDups.userExists(usrnameText.getText());
 		if( new String(repswdText.getPassword()).compareTo( new String(pswdText.getPassword()) ) != 0 )
-		{//!this.repswdText.getPassword().equals( this.pswdText.getPassword())){
+		{
 			JOptionPane.showMessageDialog(null, "Ensure both passwords match", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if (emailText.getText().isEmpty() || usrnameText.getText().isEmpty() || 
@@ -265,19 +269,27 @@ public class SignUpGui extends javax.swing.JFrame
 		{
 			JOptionPane.showMessageDialog(null, "Password must be at least 2 characters", "Error", JOptionPane.ERROR_MESSAGE); 
 		}
+                else if (usrnameText.getText().length() > USER_MAX_LEN)
+		{
+			JOptionPane.showMessageDialog(null, "Username must be under " + USER_MAX_LEN + " characters", "Error", JOptionPane.ERROR_MESSAGE); 
+		}
 		else if (nameTaken)
 		{
 			JOptionPane.showMessageDialog(null, "Name already taken", "Error", JOptionPane.ERROR_MESSAGE); 
 		}
 		else // Success 
 		{
-			//User ho = new User(this.usrnameText.getText(), this.pswdText.getPassword(), this.emailText.getText());
-			UserAuthentication addUser = new UserAuthentication();
-			addUser.addUser(this.usrnameText.getText(), new String(this.pswdText.getPassword()), this.emailText.getText());
+                        int n = JOptionPane.showConfirmDialog(this,"All data valid, create account and continue?","Success",JOptionPane.OK_OPTION);
+                    
+                        if (n == 0)
+                        {
+                            UserAuthentication addUser = new UserAuthentication();
+                            addUser.addUser(this.usrnameText.getText(), new String(this.pswdText.getPassword()), this.emailText.getText());
 
-			this.setVisible(false);
-			SignInGui signin = new SignInGui();
-			signin.setVisible(true);
+                            this.setVisible(false);
+                            SignInGui signin = new SignInGui();
+                            signin.setVisible(true);
+                        }
 		}
 
 	}//GEN-LAST:event_submitBtnActionPerformed

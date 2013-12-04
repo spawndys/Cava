@@ -357,7 +357,7 @@ public class AddLocationGui extends javax.swing.JFrame
                         // Add location to database
                         if ( !newLocation.printToFile("LocationDatabase.txt", false) )
                         {
-                              System.out.println("Error occured printing location information to database. ");
+                              JOptionPane.showMessageDialog(null, "Error occured printing location to database", "Failure", JOptionPane.ERROR_MESSAGE);
                               returnToMain = false; 
                         }
                         else

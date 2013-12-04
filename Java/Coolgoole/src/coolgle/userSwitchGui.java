@@ -43,13 +43,14 @@ public class userSwitchGui extends javax.swing.JFrame
         int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
 	int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
 	super.setLocation(xpos,  ypos);
-        initComponents();
         
         // Makes it so that you can exit from pop up messages and this window without closing the entire app 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         user = userName;
         mainFrame = m_main;
+        
+        initComponents();
     }
 
     /**
@@ -84,7 +85,7 @@ public class userSwitchGui extends javax.swing.JFrame
         logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
         Label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
-        Label.setText("System Switch");
+        Label.setText("System Switch - " + user);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

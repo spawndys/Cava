@@ -34,13 +34,14 @@ public class adminSwitchGui extends javax.swing.JFrame
         int xpos = (int) (screen.getWidth() / 8 - frm.getWidth() / 2);
 	int ypos = (int) (screen.getHeight() / 8 - frm.getHeight() / 2);
 	super.setLocation(xpos,  ypos);
-        initComponents();
         
         // Makes it so that you can exit from pop up messages and this window without closing the entire app 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         user = userName;
         mainFrame = m_main;
+        
+        initComponents();
     }
 
     /**
@@ -65,7 +66,7 @@ public class adminSwitchGui extends javax.swing.JFrame
         pswdLabel.setText("Admin Password: ");
 
         label.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
-        label.setText("System Switch");
+        label.setText("System Switch - " + user);
 
         logoLabel.setIcon(new javax.swing.ImageIcon("Images\\logo.jpg")); // NOI18N
 
