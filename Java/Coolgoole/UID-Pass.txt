@@ -4,4 +4,8 @@ spawn|123456|djtb250@hotmail.com|0
 2|22|djtb250@hotmail.com|0
 =======
 Pat|123456|@.|1
+<<<<<<< HEAD
 >>>>>>> a6472fc71fdc048e2c3d55b0c3bd920882a951c9
+=======
+Yo|mama|@....|0
+>>>>>>> Log Out Option

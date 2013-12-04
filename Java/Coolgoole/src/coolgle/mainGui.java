@@ -14,6 +14,7 @@
 package coolgle;
 
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,7 +22,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 
 public class mainGui extends javax.swing.JFrame 
@@ -95,7 +98,33 @@ public class mainGui extends javax.swing.JFrame
                 user = userName;
                                 
 		updateVisualDisplay();
+                
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.addWindowListener(new java.awt.event.WindowAdapter() 
+                {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+                {
+                    Object[] options = {"Log out","Exit"};
+                    int n = JOptionPane.showOptionDialog(null, 
+                        "Exit?", "Exit",JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                    
+                    if (n == 1)
+                    {
+                        System.exit(0);
+                    }
+                    else // Log out
+                    {
+                         logOut();
+                    }
+                }});
 	}
+
+
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -680,9 +709,14 @@ public class mainGui extends javax.swing.JFrame
         //changeTrip();
     }//GEN-LAST:event_changeTrip
 
-
-
-	/**
+	public void logOut()
+        {
+            SignInGui logOut = new SignInGui();
+            logOut.setVisible(true);  
+            this.setVisible(false);
+        }
+    
+        /**
 	 * switchToAdminScreen
 	 * Description - Shows the adminSwitchScreen on top of the current screen. 
 	 */

@@ -4,7 +4,6 @@ Note : I changed a ton of code around here, maybe fixing these problems, but I h
 * Prints errors randomly (???)
 * Guis have empty methods and TODO stubs
 * UImanager not finished
-* No way to log out 
 * When searching for a new location to add, title of dialog is "Select an Option"; should be something better. Also, that message should be cleaner. 
 * Speed of trip attribute should be displayed somewhere
 
@@ -30,3 +29,6 @@ Fixed :
 * KML creater displays time incorrect around 12 noon. Ex : displays 0:30 instead of 12:30. Slight issues with mins not display correctly as well. (Pat Dec 4)
 * Renaming a user clears their previous searches. (Pat Dec 4)
 Note : Just removed the admin's ability to rename users. 
+* Erros when running a trip from the admin account.  (Pat Dec 4)
+* No way to log out (Pat Dec 4)
+Note : Clicking x on main gui or admin gui now asks if you want to exit or just log out,. 

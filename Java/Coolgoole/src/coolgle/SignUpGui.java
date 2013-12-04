@@ -279,17 +279,15 @@ public class SignUpGui extends javax.swing.JFrame
 		}
 		else // Success 
 		{
-                        int n = JOptionPane.showConfirmDialog(this,"All data valid, create account and continue?","Success",JOptionPane.OK_OPTION);
+                        JOptionPane.showMessageDialog(this,"Account Successfully Created");
                     
-                        if (n == 0)
-                        {
-                            UserAuthentication addUser = new UserAuthentication();
-                            addUser.addUser(this.usrnameText.getText(), new String(this.pswdText.getPassword()), this.emailText.getText());
+                        UserAuthentication addUser = new UserAuthentication();
+                        addUser.addUser(this.usrnameText.getText(), new String(this.pswdText.getPassword()), this.emailText.getText());
 
-                            this.setVisible(false);
-                            SignInGui signin = new SignInGui();
-                            signin.setVisible(true);
-                        }
+                        this.setVisible(false);
+                        SignInGui signin = new SignInGui();
+                        signin.setVisible(true);
+                        
 		}
 
 	}//GEN-LAST:event_submitBtnActionPerformed

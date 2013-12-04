@@ -221,18 +221,28 @@ public class SignInGui extends javax.swing.JFrame
             //and check if it is valid
             UserAuthentication newAuthenicator = new UserAuthentication();
             boolean correctCredidentials = newAuthenicator.logUser(un, pass, userType); 
-
-            if(correctCredidentials && this.logAdminCheck.isSelected()) 
-            {// admin
-                 this.setVisible(false);
-                adminGui admin = new adminGui(un);
-                admin.setVisible(true);
-            } 
-            else if(correctCredidentials && this.logAdminCheck.isSelected() == false)
-            {//User
-                this.setVisible(false);
-                mainGui user = new mainGui(un);
-                user.setVisible(true);
+            boolean adminView = this.logAdminCheck.isSelected();
+            if (correctCredidentials)
+            {
+                if (un.compareTo("admin") == 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Note : You are about to log into the default admin account \n"
+                        + "This account can only be used for administrative purposes\n"
+                        + "You will not be able to map trips from this account", "Admin Account", JOptionPane.WARNING_MESSAGE);
+                    adminView = true; 
+                }
+                if(adminView) 
+                {// admin
+                     this.setVisible(false);
+                    adminGui admin = new adminGui(un);
+                    admin.setVisible(true);
+                } 
+                else
+                {//User
+                    this.setVisible(false);
+                    mainGui user = new mainGui(un);
+                    user.setVisible(true);
+                }
             }
             else // Not correct Creds, show error message. 
             {

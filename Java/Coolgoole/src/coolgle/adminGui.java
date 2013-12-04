@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class adminGui extends javax.swing.JFrame 
@@ -48,6 +49,30 @@ public class adminGui extends javax.swing.JFrame
         // Populate the location list
         populateLocationList();
         populateUserList();
+        
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.addWindowListener(new java.awt.event.WindowAdapter() 
+                {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+                {
+                    Object[] options = {"Log out","Exit"};
+                    int n = JOptionPane.showOptionDialog(null, 
+                        "Exit?", "Exit",JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                    
+                    if (n == 1)
+                    {
+                        System.exit(0);
+                    }
+                    else // Log out
+                    {
+                         logOut();
+                    }
+                }});
     }
 
     /**
@@ -60,6 +85,13 @@ public class adminGui extends javax.swing.JFrame
         //this.setVisible(false);
         AddLocationGui addLoc = new AddLocationGui(this);
         addLoc.setVisible(true);    
+    }
+    
+    public void logOut()
+    {
+        SignInGui logOut = new SignInGui();
+        logOut.setVisible(true);  
+        this.setVisible(false);
     }
     
     /**
@@ -97,8 +129,18 @@ public class adminGui extends javax.swing.JFrame
      */
     private void switchUserBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {
-        userSwitchGui switchToUser = new userSwitchGui(this, user);
-        switchToUser.setVisible(true);      
+        if (user.compareTo("admin") != 0)
+        {
+            userSwitchGui switchToUser = new userSwitchGui(this, user);
+            switchToUser.setVisible(true);      
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Note: You are currently logged in as the default admin account\n"
+                    + "This acconut is only to be used for administrative tasks \n"
+                    + "Please log into a different account or create a new account \n"
+                    + "to view the user pages.", "admin account", JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     /**

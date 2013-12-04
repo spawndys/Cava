@@ -132,7 +132,8 @@ public class userSwitchGui extends javax.swing.JFrame
      * Description switchs gui to main screen
      * @param evt
      */
-    private void switchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_switchBtnActionPerformed
+    private void switchBtnActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_switchBtnActionPerformed
         // Validate PW : 
         UserAuthentication validatePW = new UserAuthentication();
         if (validatePW.logUser(user, pwrdText.getPassword(), 0))
@@ -146,6 +147,9 @@ public class userSwitchGui extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(null, "Invalid Password", "Failure", JOptionPane.ERROR_MESSAGE);
         }
+
+
+        
     }//GEN-LAST:event_switchBtnActionPerformed
 
 
