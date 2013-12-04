@@ -18,47 +18,67 @@
         <Style>
             <BalloonStyle/>
         </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-75.1490717,39.9531962 -76.6675476,39.180862 -76.7154264,39.2566151 -76.5092596,39.0500145 -77.2957136,38.5197246</coordinates>
+                <coordinates>-77.0260203,38.8887885 -77.0255154,38.8879505 -77.0227978,38.8880447 -77.0082536,38.89754 -76.9917234,38.8733167 -77.046874,38.9116924 -77.0641479,38.9140633</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>National Constitution Center (0)</name>
+            <name>Smithsonian Institution (0)</name>
             <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-75.1490717,39.9531962</coordinates>
+                <coordinates>-77.0260203,38.8887885</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Thurgood Marshall Airport (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 9:46 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 97 miles</description>
+            <name>National Museum of African Art (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-76.6675476,39.180862</coordinates>
+                <coordinates>-77.0255154,38.8879505</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>University of Maryland, Baltimore County (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 9:52 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 103 miles</description>
+            <name>Hirshhorn Museum (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-76.7154264,39.2566151</coordinates>
+                <coordinates>-77.0227978,38.8880447</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Anne Arundel Community College (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 10:12 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 121 miles</description>
+            <name>National Postal Museum (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:1 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 1 miles</description>
             <Point>
-                <coordinates>-76.5092596,39.0500145</coordinates>
+                <coordinates>-77.0082536,38.89754</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Artisan (4)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 11:13 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 177 miles</description>
+            <name>National Museum of the United States Navy (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:3 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 3 miles</description>
             <Point>
-                <coordinates>-77.2957136,38.5197246</coordinates>
+                <coordinates>-76.9917234,38.8733167</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>The Phillips Collection (5)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:8 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 7 miles</description>
+            <Point>
+                <coordinates>-77.046874,38.9116924</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Dumbarton Oaks (6)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:9 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 8 miles</description>
+            <Point>
+                <coordinates>-77.0641479,38.9140633</coordinates>
             </Point>
         </Placemark>
     </Document>
