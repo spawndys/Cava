@@ -149,6 +149,7 @@ public class Search
         public void setStart(Location newStart)
         {
             start = newStart;
+            optimized = false;
         }
         
         /**
@@ -167,6 +168,7 @@ public class Search
         public void setEnd(Location newEnd)
         {
             end = newEnd;
+            optimized = false;
         }
         /**
          * Description - getUserName
@@ -183,8 +185,10 @@ public class Search
         public void addLocation(Location newLocation)
         {
             // Add unless you're reached the limit.
-            if (locations.size() < TRIP_LIMIT)
+            if (locations.size() < TRIP_LIMIT){
                 locations.add(newLocation);
+                optimized = false;
+            }
             else
                 JOptionPane.showMessageDialog(null, "You have reached the maximun amount of \n"
                                               + "locations allowed per trip (" + TRIP_LIMIT + ")"
@@ -204,6 +208,7 @@ public class Search
                 if (locations.get(i).isSame(newLocation))
                 {
                     locations.remove(i);
+                    optimized = false;
                     removed = true;
                 }
             }
@@ -218,6 +223,7 @@ public class Search
         public void removeAtPosition(int pos)
         {
             locations.remove(pos);
+            optimized = false;
         }
         
         /**
@@ -320,6 +326,7 @@ public class Search
         public void setLocations(ArrayList<Location> locations) 
         {
                 this.locations = locations;
+                optimized = false;
         }
         /**
          * setter for ShortestPath

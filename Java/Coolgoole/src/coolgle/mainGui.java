@@ -951,16 +951,19 @@ public class mainGui extends javax.swing.JFrame
 	// search and opens the file. */
 	public void prepareTrip()
 	{
-                SearchManager newSearchManager = new SearchManager();
-                newSearchManager.sortShortestDistance(search);
+		boolean alreadySaved = false;
+				if(search.hasShortest()) alreadySaved = true;
+                SearchManager.sortShortestDistance(search);
                 
                 int comfirm = JOptionPane.showConfirmDialog(null, "Your trip has been validated and sorted, \n"
                         + "Would you like to save it and view it on google earth now?");
                 if (comfirm == 0) // Yes
                 {
                     // Save this search in previous searches.
-                    FileManager fm = new FileManager();
-                    fm.addSearch(search);
+                    if(!alreadySaved){
+                    	FileManager fm = new FileManager();
+                    	fm.addSearch(search);
+                    }
 
                     updateVisualDisplay();
                 

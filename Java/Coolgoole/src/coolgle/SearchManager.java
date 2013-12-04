@@ -21,7 +21,7 @@ public class SearchManager
          * Description-  need valid search, sort locations start-end with shortest distance
          */
         
-        public void sortShortestDistance(Search search)
+        public static void sortShortestDistance(Search search)
         {
         	if(search.hasShortest()) return;
                 //get start and end locations from search

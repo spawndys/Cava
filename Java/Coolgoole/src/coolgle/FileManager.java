@@ -107,7 +107,7 @@ public class FileManager
 		}
 
                 prevSearch.setUserName(userName);
-                prevSearch.setOptimized(false);
+                prevSearch.setOptimized(true);
                 
 		return prevSearch;
 	}
