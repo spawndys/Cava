@@ -229,12 +229,7 @@ public class adminGui extends javax.swing.JFrame
         welcomLabel2.setForeground(new java.awt.Color(153, 0, 0));
         welcomLabel2.setText("Coolgles Admin");
 
-        label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label1.setText("<html>\nEnter the location information below <br>\nand we will show you the way!\n</html>");
-
-        label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label2.setText("<html> The list of locations chosen is shown <br> on the right panel, click Map It to <br> show it on Google Earth! </html>");
-
+        
         switchUserBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_user.jpg")); // NOI18N
 
         loModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
