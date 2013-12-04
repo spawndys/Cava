@@ -936,6 +936,8 @@ public class mainGui extends javax.swing.JFrame
 					, "Failure", JOptionPane.ERROR_MESSAGE);
 			validTrip = false; 
 		}
+		if(search.getMidLocations().get(0).isSame(search.getStart())) search.getMidLocations().remove(0);
+		if(search.getMidLocations().get(search.getMidLocations().size()-1).isSame(search.getEnd())) search.getMidLocations().remove(search.getMidLocations().size()-1);
 
 		if (validTrip)
 			prepareTrip();
