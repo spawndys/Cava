@@ -741,8 +741,8 @@ public class mainGui extends javax.swing.JFrame
 		if ( prevList.getSelectedIndex() > 0 )
                 {
 			search = fm.getPrev( user, prevList.getSelectedIndex() );
-                        search.setOptimized(false);
-                        user  = search.getUserName();
+                        //search.setOptimized(false);
+                        //user  = search.getUserName();
                 }
                 if ( prevList.getSelectedIndex() == 0 )
                 {

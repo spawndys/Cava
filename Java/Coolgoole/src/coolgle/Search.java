@@ -337,6 +337,12 @@ public class Search
                 this.distance = distance;
         }
         /**
+         * getter for distance
+         */
+        public double getDistance(){
+        	return distance;
+        }
+        /**
          * setter for userName
          */
         public void setUserName(String userName) 
