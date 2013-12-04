@@ -3,7 +3,7 @@ Known Bugs:
 Note : I changed a ton of code around here, maybe fixing these problems, but I have no fully tested it. Pat, Dec 4
 * Prints errors randomly (???)
 * Guis have empty methods and TODO stubs
-* UImanager not finished
+* UImanager not finished *NOT A BUG* Design of UIManager changed by gui package it was created on. 
 * When searching for a new location to add, title of dialog is "Select an Option"; should be something better. Also, that message should be cleaner. 
 * Speed of trip attribute should be displayed somewhere
 

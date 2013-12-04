@@ -60,7 +60,7 @@ public class adminSwitchGui extends javax.swing.JFrame
         switchBtn = new javax.swing.JButton();
         pswdText = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pswdLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         pswdLabel.setText("Admin Password: ");
