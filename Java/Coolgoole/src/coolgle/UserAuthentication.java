@@ -50,8 +50,6 @@ public class UserAuthentication
 	 * Description - Given a UN / Password and userType, checks to see 
          *               the credentials are correct. Note : passwords are stored as char[]
          *               Note, user types are 1 = admin, 0 = user
-	 * Pre- 
-	 * Post -
 	 */
 	public boolean logUser(String userName, char[] password, int type)
         {
@@ -114,9 +112,9 @@ public class UserAuthentication
                     addedSuccessfully = false; 
                 } 
             
-                // Then create the user file : 
+                // Then create the user file, but only they don't already have one: 
                 FileManager fm = new FileManager();
-                fm.addUserFile(name);
+                if (!fm.userFileExists(name)) fm.addUserFile(name);
                 
             }
             else
@@ -161,6 +159,7 @@ public class UserAuthentication
             {
                 Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             // Clear file and reAdd users 
             BufferedWriter clearFile = null;
             BufferedWriter rewriteFile = null;
@@ -278,8 +277,9 @@ public class UserAuthentication
             return Integer.parseInt(returnKey); 
         }
         
+        
         /**getNames
-	 * Description - Returns an arraylist of all the user names. 
+	 * Description - Returns an array list of all the user names. 
 	 * Pre- 
 	 * Post -
 	 */

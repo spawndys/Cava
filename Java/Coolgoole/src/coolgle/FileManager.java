@@ -214,6 +214,20 @@ public class FileManager
 			file.deleteOnExit();
 		}
 	}
+        
+        
+        public boolean userFileExists(String userName)
+        {
+            boolean findFound = false;
+            String temp = "";
+            temp += PATH + userName + SUFFIX;
+            File file = new File(temp);                
+            if( file.exists() )
+            {
+                findFound = true;
+            }
+            return findFound;
+        }
 
 	/**addUser()
 	 * Description- adds file for users search

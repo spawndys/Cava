@@ -709,6 +709,9 @@ public class mainGui extends javax.swing.JFrame
                     clearSearch();
                 }
 		updateVisualDisplay();
+                
+                // Select correct time from time box 
+                times.setSelectedIndex((int)search.getStartTime() - 8);
 	}
 	/**
 	 * 

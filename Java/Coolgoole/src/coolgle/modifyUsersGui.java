@@ -6,6 +6,7 @@ package coolgle;
 
 import java.awt.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /*****************************************
  **original author rdg77_000
  ** File: KMlCreator
@@ -21,8 +22,11 @@ import javax.swing.JFrame;
  ** 
  ***********************************************/
 
-public class modifyUsersGui extends javax.swing.JFrame {
+public class modifyUsersGui extends javax.swing.JFrame 
+{
 
+    private static int USER_MAX_LEN = 25; 
+    
     private String oldname;
     private adminGui m_main;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -65,6 +69,8 @@ public class modifyUsersGui extends javax.swing.JFrame {
         
         // Makes it so that you can exit from pop up messages and this window without closing the entire app 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        usrText.setEditable(false);
     }
 
     
@@ -198,12 +204,37 @@ public class modifyUsersGui extends javax.swing.JFrame {
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) 
     {//GEN-FIRST:event_submitBtnActionPerformed
         UserAuthentication updateUserAuth = new UserAuthentication();
-        if (isAdminCheck.isSelected())
-            updateUserAuth.updateUser(oldname, usrText.getText(), pswdText.getText(), emailText.getText(), 1);
-        else
-            updateUserAuth.updateUser(oldname, usrText.getText(), pswdText.getText(), emailText.getText(), 0);
-        m_main.populateUserList();
-        this.setVisible(false);
+        
+        // Validation : 
+	boolean nameTaken = updateUserAuth.userExists(usrText.getText());
+        
+        if ( usrText.getText().isEmpty() || pswdText.getText().length() < 2 || emailText.getText().isEmpty() )
+        {
+            JOptionPane.showMessageDialog(null, "All fields must have data, passwords must be at least 2 characters"
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!(emailText.getText().contains("@") && emailText.getText().contains(".")) )
+        {
+            JOptionPane.showMessageDialog(null, "Email is not of correct format\n"
+					+ "Ex : User@domain.com", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (oldname.compareTo(usrText.getText()) != 0 && nameTaken)
+        {
+            JOptionPane.showMessageDialog(null, "Name already taken", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+        else if (usrText.getText().length() > USER_MAX_LEN)
+	{
+		JOptionPane.showMessageDialog(null, "Username must be under " + USER_MAX_LEN + " characters", "Error", JOptionPane.ERROR_MESSAGE); 
+	}
+        else // Success
+        {
+            if (isAdminCheck.isSelected())
+                updateUserAuth.updateUser(oldname, usrText.getText(), pswdText.getText(), emailText.getText(), 1);
+            else
+                updateUserAuth.updateUser(oldname, usrText.getText(), pswdText.getText(), emailText.getText(), 0);
+            m_main.populateUserList();
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void usrTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrTextActionPerformed
@@ -243,8 +274,10 @@ public class modifyUsersGui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 new modifyUsersGui(null, "").setVisible(true);
             }
         });

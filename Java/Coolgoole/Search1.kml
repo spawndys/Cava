@@ -15,40 +15,80 @@
         <Style>
             <BalloonStyle/>
         </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-77.0274801,38.8881396 -76.8558025,39.2224545 -75.1102813,38.3371172 -77.0429536,38.8834579</coordinates>
+                <coordinates>-76.613626,39.418906 -76.7332629,38.9267001 -77.025503,38.71312 -77.0654671,38.6932927 -75.4573846,37.9395439 -76.3440487,37.0243698 -78.8297021,42.9574196 -79.4121421,39.34033</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>Freer Sackler Gallery of Smithsonian (0)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <name>Fire Museum of Maryland   (0)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 10:00 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-77.0274801,38.8881396</coordinates>
+                <coordinates>-76.613626,39.418906</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>African Art Museum of Maryland (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 8:27 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 25 miles</description>
+            <name>The National Capital Radio &amp; Television Museum   (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 10:38 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 35 miles</description>
             <Point>
-                <coordinates>-76.8558025,39.2224545</coordinates>
+                <coordinates>-76.7332629,38.9267001</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Wheels of Yesterday (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 10:29 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 137 miles</description>
+            <name>Fort Washington Park   (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 11:01 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 57 miles</description>
             <Point>
-                <coordinates>-75.1102813,38.3371172</coordinates>
+                <coordinates>-77.025503,38.71312</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>FDR Memorial (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 0:31 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 248 miles</description>
+            <name>The National Colonial Farm   (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 11:04 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 60 miles</description>
             <Point>
-                <coordinates>-77.0429536,38.8834579</coordinates>
+                <coordinates>-77.0654671,38.6932927</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>NASA Visitor Center, Wallops Island   (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 12:55 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 162 miles</description>
+            <Point>
+                <coordinates>-75.4573846,37.9395439</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Virginia Air &amp; Space Center   (5)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 02:22 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 242 miles</description>
+            <Point>
+                <coordinates>-76.3440487,37.0243698</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>UB Anderson Gallery   (6)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 10:11 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 672 miles</description>
+            <Point>
+                <coordinates>-78.8297021,42.9574196</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Yoder Rd   (7)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 02:46 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 924 miles</description>
+            <Point>
+                <coordinates>-79.4121421,39.34033</coordinates>
             </Point>
         </Placemark>
     </Document>

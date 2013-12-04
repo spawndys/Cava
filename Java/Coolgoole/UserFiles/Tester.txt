@@ -1,5 +1,0 @@
-StartTime 8.0
-Annapolis Maritime Museum | 723 2nd Street | Annapolis | Maryland | 38.9688803 | -76.4763719
-Artisan | Artisan | Quantico | Virginia | 38.5197246 | -77.2957136
-Massey Aerodrome |  | Massey | MD | 39.2999453 | -75.7989167
-***endSearch

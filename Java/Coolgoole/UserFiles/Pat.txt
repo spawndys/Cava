@@ -22,3 +22,33 @@ African Art Museum of Maryland | 5430 Vantage Point Road | Columbia | Maryland |
 Wheels of Yesterday | 12708 Ocean Gateway | Ocean City | Maryland | 38.3371172 | -75.1102813
 FDR Memorial | 1850 West Basin Drive Southwest | Washington | DC | 38.8834579 | -77.0429536
 ***endSearch
+StartTime 12.0
+Fire Museum of Maryland | 1301 York Road | Lutherville-Timonium | Maryland | 39.418906 | -76.613626
+The National Capital Radio & Television Museum | 2608 Mitchellville Road | Bowie | Maryland | 38.9267001 | -76.7332629
+Fort Washington Park |  | Fort Washington | MD | 38.71312 | -77.025503
+The National Colonial Farm | 3400 Bryan Point Road | Accokeek | MD | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island |  | Wallops Island | VA | 37.9395439 | -75.4573846
+Virginia Air & Space Center | 600 Settlers Landing Road | Hampton | Virginia | 37.0243698 | -76.3440487
+UB Anderson Gallery | 1 Martha Jackson Place | Buffalo | New York | 42.9574196 | -78.8297021
+Yoder Rd | Yoder Road | Oakland | Maryland | 39.34033 | -79.4121421
+***endSearch
+StartTime 10.0
+Fire Museum of Maryland  |  1301 York Road  |  Lutherville-Timonium  |  Maryland  | 39.418906 | -76.613626
+The National Capital Radio & Television Museum  |  2608 Mitchellville Road  |  Bowie  |  Maryland  | 38.9267001 | -76.7332629
+Fort Washington Park  |    |  Fort Washington  |  MD  | 38.71312 | -77.025503
+The National Colonial Farm  |  3400 Bryan Point Road  |  Accokeek  |  MD  | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island  |    |  Wallops Island  |  VA  | 37.9395439 | -75.4573846
+Virginia Air & Space Center  |  600 Settlers Landing Road  |  Hampton  |  Virginia  | 37.0243698 | -76.3440487
+UB Anderson Gallery  |  1 Martha Jackson Place  |  Buffalo  |  New York  | 42.9574196 | -78.8297021
+Yoder Rd  |  Yoder Road  |  Oakland  |  Maryland  | 39.34033 | -79.4121421
+***endSearch
+StartTime 10.0
+Fire Museum of Maryland   |   1301 York Road   |   Lutherville-Timonium   |   Maryland   | 39.418906 | -76.613626
+The National Capital Radio & Television Museum   |   2608 Mitchellville Road   |   Bowie   |   Maryland   | 38.9267001 | -76.7332629
+Fort Washington Park   |      |   Fort Washington   |   MD   | 38.71312 | -77.025503
+The National Colonial Farm   |   3400 Bryan Point Road   |   Accokeek   |   MD   | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island   |      |   Wallops Island   |   VA   | 37.9395439 | -75.4573846
+Virginia Air & Space Center   |   600 Settlers Landing Road   |   Hampton   |   Virginia   | 37.0243698 | -76.3440487
+UB Anderson Gallery   |   1 Martha Jackson Place   |   Buffalo   |   New York   | 42.9574196 | -78.8297021
+Yoder Rd   |   Yoder Road   |   Oakland   |   Maryland   | 39.34033 | -79.4121421
+***endSearch

@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
 
 public class SignUpGui extends javax.swing.JFrame 
 {
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private static int USER_MAX_LEN = 25; 
+
+        // Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel emailLabel;
 	private javax.swing.JTextField emailText;
 	private javax.swing.JLabel signupLbl;
@@ -233,6 +235,7 @@ public class SignUpGui extends javax.swing.JFrame
 	}//GEN-LAST:event_usrnameTextActionPerformed
 
 
+        
 	/**
 	 * submitBtnActionPerformed
 	 * Description - Called when user presses the submit button
@@ -249,7 +252,7 @@ public class SignUpGui extends javax.swing.JFrame
 		UserAuthentication checkDups = new UserAuthentication();
 		boolean nameTaken = checkDups.userExists(usrnameText.getText());
 		if( new String(repswdText.getPassword()).compareTo( new String(pswdText.getPassword()) ) != 0 )
-		{//!this.repswdText.getPassword().equals( this.pswdText.getPassword())){
+		{
 			JOptionPane.showMessageDialog(null, "Ensure both passwords match", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if (emailText.getText().isEmpty() || usrnameText.getText().isEmpty() || 
@@ -265,6 +268,10 @@ public class SignUpGui extends javax.swing.JFrame
 		else if (repswdText.getPassword().length < 2)
 		{
 			JOptionPane.showMessageDialog(null, "Password must be at least 2 characters", "Error", JOptionPane.ERROR_MESSAGE); 
+		}
+                else if (usrnameText.getText().length() > USER_MAX_LEN)
+		{
+			JOptionPane.showMessageDialog(null, "Username must be under " + USER_MAX_LEN + " characters", "Error", JOptionPane.ERROR_MESSAGE); 
 		}
 		else if (nameTaken)
 		{

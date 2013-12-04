@@ -206,19 +206,27 @@ public class KmlCreator
              timeToPrint = timeToPrint % 24; 
         // Get Hours : 
         double hours = Math.floor(timeToPrint); 
-        if (hours >= 12)
+        if (hours > 12)
         {
             AMPM = "PM";
             hours -= 12;
             timeToPrint -= 12; 
         }
-        DecimalFormat df = new DecimalFormat("##");
+        if (hours == 12)
+            AMPM = "PM";
+        if (hours == 12)
+        {
+            AMPM = "AM";
+            hours = 12;
+        }
+        
+        DecimalFormat df = new DecimalFormat("00");
         
         // Get Minutes : 
         timeToPrint -= hours; // Just get minute part
         double mins = timeToPrint; 
         mins *= 60;
-        DecimalFormat df2 = new DecimalFormat("##");
+        DecimalFormat df2 = new DecimalFormat("00");
         
         msgTime = df.format(hours) + ":" + df2.format(mins) + " " + AMPM;     
         

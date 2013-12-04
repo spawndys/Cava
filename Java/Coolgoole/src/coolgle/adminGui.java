@@ -1,8 +1,7 @@
 /*****************************************
-**original author rdg77_000 
 ** File: KMlCreator
 ** Team Name: Cava++
-*Date: 10/18/13
+** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
