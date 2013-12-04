@@ -382,7 +382,6 @@ public class adminGui extends javax.swing.JFrame
             for ( int i = 0; i < allNames.size(); i++ )
             {
                 listModel.addElement( allNames.get(i) );
-                //System.out.println(allNames.get(i));
             }
    }
     
@@ -419,12 +418,12 @@ public class adminGui extends javax.swing.JFrame
             }
             catch (FileNotFoundException ex)
             {
-                System.out.println("Could Not find database File ");
+                JOptionPane.showMessageDialog(null, "Admin - Could not find database file", "Failure", JOptionPane.ERROR_MESSAGE); 
             }
         } 
         catch (IOException ex) 
         {
-            System.out.println("Error openning database file. ");
+            JOptionPane.showMessageDialog(null, "Admin - Error opening database file", "Failure", JOptionPane.ERROR_MESSAGE); 
         }
     }
     
@@ -472,7 +471,7 @@ public class adminGui extends javax.swing.JFrame
         } 
         catch (FileNotFoundException ex) 
         {
-            System.out.println("Location Database Not Found");
+            JOptionPane.showMessageDialog(null, "Admin - Database not found", "Failure", JOptionPane.ERROR_MESSAGE); 
         }
     }
     

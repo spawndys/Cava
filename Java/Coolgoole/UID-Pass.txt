@@ -1,2 +1,6 @@
 spawn|123456|djtb250@hotmail.com|0
 1|11|1@hotmail.com|0
+Pat|123456|@.|1
+
+Tester|123|@.|0
+newCreatedTest|12|@.|0

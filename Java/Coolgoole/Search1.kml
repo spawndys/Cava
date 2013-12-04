@@ -15,50 +15,40 @@
         <Style>
             <BalloonStyle/>
         </Style>
-        <Style>
-            <BalloonStyle/>
-        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-75.1490717,39.9531962 -76.6675476,39.180862 -76.7154264,39.2566151 -76.5092596,39.0500145 -77.2957136,38.5197246</coordinates>
+                <coordinates>-77.0274801,38.8881396 -76.8558025,39.2224545 -75.1102813,38.3371172 -77.0429536,38.8834579</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>National Constitution Center (0)</name>
+            <name>Freer Sackler Gallery of Smithsonian (0)</name>
             <description>Estimated Arrival Time :  &lt;br&gt; 8:0 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-75.1490717,39.9531962</coordinates>
+                <coordinates>-77.0274801,38.8881396</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Thurgood Marshall Airport (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 9:46 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 97 miles</description>
+            <name>African Art Museum of Maryland (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 8:27 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 25 miles</description>
             <Point>
-                <coordinates>-76.6675476,39.180862</coordinates>
+                <coordinates>-76.8558025,39.2224545</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>University of Maryland, Baltimore County (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 9:52 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 103 miles</description>
+            <name>Wheels of Yesterday (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 10:29 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 137 miles</description>
             <Point>
-                <coordinates>-76.7154264,39.2566151</coordinates>
+                <coordinates>-75.1102813,38.3371172</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Anne Arundel Community College (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 10:12 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 121 miles</description>
+            <name>FDR Memorial (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 0:31 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 248 miles</description>
             <Point>
-                <coordinates>-76.5092596,39.0500145</coordinates>
-            </Point>
-        </Placemark>
-        <Placemark>
-            <name>Artisan (4)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 11:13 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 177 miles</description>
-            <Point>
-                <coordinates>-77.2957136,38.5197246</coordinates>
+                <coordinates>-77.0429536,38.8834579</coordinates>
             </Point>
         </Placemark>
     </Document>

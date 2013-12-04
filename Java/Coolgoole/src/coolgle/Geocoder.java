@@ -33,6 +33,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
@@ -137,19 +138,19 @@ public class Geocoder
         } // End try
         catch (IOException e)
         {
-              System.out.println("IOException");  
+              JOptionPane.showMessageDialog(null, "Geocoder - IOException", "Failure", JOptionPane.ERROR_MESSAGE); 
         }
         catch (XPathExpressionException e)
         {
-              System.out.println("XPathExpressionException");  
+              JOptionPane.showMessageDialog(null, "Geocoder - XPathExpressionException", "Failure", JOptionPane.ERROR_MESSAGE);  
         }
         catch(ParserConfigurationException e)
         {
-               System.out.println("ParserConfigurationException");  
+               JOptionPane.showMessageDialog(null, "Geocoder - ParserConfigurationException", "Failure", JOptionPane.ERROR_MESSAGE);
         }
         catch(SAXException e)
         {
-               System.out.println("SAXException");  
+               JOptionPane.showMessageDialog(null, "Geocoder - SAXException", "Failure", JOptionPane.ERROR_MESSAGE);  
         }
         return location;
     } // end of createLocation method

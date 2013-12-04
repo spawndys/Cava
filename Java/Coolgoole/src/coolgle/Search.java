@@ -297,7 +297,9 @@ public class Search
         public String fileToString()
         {
                 String msg;
+                
                 msg = "StartTime " + this.startTime + '\n';
+                
                 msg += start.fileToString() + '\n';
                 // Print add all locations
                 Iterator<Location> itrA = locations.iterator();
@@ -306,22 +308,8 @@ public class Search
                         msg += itrA.next().fileToString() + '\n';
                 }
                 msg += end.fileToString() + '\n';
-               
-                // Print shortest Path (1 line)
-                Iterator<Coord> itrB = shortestPath.iterator();
-                msg += "shortestCoords" + '\n';
-                while(itrB.hasNext())
-                {        
-                        String temp = itrB.next().toString();
-                                        System.out.println("temp is " + temp);
-                        msg += temp ;
-                        
-                        if(itrB.hasNext()){
-                                msg += " ; ";
-                        }
-                }
                 
-                msg += " | \n";
+                msg += "***endSearch" + '\n';
 
                 return msg;
         }
@@ -354,51 +342,5 @@ public class Search
         public void setUserName(String userName) 
         {
                 this.userName = userName;
-        }
-        /**
-         * main tester
-         * @param args
-         */
-        public static void main(String[] args){
-                
-        String userName = "Dan";                
-
-        ArrayList<Location> locations = new ArrayList<Location>();
-        ArrayList<Coord> shortestCoords = new ArrayList<Coord>();
-
-        //build search attributes
-        String name = "Tim";                
-        float x = (float) 3.24;
-        float y = (float) 5.25;
-        Coord coord = new Coord(x,y);
-        String city = "tim";
-        String state = "MD";
-        String address = "101 H rd";                        
-        Location loc = new Location(name,address,city,state, coord);        
-        //label start
-        Location start = new Location(loc);
-       // locations.add(loc);
-        shortestCoords.add(new Coord(x,y));
-
-        name = "UMBC";                
-        x = (float) 6.24;
-        y = (float) 8.25;
-        coord = new Coord(x,y);
-        city = "balt";
-        state = "MD";
-        address = "901 C rd";
-        loc = new Location(name,address,city,state, coord);        
-        //locations.add(loc);
-        shortestCoords.add(new Coord(x,y));                
-        //label end                
-        Location end = new Location(loc);
-
-        //make search
-        Search search = new Search("3",userName, start, end, locations, shortestCoords);
-
-        System.out.println("main print");
-        System.out.println(search.fileToString());
-        System.out.println("done");
-
         }
 }

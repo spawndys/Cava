@@ -1,0 +1,24 @@
+StartTime 8.0
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+Hirshhorn Museum | 700 Independence Avenue Southwest | Washington | DC | 38.8880447 | -77.0227978
+National Museum of the American Indian | 4th St & Independence Avenue | Washington | District of Columbia | 38.8882143 | -77.0161664
+Wheels of Yesterday  |  12708 Ocean Gateway  |  Ocean City  |  Maryland  | 38.3371172 | -75.1102813
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+***endSearch
+StartTime 8.0
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+Dumbarton Oaks | 1703 32nd Street Northwest | Washington | DC | 38.9140633 | -77.0641479
+Hirshhorn Museum | 700 Independence Avenue Southwest | Washington | DC | 38.8880447 | -77.0227978
+National Museum of the American Indian | 4th St & Independence Avenue | Washington | District of Columbia | 38.8882143 | -77.0161664
+Walters Art Museum | 600 N Charles St | Baltimore | MD | 39.2965947 | -76.6161201
+Wheels of Yesterday  |  12708 Ocean Gateway  |  Ocean City  |  Maryland  | 38.3371172 | -75.1102813
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+***endSearch
+StartTime 8.0
+Freer Sackler Gallery of Smithsonian |  | Washington | District of Columbia | 38.8881396 | -77.0274801
+African Art Museum of Maryland | 5430 Vantage Point Road | Columbia | Maryland | 39.2224545 | -76.8558025
+Wheels of Yesterday | 12708 Ocean Gateway | Ocean City | Maryland | 38.3371172 | -75.1102813
+FDR Memorial | 1850 West Basin Drive Southwest | Washington | DC | 38.8834579 | -77.0429536
+***endSearch

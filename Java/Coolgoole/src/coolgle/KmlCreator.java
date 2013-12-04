@@ -37,6 +37,7 @@ import de.micromata.opengis.kml.v_2_2_0.LineString;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 public class KmlCreator 
 {
@@ -150,7 +151,7 @@ public class KmlCreator
         } 
         catch (FileNotFoundException ex) 
         {
-            System.out.println("FileNotFoundException");
+            JOptionPane.showMessageDialog(null, "KML - FileNotFoundException", "Failure", JOptionPane.ERROR_MESSAGE); 
         } 
 
         return newFile; 
@@ -175,13 +176,13 @@ public class KmlCreator
             }
             catch (IOException ex) 
             {
-                System.out.println("IOException");
+                JOptionPane.showMessageDialog(null, "KML - IOException", "Failure", JOptionPane.ERROR_MESSAGE); 
             }
         }
         else
         {
             // If error opening file, post error message to console.
-            System.out.println("Error opening KML");
+            JOptionPane.showMessageDialog(null, "Cannot open KML file", "Failure", JOptionPane.ERROR_MESSAGE); 
         }
     }
     
