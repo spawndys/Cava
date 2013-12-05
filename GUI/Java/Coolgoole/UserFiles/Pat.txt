@@ -1,0 +1,76 @@
+StartTime 8.0
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+Hirshhorn Museum | 700 Independence Avenue Southwest | Washington | DC | 38.8880447 | -77.0227978
+National Museum of the American Indian | 4th St & Independence Avenue | Washington | District of Columbia | 38.8882143 | -77.0161664
+Wheels of Yesterday  |  12708 Ocean Gateway  |  Ocean City  |  Maryland  | 38.3371172 | -75.1102813
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+***endSearch
+StartTime 8.0
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+The Phillips Collection  |  1600 21st Street Northwest  |  Washington  |  District of Columbia  | 38.9116924 | -77.046874
+Dumbarton Oaks | 1703 32nd Street Northwest | Washington | DC | 38.9140633 | -77.0641479
+Hirshhorn Museum | 700 Independence Avenue Southwest | Washington | DC | 38.8880447 | -77.0227978
+National Museum of the American Indian | 4th St & Independence Avenue | Washington | District of Columbia | 38.8882143 | -77.0161664
+Walters Art Museum | 600 N Charles St | Baltimore | MD | 39.2965947 | -76.6161201
+Wheels of Yesterday  |  12708 Ocean Gateway  |  Ocean City  |  Maryland  | 38.3371172 | -75.1102813
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+Jefferson Memorial  |    |  St. Louis  |  MO  | 38.6451955 | -90.2858288
+***endSearch
+StartTime 8.0
+Freer Sackler Gallery of Smithsonian |  | Washington | District of Columbia | 38.8881396 | -77.0274801
+African Art Museum of Maryland | 5430 Vantage Point Road | Columbia | Maryland | 39.2224545 | -76.8558025
+Wheels of Yesterday | 12708 Ocean Gateway | Ocean City | Maryland | 38.3371172 | -75.1102813
+FDR Memorial | 1850 West Basin Drive Southwest | Washington | DC | 38.8834579 | -77.0429536
+***endSearch
+StartTime 12.0
+Fire Museum of Maryland | 1301 York Road | Lutherville-Timonium | Maryland | 39.418906 | -76.613626
+The National Capital Radio & Television Museum | 2608 Mitchellville Road | Bowie | Maryland | 38.9267001 | -76.7332629
+Fort Washington Park |  | Fort Washington | MD | 38.71312 | -77.025503
+The National Colonial Farm | 3400 Bryan Point Road | Accokeek | MD | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island |  | Wallops Island | VA | 37.9395439 | -75.4573846
+Virginia Air & Space Center | 600 Settlers Landing Road | Hampton | Virginia | 37.0243698 | -76.3440487
+UB Anderson Gallery | 1 Martha Jackson Place | Buffalo | New York | 42.9574196 | -78.8297021
+Yoder Rd | Yoder Road | Oakland | Maryland | 39.34033 | -79.4121421
+***endSearch
+StartTime 10.0
+Fire Museum of Maryland  |  1301 York Road  |  Lutherville-Timonium  |  Maryland  | 39.418906 | -76.613626
+The National Capital Radio & Television Museum  |  2608 Mitchellville Road  |  Bowie  |  Maryland  | 38.9267001 | -76.7332629
+Fort Washington Park  |    |  Fort Washington  |  MD  | 38.71312 | -77.025503
+The National Colonial Farm  |  3400 Bryan Point Road  |  Accokeek  |  MD  | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island  |    |  Wallops Island  |  VA  | 37.9395439 | -75.4573846
+Virginia Air & Space Center  |  600 Settlers Landing Road  |  Hampton  |  Virginia  | 37.0243698 | -76.3440487
+UB Anderson Gallery  |  1 Martha Jackson Place  |  Buffalo  |  New York  | 42.9574196 | -78.8297021
+Yoder Rd  |  Yoder Road  |  Oakland  |  Maryland  | 39.34033 | -79.4121421
+***endSearch
+StartTime 10.0
+Fire Museum of Maryland   |   1301 York Road   |   Lutherville-Timonium   |   Maryland   | 39.418906 | -76.613626
+The National Capital Radio & Television Museum   |   2608 Mitchellville Road   |   Bowie   |   Maryland   | 38.9267001 | -76.7332629
+Fort Washington Park   |      |   Fort Washington   |   MD   | 38.71312 | -77.025503
+The National Colonial Farm   |   3400 Bryan Point Road   |   Accokeek   |   MD   | 38.6932927 | -77.0654671
+NASA Visitor Center, Wallops Island   |      |   Wallops Island   |   VA   | 37.9395439 | -75.4573846
+Virginia Air & Space Center   |   600 Settlers Landing Road   |   Hampton   |   Virginia   | 37.0243698 | -76.3440487
+UB Anderson Gallery   |   1 Martha Jackson Place   |   Buffalo   |   New York   | 42.9574196 | -78.8297021
+Yoder Rd   |   Yoder Road   |   Oakland   |   Maryland   | 39.34033 | -79.4121421
+***endSearch
+StartTime 8.0
+Fire Museum of Maryland | 1301 York Road | Lutherville-Timonium | Maryland | 39.418906 | -76.613626
+Smithsonian American Art Museum | 800 G Street | Washington | District of Columbia | 38.8981861 | -77.0229423
+Yoder Rd | Yoder Road | Oakland | Maryland | 39.34033 | -79.4121421
+UB Anderson Gallery | 1 Martha Jackson Place | Buffalo | New York | 42.9574196 | -78.8297021
+Ford's Museum | 517 10th Street Northwest | Washington | DC | 38.8968174 | -77.0258121
+***endSearch
+StartTime 8.0
+Basilica of the National Shrine of the Immaculate Conception |  | Washington | District of Columbia | 38.9333701 | -77.0006558
+Renwick Gallery | 1661 Pennsylvania Avenue Northwest | Washington | DC | 38.8991098 | -77.038879
+The National Colonial Farm | 3400 Bryan Point Road | Accokeek | MD | 38.6932927 | -77.0654671
+Walters Art Museum | 600 N Charles St | Baltimore | MD | 39.2965947 | -76.6161201
+Police Heritage Museum | 54 West Market Street | York | Pennsylvania | 39.9618175 | -76.729337
+National Geographic Museum | 1145 17th Street Northwest | Washington | DC | 38.905197 | -77.0379892
+***endSearch
+StartTime 20.0
+Hershey's Chocolate World|251 Park Boulevard|Hershey|Pennsylvania|40.288136|-76.660366
+Police Heritage Museum|54 West Market Street|York|Pennsylvania|39.9618175|-76.729337
+Old Jail Museum|128 West Broadway|Jim Thorpe|Pennsylvania|40.8636993|-75.7465003
+Mattress Factory|500 Sampsonia Way|Pittsburgh|Pennsylvania|40.4568579|-80.012344
+Longwood Gardens|1001 Longwood Road|Kennett Square|Pennsylvania|39.8711885|-75.6751545
+***endSearch

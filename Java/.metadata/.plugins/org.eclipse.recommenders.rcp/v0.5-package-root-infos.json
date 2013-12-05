@@ -1,0 +1,275 @@
+[
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "e5589ea004bd27f096792629eee6e30d3f25fe2c",
+    "jarFileModificationDate": "2013-11-05T07:28:03.928-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\jsse.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "javax.xml.bind.jaxb-api",
+    "version": {
+      "major": 2,
+      "minor": 2,
+      "micro": 7,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "2f51c4bb4724ea408096ee9100ff2827e07e5b7c",
+    "jarFileModificationDate": "2013-11-12T16:21:53.207-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\jaxb-api.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jaxb-xjc",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "ed6590d01fc829530c06a6f7bb89e4645a83cccb",
+    "jarFileModificationDate": "2013-11-12T16:21:53.251-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\jaxb-xjc.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "f4150db54a3200189411d612ea21ce4a8a614bb3",
+    "jarFileModificationDate": "2013-11-05T07:28:00.347-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\zipfs.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a22ccb0236f5d475302a3f538d923d6cf05c68cd",
+    "jarFileModificationDate": "2013-11-05T07:28:00.339-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\access-bridge-64.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jaxb-impl",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "d2e17616399f4ccb946282a52cc3b0cdf336f22f",
+    "jarFileModificationDate": "2013-11-12T16:21:53.225-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\jaxb-impl.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4403cf280affe5cba5e0fa754f1056c4b2de7f19",
+    "jarFileModificationDate": "2013-11-05T07:28:03.982-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\localedata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5978bc159419ed07f2a57488d10e91f4fd1e3c40",
+    "jarFileModificationDate": "2013-11-05T07:28:00.340-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\dnsns.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "95dc9053062d68cde4e8c38494cc63aefd7b0a42",
+    "jarFileModificationDate": "2013-11-05T07:28:00.344-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\sunec.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "f831655c50b92c41e366442d09511ea84270c45e",
+    "jarFileModificationDate": "2013-11-05T07:28:00.435-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\jce.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a3d1a9689f1c8e36ab64fb669df92076771c42f2",
+    "jarFileModificationDate": "2013-11-05T07:28:00.346-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\sunmscapi.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "28ad63fc2152ff90eba4b7a921dd3f6617acf6f5",
+    "jarFileModificationDate": "2013-11-05T07:28:03.742-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\charsets.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "geocoder-java-0.15-javadoc",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "dae21d118983108ce07d83d602572a708d3d6c14",
+    "jarFileModificationDate": "2013-11-12T16:21:53.205-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\geocoder-java-0.15-javadoc.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "de.micromata.jak.JavaAPIforKml",
+    "version": {
+      "major": 2,
+      "minor": 2,
+      "micro": 0,
+      "qualifier": "SNAPSHOT"
+    },
+    "jarFileFingerprint": "2aa9aca4c96256d3c2913e148937aa294ec89f54",
+    "jarFileModificationDate": "2013-11-12T16:21:53.202-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\JavaAPIforKml.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "290db2acdf8d82a3a8c351ce030e0c19ff93b003",
+    "jarFileModificationDate": "2013-11-05T07:28:00.340-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\jaccess.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "3800223b66f57bc4daff4bbd398a65020d901d82",
+    "jarFileModificationDate": "2013-11-05T07:28:00.559-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\jfr.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jaxb-jxc",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "7832d3e8d4fa006c156cd33df66d4b13de8ab4b6",
+    "jarFileModificationDate": "2013-11-12T16:21:53.227-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\jaxb-jxc.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "442144fb304e0895e42527f0d796dc6a070afc49",
+    "jarFileModificationDate": "2013-11-05T07:28:03.681-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\rt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4b49dbbd63bac98e1b02fd5ad398dea471cd41ed",
+    "jarFileModificationDate": "2013-11-05T07:28:00.591-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\resources.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "97e3bcb13f325218fcf9d2286aa7ce6e8c231b7a",
+    "jarFileModificationDate": "2013-11-05T07:28:00.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\ext\\sunjce_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "com.sun.xml.txw2.txw2",
+    "version": {
+      "major": 20110809,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "16dd1ea971c506183990a0cd4e481524d4bc2dbc",
+    "jarFileModificationDate": "2013-11-12T16:21:53.211-05:00",
+    "location": "C:\\Users\\rdg77_000\\Documents\\classes\\cmsc345\\Cava\\Java\\Coolgoole\\lib\\jaxb-core.jar",
+    "javaRuntime": false
+  }
+]
