@@ -13,14 +13,17 @@
  ***********************************************/
 package coolgle;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -95,7 +98,35 @@ public class mainGui extends javax.swing.JFrame
                 user = userName;
                                 
 		updateVisualDisplay();
+                
+                
+                //Allows the logout or close popup to appear when closing window
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.addWindowListener(new java.awt.event.WindowAdapter() 
+                {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+                {
+                    Object[] options = {"Log out","Exit"};
+                    int n = JOptionPane.showOptionDialog(null, 
+                        "Exit?", "Exit",JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                    
+                    if (n == 1)
+                    {
+                        System.exit(0);
+                    }
+                    else // Log out
+                    {
+                         logOut();
+                    }
+                }});
 	}
+
+
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -271,7 +302,7 @@ public class mainGui extends javax.swing.JFrame
         jButton1.setText("Remove Selected");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                removeSelActionPerformed(evt);
             }
         });
 
@@ -394,9 +425,7 @@ public class mainGui extends javax.swing.JFrame
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 filterTextKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                filterTextKeyTyped(evt);
-            }
+
         });
 
         filterCategory.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -574,13 +603,6 @@ public class mainGui extends javax.swing.JFrame
 	}//GEN-LAST:event_filterTextActionPerformed
 
 	/**
-	 *none
-	 */
-	private void filterTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyTyped
-		//
-	}//GEN-LAST:event_filterTextKeyTyped
-
-	/**
 	 * Description- updateStartingTime(); listener
 	 * @param evt
 	 */
@@ -656,7 +678,7 @@ public class mainGui extends javax.swing.JFrame
 	 * Description- removeSelectedMidTrip(); listener
 	 * @param evt
 	 */
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	private void removeSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 		removeSelectedMidTrip();
 	}//GEN-LAST:event_jButton1ActionPerformed
 
@@ -680,9 +702,18 @@ public class mainGui extends javax.swing.JFrame
         //changeTrip();
     }//GEN-LAST:event_changeTrip
 
-
-
-	/**
+        /**
+	 * logOut
+	 * Description - To be called when user exits screen, asks if user wants to log out or completely close
+	 */
+	public void logOut()
+        {
+            SignInGui logOut = new SignInGui();
+            logOut.setVisible(true);  
+            this.setVisible(false);
+        }
+    
+        /**
 	 * switchToAdminScreen
 	 * Description - Shows the adminSwitchScreen on top of the current screen. 
 	 */

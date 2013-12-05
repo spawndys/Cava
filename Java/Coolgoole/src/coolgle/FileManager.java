@@ -24,12 +24,12 @@ public class FileManager
 
 	/**
 	 * constructor for FileManager object
-	 */
+	 
 	public FileManager()
 	{
             //Nothing
 	}
-
+*/
 	/**
 	 * pre must have valid text file
 	 * post prevSearch is returned from user textFile
@@ -42,16 +42,16 @@ public class FileManager
 		Search prevSearch = new Search();
 		try 
 		{                                        
-			String temp = PATH + userName + SUFFIX;
+			String userPath = PATH + userName + SUFFIX;
 			String newLine = "StartTime ";           //This is the indicator that we've reached a new search
 			String endMidLocs = "***endSearch";   //This is the indicator that we've reached the end of a seach               
-			File file = new File(temp);
+			File file = new File(userPath);
 
 			ArrayList<Location> locations = new ArrayList<Location>();
 
 			if( file.exists() )
 			{                
-				BufferedReader br = new BufferedReader(new FileReader(temp));
+				BufferedReader br = new BufferedReader(new FileReader(userPath));
 				//get all lines from file
 				int index = 0;
 				String currLine;
@@ -63,7 +63,7 @@ public class FileManager
 						index++;
 						if(index == searchIndex) //If this is the right search
 						{
-                                                        String startingTime = currLine.substring(newLine.length());
+                            String startingTime = currLine.substring(newLine.length());
 							prevSearch.setStartTime(Double.valueOf(startingTime));
 
 							//Then as long as the next line isn't the end of search line, make locations
@@ -113,8 +113,9 @@ public class FileManager
 	}
 
 	/**
-	 * Description- need non empty file, shows if file has MAX_PREVIOUS_TRIPS searches (full) or less
-	 * 
+	 * Description- need non empty file, 
+	 * shows if file has MAX_PREVIOUS_TRIPS searches (full) or less
+	 * return true if file is full
 	 */
 	public boolean isFull(File file)
 	{
@@ -123,22 +124,26 @@ public class FileManager
 		String newLine = "StartTime";
 		try {
 			Scanner line = new Scanner(file);
+			Scanner inLine = null ;
 			//get all lines from file
 			while(line.hasNext())
                         {
 				String currLine = line.nextLine();
-				Scanner inLine = new Scanner(currLine);
+				inLine = new Scanner(currLine);
 				//find new search token
 				if(inLine.next().equals(newLine))
 				{
 					searchCount +=1;
 					if(searchCount >= MAX_PREVIOUS_TRIPS)
 					{
+						line.close();
+						inLine.close();
 						return true;
 					}
 				}                                
 			}
                         line.close();
+                        inLine.close();
 		}
 		catch (FileNotFoundException e) 
                 {

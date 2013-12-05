@@ -2,13 +2,11 @@ package coolgle;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+
 import javax.swing.JOptionPane;
 
 /*****************************************
@@ -28,7 +26,6 @@ public class Location
 {
 	//class variables
 	private String name;
-	private char key;
 	private Coord coord;
 
 	private String address;
@@ -40,24 +37,15 @@ public class Location
 	 */
 	public Location()
 	{
-		name = "";
-		coord = new Coord(0,0);
-		city = "";
-		state = "";
-		address = "";
+		this("", "","","", new Coord(0,0));
 	}
 	/**
 	 * Clone Constructor for location object :
 	 */
 	public Location(Location loc)
 	{
-		this.name = loc.name;
-		this.coord = loc.coord;
-		this.city = loc.city;
-		this.state = loc.state;
-		this.address = loc.address;
+		this(loc.name, loc.city, loc.state, loc.address, loc.coord);
 	}
-
 
 	/**
 	 * Constructor - needs valid non null string;
@@ -71,9 +59,7 @@ public class Location
 		address = data[1];
 		city = data[2];
 		state = data[3];
-		coord = new Coord(0,0);
-		coord.setLatitude((Double.parseDouble(data[4])));
-		coord.setLongitude((Double.parseDouble(data[5])));
+		coord = new Coord((Double.parseDouble(data[4])),(Double.parseDouble(data[5])) );
 	}
 
 	/**
@@ -83,11 +69,7 @@ public class Location
 	public Location(String name, double latitude, double longitude, String city, 
 			String state, String address)
 	{
-		this.name = name;
-		coord = new Coord (latitude, longitude);
-		this.city = city;
-		this.state = state;
-		this.address = address;
+		this(name, address, city, state, new Coord(latitude, longitude));
 	}
 
 	/**
@@ -103,9 +85,6 @@ public class Location
 		this.address = address;
 	}
 
-
-	
-
 	/**
 	 * @return the name
 	 */
@@ -118,18 +97,7 @@ public class Location
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return the key
-	 */
-	public char getKey() {
-		return key;
-	}
-	/**
-	 * @param key the key to set
-	 */
-	public void setKey(char key) {
-		this.key = key;
-	}
+
 	/**
 	 * @return the coord
 	 */
@@ -240,7 +208,6 @@ public class Location
 	}
 
 
-
 	/**
 	 * Description- Returns true if no errors, false if otherwise
 	 */
@@ -278,6 +245,7 @@ public class Location
 						, "Failure", JOptionPane.ERROR_MESSAGE);
 				success = false;
 			}
+			br.close();
 		}
 		catch (FileNotFoundException e)
 		{        

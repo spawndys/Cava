@@ -3,6 +3,7 @@ package coolgle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 
 /*****************************************
@@ -38,12 +39,7 @@ public class Search
          */
         public Search()
         {
-            //Default Contructor
-            startTime = 8.00; // Default time in GUI
-            optimized = false;
-            start = new Location();
-            end = new Location();
-            userName = "";
+        	this("", new Location(), new Location(), new ArrayList<Location>());
         }
         
         /**
@@ -51,15 +47,17 @@ public class Search
          */
         public Search(String un)
         {
+        	this(un, new Location(), new Location(), new ArrayList<Location>());
             //Default Contructor
-            startTime = 8.00; // Default time in GUI
-            optimized = false;
-            start = new Location();
-            end = new Location();
-            userName = un;
         }
-        
    
+        /**
+         * Initialized constructor for creating  valid search (Coord not included) */
+        public Search(String userName, Location start, Location end,
+                        ArrayList<Location> locations)
+        {
+        	this("8.00", userName, start, end, locations, new ArrayList<Coord>());
+        }
         /**
          * Initialized constructor for creating  valid search (Coord included) */
         public Search(String startTime, String userName, Location start, Location end,
@@ -75,18 +73,6 @@ public class Search
                 optimized = false;
                 
         }
-        /**
-         * Initialized constructor for creating  valid search (Coord not included) */
-        public Search(String userName, Location start, Location end,
-                        ArrayList<Location> locations)
-        {
-                this.userName = userName;
-                this.start = start;
-                this.end = end;
-                this.locations = locations;
-                this.shortestPath = shortestPath;
-        }
-        
         
         /**
          * hasShortest
@@ -195,13 +181,13 @@ public class Search
          * removeLocation
          * Description - Removes the given location from the arraylist of mid locations.
          */
-        public boolean removeLocation(Location newLocation)
+        public boolean removeLocation(Location removeLocation)
         {
             //Search through the arraylist, if object exist remove it.
             boolean removed = false;
             for ( int i = 0; i < locations.size() && !removed; i++ )
             {
-                if (locations.get(i).isSame(newLocation))
+                if (locations.get(i).isSame(removeLocation))
                 {
                     locations.remove(i);
                     removed = true;

@@ -21,35 +21,28 @@
 
 package coolgle;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-
-import java.io.IOException;
-import javax.swing.JOptionPane;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
 
 public class Geocoder 
 {   
-    /**
-     * Geocoder
-     * Description - Standard Constructor. 
-     */
-    public Geocoder()
-    {
-        // Create Object
-    }
-
+  
     /**
      * createLocation
      * Description - Creates and returns a location object based on a input string

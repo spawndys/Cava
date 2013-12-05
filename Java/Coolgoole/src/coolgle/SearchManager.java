@@ -23,6 +23,7 @@ public class SearchManager
         
         public void sortShortestDistance(Search search)
         {
+        	//if search already calculated the shortest distance, don't have to go farther
         	if(search.hasShortest()) return;
                 //get start and end locations from search
                 //sort locations start-end with shortest distance
