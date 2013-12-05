@@ -1,26 +1,26 @@
 /*****************************************
  ** File: UserAuthentication
  ** Team Name: Cava++
- *Date: 10/18/13
+ ** Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu, 
  ** Lizset Chavez <lizset1@umbc.edu>
  ** Patrick Ritchie <ritc1@umbc.edu>,
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- File that simulates an authenticator to application
+ ** Description- File that simulates an authenticator to application
  ** for a user
 ***********************************************
-* To be called from the adminGui class / Signin Gui class 
+* To be called from the adminGui class / Sign in Gui class 
 * and signupGui class / and switching to and from admin view. 
 * The userAuthentication acts as
 * a communicator between the application and the userFiles. 
 * ***********************************************/
-
 package coolgle;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
 
 public class UserAuthentication 
@@ -39,12 +38,12 @@ public class UserAuthentication
         //class variables
 	/**
 	 * constructor for UserAuthentication object
-	 
+	 */
 	public UserAuthentication()
         {
             
 	}
-*/
+
 	/**
 	 * logUser
 	 * Description - Given a UN / Password and userType, checks to see 
@@ -59,7 +58,7 @@ public class UserAuthentication
             
             if (pass.compareTo(getPassword(userName)) == 0)
             {
-                if (!(getType(userName) == 0 && type == 1)) //Checks to see if a user tries to log in as an admin
+                if (!(getKey(userName) == 0 && type == 1)) //Checks to see if a user tries to log in as an admin
                     login = true;
             }
             
@@ -112,7 +111,7 @@ public class UserAuthentication
                     addedSuccessfully = false; 
                 } 
             
-                // Then create the user's data file, but only they don't already have one: 
+                // Then create the user file, but only they don't already have one: 
                 FileManager fm = new FileManager();
                 if (!fm.userFileExists(name)) fm.addUserFile(name);
                 
@@ -212,7 +211,6 @@ public class UserAuthentication
                     if ( data[0].compareTo(userName) == 0 )
                         returnEmail = data[2];
                 }
-                br.close();
             } 
             catch (IOException ex) 
             {
@@ -241,27 +239,24 @@ public class UserAuthentication
                     if ( data[0].compareTo(userName) == 0 )
                         returnPass = data[1];
                 }
-                br.close();
             } 
             catch (IOException ex) 
             {
                 Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-            	
             }
             
             return returnPass;
         }
         
-        /**getType
+        /**getKey
 	 * Description- Given user name, returns the users is a user (0) or admin (1)
 	 * Pre- 
 	 * Post -
 	 */
-	public int getType(String userName)
+	public int getKey(String userName)
         {
             //Spin through file, find user, grab password section :
-            String returnType = "";
+            String returnKey = "";
             try 
             {  
                 BufferedReader br = new BufferedReader(new FileReader(USERFILE));
@@ -270,20 +265,19 @@ public class UserAuthentication
                 {
                     String[] data = userString.split("\\|");
                     if ( data[0].compareTo(userName) == 0 )
-                        returnType = data[3];
+                        returnKey = data[3];
                 }
-                br.close();
             } 
             catch (IOException ex) 
             {
                 Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            return Integer.parseInt(returnType); 
+            return Integer.parseInt(returnKey); 
         }
         
         
-        /**ArrayList
+        /**getNames
 	 * Description - Returns an array list of all the user names. 
 	 * Pre- 
 	 * Post -
@@ -301,7 +295,6 @@ public class UserAuthentication
                     String un = data[0];
                     names.add(un);
                 }
-                br.close();
             } 
             catch (IOException ex) 
             {
@@ -336,7 +329,6 @@ public class UserAuthentication
                         addUserWithType(userName, userPass, userEmail, userType);
                     }
                 }
-                br.close();
             } 
             catch (IOException ex) 
             {

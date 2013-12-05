@@ -1,9 +1,5 @@
-package coolgle;
-import java.io.*;
-import java.util.*;
-import javax.swing.JOptionPane;
 /*****************************************
- ** File: KMlCreator
+ ** File: FileManager
  ** Team Name: Cava++
  *Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
@@ -12,9 +8,16 @@ import javax.swing.JOptionPane;
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- File that Parses Search into a txt file
- ** and a txt File into search
+ ** Decription- File that Parses Search into a .txt file
+ ** and a .txt File into search
  ***********************************************/
+
+package coolgle;
+
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
 public class FileManager
 {
 	//class variables
@@ -24,12 +27,12 @@ public class FileManager
 
 	/**
 	 * constructor for FileManager object
-	 
+	 */
 	public FileManager()
 	{
             //Nothing
 	}
-*/
+
 	/**
 	 * pre must have valid text file
 	 * post prevSearch is returned from user textFile
@@ -42,16 +45,16 @@ public class FileManager
 		Search prevSearch = new Search();
 		try 
 		{                                        
-			String userPath = PATH + userName + SUFFIX;
+			String temp = PATH + userName + SUFFIX;
 			String newLine = "StartTime ";           //This is the indicator that we've reached a new search
 			String endMidLocs = "***endSearch";   //This is the indicator that we've reached the end of a seach               
-			File file = new File(userPath);
+			File file = new File(temp);
 
 			ArrayList<Location> locations = new ArrayList<Location>();
 
 			if( file.exists() )
 			{                
-				BufferedReader br = new BufferedReader(new FileReader(userPath));
+				BufferedReader br = new BufferedReader(new FileReader(temp));
 				//get all lines from file
 				int index = 0;
 				String currLine;
@@ -63,7 +66,7 @@ public class FileManager
 						index++;
 						if(index == searchIndex) //If this is the right search
 						{
-                            String startingTime = currLine.substring(newLine.length());
+                                                        String startingTime = currLine.substring(newLine.length());
 							prevSearch.setStartTime(Double.valueOf(startingTime));
 
 							//Then as long as the next line isn't the end of search line, make locations
@@ -107,15 +110,14 @@ public class FileManager
 		}
 
                 prevSearch.setUserName(userName);
-                prevSearch.setOptimized(false);
+                prevSearch.setOptimized(true);
                 
 		return prevSearch;
 	}
 
 	/**
-	 * Description- need non empty file, 
-	 * shows if file has MAX_PREVIOUS_TRIPS searches (full) or less
-	 * return true if file is full
+	 * Description- need non empty file, shows if file has MAX_PREVIOUS_TRIPS searches (full) or less
+	 * 
 	 */
 	public boolean isFull(File file)
 	{
@@ -124,26 +126,22 @@ public class FileManager
 		String newLine = "StartTime";
 		try {
 			Scanner line = new Scanner(file);
-			Scanner inLine = null ;
 			//get all lines from file
 			while(line.hasNext())
                         {
 				String currLine = line.nextLine();
-				inLine = new Scanner(currLine);
+				Scanner inLine = new Scanner(currLine);
 				//find new search token
 				if(inLine.next().equals(newLine))
 				{
 					searchCount +=1;
 					if(searchCount >= MAX_PREVIOUS_TRIPS)
 					{
-						line.close();
-						inLine.close();
 						return true;
 					}
 				}                                
 			}
                         line.close();
-                        inLine.close();
 		}
 		catch (FileNotFoundException e) 
                 {

@@ -1,5 +1,5 @@
 /*****************************************
- ** File: Gui
+ ** File: Geocoder
  ** Team Name: Cava++
  ** Date: 10/18/13
  ** E-mail: 
@@ -12,37 +12,44 @@
 * Description : This class is used to turn a string into a location object, 
 * grabbing the rest of the information from Google's geocoding service. 
 * Should only be called from AddLocationGui Class
-* ***********************************************/
-// NOTE : Makes use of the library found here : 
-// https://code.google.com/p/geocoder-java/
-// Example Code Found here : 
-// https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
-
-
+* ***********************************************
+* NOTE : Makes use of the library found here : 
+* https://code.google.com/p/geocoder-java/
+* Example Code Found here : 
+* https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
+ ***********************************************/
+ 
 package coolgle;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
 
 public class Geocoder 
 {   
-  
+    /**
+     * Geocoder
+     * Description - Standard Constructor. 
+     */
+    public Geocoder()
+    {
+        // Create Object
+    }
+
     /**
      * createLocation
      * Description - Creates and returns a location object based on a input string

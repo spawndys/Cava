@@ -1,7 +1,7 @@
 /*****************************************
-** File: KMlCreator
+** File: AddLocationGui
 ** Team Name: Cava++
-*Date: 10/18/13
+** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
@@ -35,7 +35,7 @@ public class AddLocationGui extends javax.swing.JFrame
      */
     public AddLocationGui(adminGui mainFrame) 
     {
-        setUpGui();
+        setUp();
         status = 0;
         m_main = mainFrame; 
     }
@@ -48,7 +48,7 @@ public class AddLocationGui extends javax.swing.JFrame
      */
     public AddLocationGui(Location newLocation, adminGui mainFrame) 
     {
-        setUpGui();
+        setUp();
         
         this.loNameText.setText(newLocation.getName());
         this.loLatText.setText(String.valueOf(newLocation.getLatitude()));
@@ -74,7 +74,7 @@ public class AddLocationGui extends javax.swing.JFrame
     */
     public AddLocationGui(Location newLocation) 
     {
-        setUpGui();
+        setUp();
         
         this.loNameText.setText(newLocation.getName());
         this.loLatText.setText(String.valueOf(newLocation.getLatitude()));
@@ -100,7 +100,7 @@ public class AddLocationGui extends javax.swing.JFrame
      * pre 
      * post sets up gui screen
      */
-    public void setUpGui()
+    public void setUp()
     {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frm = super.getSize();
@@ -120,6 +120,7 @@ public class AddLocationGui extends javax.swing.JFrame
      * pre 
      * post initializes components
      */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() 
 	 {
@@ -157,6 +158,14 @@ public class AddLocationGui extends javax.swing.JFrame
 
         loLatLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         loLatLabel.setText("Latitude: ");
+
+        loLatText.setToolTipText("");
+        loLatText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loLatTextActionPerformed(evt);
+            }
+        });
+
 
         saveLocationBtn.setIcon(new javax.swing.ImageIcon("Images\\save_location_button.jpg")); // NOI18N
         saveLocationBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +250,14 @@ public class AddLocationGui extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    /**
+     * pre 
+     * post
+     * @param evt
+     */
+    private void loLatTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loLatTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loLatTextActionPerformed
     /**
      * pre
      * post saves a location when clicked
@@ -255,10 +271,16 @@ public class AddLocationGui extends javax.swing.JFrame
         {
             // Error if not all data filled in 
             if ((this.loNameText.getText().isEmpty() && this.loAddressText.getText().isEmpty()) ||
-                this.loLatText.getText().isEmpty() || this.loLongText.getText().isEmpty())
+                this.loLatText.getText().isEmpty() || this.loLongText.getText().isEmpty() )
             {
                 JOptionPane.showMessageDialog(null, "Locations cannot be saved unless the following fields contain data:"
                         + "\nLatitude\nLongitude\nName or Address", "Failure", JOptionPane.ERROR_MESSAGE);
+            }
+            // Also, don't allow | to be used, will break reading from file 
+            else if ( this.loNameText.getText().contains("|") || this.loCityText.getText().contains("|") ||
+                this.loStateText.getText().contains("|") || this.loAddressText.getText().contains("|"))
+            {
+                JOptionPane.showMessageDialog(null, "One or more fields contains an illegal character", "Failure", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
@@ -304,15 +326,15 @@ public class AddLocationGui extends javax.swing.JFrame
                 else
                 {
                     // Ask the user if they really want to add the location the geocoder found. 
-                    int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : \n" + 
-                                        geoCoderInput + "\nFound : \n" + newLocation + "\nIs this the location you'd like to add? ");
+                    int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : " + 
+                                        geoCoderInput + "\n\nResult : \n" + newLocation + "\n\nIs this the location you'd like to add?",
+                                        "Goecoder Search", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (comfirm == 0) // Yes
                     {
                         // Add location to database
                         if ( !newLocation.printToFile("LocationDatabase.txt", false) )
                         {
-                              JOptionPane.showMessageDialog(null, "Error occured printing location to database", "Failure", JOptionPane.ERROR_MESSAGE);
-                              returnToMain = false; 
+                             returnToMain = false; 
                         }
                         else
                             returnToMain = true; 
@@ -342,16 +364,16 @@ public class AddLocationGui extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addLocationLabel;
     private javax.swing.JLabel loAddressLabel;
-    private javax.swing.JLabel loCityLabel;
-    private javax.swing.JLabel loLatLabel;
-    private javax.swing.JLabel loLongLabel;
-    private javax.swing.JLabel loNameLabel;
-    private javax.swing.JLabel loStateLabel;
     private javax.swing.JTextField loAddressText;
+    private javax.swing.JLabel loCityLabel;
     private javax.swing.JTextField loCityText;
+    private javax.swing.JLabel loLatLabel;
     private javax.swing.JTextField loLatText;
+    private javax.swing.JLabel loLongLabel;
     private javax.swing.JTextField loLongText;
+    private javax.swing.JLabel loNameLabel;
     private javax.swing.JTextField loNameText;
+    private javax.swing.JLabel loStateLabel;
     private javax.swing.JTextField loStateText;
     private javax.swing.JButton saveLocationBtn;
     // End of variables declaration//GEN-END:variables

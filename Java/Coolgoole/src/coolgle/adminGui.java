@@ -1,5 +1,5 @@
 /*****************************************
-** File: KMlCreator
+** File: adminGui
 ** Team Name: Cava++
 ** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
@@ -8,22 +8,20 @@
 ** Xiaofei He <xiaofei2@umbc.edu>,
 ** Yo-Han Kim <ykim18@umbc.edu>,
 ** Jim Millican <jmill1@umbc.edu>
-** Decription- The admin console class. 
+** Description- The admin console class. 
  * Used to edit location database and commicate with 
  * User Authenication for user related queries. 
 ***********************************************/
 package coolgle;
 
-import java.awt.Dimension;
-import java.awt.List;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -233,11 +231,8 @@ public class adminGui extends javax.swing.JFrame
         welcomLabel2.setText("Coolgles Admin");
 
         label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label1.setText("<html>\nEnter the location information below <br>\nand we will show you the way!\n</html>");
-
-        label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label2.setText("<html> The list of locations chosen is shown <br> on the right panel, click Map It to <br> show it on Google Earth! </html>");
-
+        label1.setText("<html>\nSelect a location or user name from the lists below <br>\nand use the buttons underneath to edit the object!\n</html>");
+ 
         switchUserBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_user.jpg")); // NOI18N
 
         loModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -422,8 +417,9 @@ public class adminGui extends javax.swing.JFrame
     public void populateUserList()
     {
             // Fill in User List
-            DefaultListModel listModel = new DefaultListModel();
-            userDisplay.setModel(new DefaultListModel());
+            DefaultListModel listModel;
+            listModel = new DefaultListModel();
+            userDisplay.setModel(listModel);
             
             UserAuthentication userNames = new UserAuthentication();
             ArrayList<String> allNames = userNames.getNames();
@@ -462,7 +458,12 @@ public class adminGui extends javax.swing.JFrame
                 {
                     Location newLocation = new Location(locationString);
                     locationlist.add(newLocation);
-                    listModel.addElement(newLocation.getName());
+                }
+                Collections.sort(locationlist);
+                
+                for (int j = 0; j < locationlist.size(); j++)
+                {
+                    listModel.addElement(locationlist.get(j).getName());
                 }
             }
             catch (FileNotFoundException ex)
@@ -570,23 +571,25 @@ public class adminGui extends javax.swing.JFrame
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList jList1;
-    private javax.swing.JList locationDisplay;
-    private javax.swing.JList userDisplay;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
     private javax.swing.JButton loDelBtn;
     private javax.swing.JButton loModiSelectBtn;
+    private javax.swing.JLabel loModifyLabel;
+    private javax.swing.JList locationDisplay;
     private javax.swing.JButton newLocaBtn;
     private javax.swing.JButton switchUserBtn;
     private javax.swing.JButton userDelBtn;
+    private javax.swing.JList userDisplay;
     private javax.swing.JButton userModifyBtn;
-    private javax.swing.JLabel label1;
-    private javax.swing.JLabel label2;
-    private javax.swing.JLabel loModifyLabel;
     private javax.swing.JLabel userModifyLabel;
     private javax.swing.JLabel welcomLabel1;
     private javax.swing.JLabel welcomLabel2;
     // End of variables declaration//GEN-END:variables
+    private List locationList;
+    private ArrayList[] userList;
     
 }

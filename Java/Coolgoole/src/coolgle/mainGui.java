@@ -1,26 +1,24 @@
 /*****************************************
- ** File: KMlCreator
+ ** File: mainGui
  ** Team Name: Cava++
- *Date: 10/18/13
+ ** Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
  ** Lizset Chavez <lizset1@umbc.edu>
  ** Patrick Ritchie <ritc1@umbc.edu>,
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Main Gui class, handles all the visual effects and backend code
+ ** Description- Main Gui class, handles all the visual effects and backend code
  * of creating a trip.
  ***********************************************/
 package coolgle;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -302,7 +300,7 @@ public class mainGui extends javax.swing.JFrame
         jButton1.setText("Remove Selected");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeSelActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -425,7 +423,9 @@ public class mainGui extends javax.swing.JFrame
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 filterTextKeyReleased(evt);
             }
-
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                filterTextKeyTyped(evt);
+            }
         });
 
         filterCategory.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -603,6 +603,13 @@ public class mainGui extends javax.swing.JFrame
 	}//GEN-LAST:event_filterTextActionPerformed
 
 	/**
+	 *none
+	 */
+	private void filterTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyTyped
+		//
+	}//GEN-LAST:event_filterTextKeyTyped
+
+	/**
 	 * Description- updateStartingTime(); listener
 	 * @param evt
 	 */
@@ -678,7 +685,7 @@ public class mainGui extends javax.swing.JFrame
 	 * Description- removeSelectedMidTrip(); listener
 	 * @param evt
 	 */
-	private void removeSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 		removeSelectedMidTrip();
 	}//GEN-LAST:event_jButton1ActionPerformed
 
@@ -732,8 +739,8 @@ public class mainGui extends javax.swing.JFrame
 		if ( prevList.getSelectedIndex() > 0 )
                 {
 			search = fm.getPrev( user, prevList.getSelectedIndex() );
-                        search.setOptimized(false);
-                        user  = search.getUserName();
+                        //search.setOptimized(false);
+                        //user  = search.getUserName();
                 }
                 if ( prevList.getSelectedIndex() == 0 )
                 {
@@ -747,7 +754,7 @@ public class mainGui extends javax.swing.JFrame
 	/**
 	 * 
 	 * Description-  Called when user selects a time in the starting time drop-down
-	 * Sets the starting time member vairable in the search and updates the right pane.
+	 * Sets the starting time member variable in the search and updates the right pane.
 	 * @param evt
 	 */
 	public void updateStartingTime()
@@ -927,7 +934,15 @@ public class mainGui extends javax.swing.JFrame
 					, "Failure", JOptionPane.ERROR_MESSAGE);
 			validTrip = false; 
 		}
-
+                
+                if (search.getNumMidLocations() > 2) 
+                {
+                    if(search.getMidLocations().get(0).isSame(search.getStart())) 
+                            search.getMidLocations().remove(0);
+                    if(search.getMidLocations().get(search.getMidLocations().size() - 1).isSame(search.getEnd())) 
+                            search.getMidLocations().remove(search.getMidLocations().size() - 1);
+                }
+                
 		if (validTrip)
 			prepareTrip();
 	}
@@ -940,16 +955,19 @@ public class mainGui extends javax.swing.JFrame
 	// search and opens the file. */
 	public void prepareTrip()
 	{
-                SearchManager newSearchManager = new SearchManager();
-                newSearchManager.sortShortestDistance(search);
+		boolean alreadySaved = false;
+				if(search.hasShortest()) alreadySaved = true;
+                SearchManager.sortShortestDistance(search);
                 
                 int comfirm = JOptionPane.showConfirmDialog(null, "Your trip has been validated and sorted, \n"
                         + "Would you like to save it and view it on google earth now?");
                 if (comfirm == 0) // Yes
                 {
                     // Save this search in previous searches.
-                    FileManager fm = new FileManager();
-                    fm.addSearch(search);
+                    if(!alreadySaved){
+                    	FileManager fm = new FileManager();
+                    	fm.addSearch(search);
+                    }
 
                     updateVisualDisplay();
                 
@@ -989,6 +1007,7 @@ public class mainGui extends javax.swing.JFrame
                 // Set End Location
 		endLocationDisplay.setText(search.getEnd().getName());
 
+                // Set Mid Locations
 		DefaultListModel listModel;
 		listModel = new DefaultListModel();
 		midLocationsList.setModel(listModel);
@@ -998,10 +1017,7 @@ public class mainGui extends javax.swing.JFrame
 		// Update Previous Search Dropdown : 
 		FileManager fm1 = new FileManager();
 		
-                
                 // Save the current selection of the previous search dropdown : 
-                //int oldSelection = prevList.getSelectedIndex();
-
 		DefaultComboBoxModel comboModel;
                 
 		comboModel = new DefaultComboBoxModel();
