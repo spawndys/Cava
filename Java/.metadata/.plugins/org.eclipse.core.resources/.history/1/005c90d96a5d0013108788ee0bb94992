@@ -1,0 +1,357 @@
+/*****************************************
+ ** File: UserAuthentication
+ ** Team Name: Cava++
+ *Date: 10/18/13
+ ** E-mail: Daniel Brandes bradan1@umbc.edu, 
+ ** Lizset Chavez <lizset1@umbc.edu>
+ ** Patrick Ritchie <ritc1@umbc.edu>,
+ ** Xiaofei He <xiaofei2@umbc.edu>,
+ ** Yo-Han Kim <ykim18@umbc.edu>,
+ ** Jim Millican <jmill1@umbc.edu>
+ ** Decription- File that simulates an authenticator to application
+ ** for a user
+***********************************************
+* To be called from the adminGui class / Signin Gui class 
+* and signupGui class / and switching to and from admin view. 
+* The userAuthentication acts as
+* a communicator between the application and the userFiles. 
+* ***********************************************/
+
+package coolgle;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+public class UserAuthentication 
+{
+	private static String USERFILE = "UID-Pass.txt"; 
+        private static int MAX_USERS = 50; 
+        
+        //class variables
+	/**
+	 * constructor for UserAuthentication object
+	 
+	public UserAuthentication()
+        {
+            
+	}
+*/
+	/**
+	 * logUser
+	 * Description - Given a UN / Password and userType, checks to see 
+         *               the credentials are correct. Note : passwords are stored as char[]
+         *               Note, user types are 1 = admin, 0 = user
+	 */
+	public boolean logUser(String userName, char[] password, int type)
+        {
+            //Get string for password : 
+            String pass = new String(password);
+            boolean login = false;
+            
+            if (pass.compareTo(getPassword(userName)) == 0)
+            {
+                if (!(getType(userName) == 0 && type == 1)) //Checks to see if a user tries to log in as an admin
+                    login = true;
+            }
+            
+            if ( userName.compareTo("admin") == 0 && pass.compareTo("admin") == 0)
+            {
+                //Always allow the combination admin, admin to work
+                login = true;
+            }
+            return login; 
+        }
+        
+	/**addUser
+	 * Description - Given a new un / pw / email adds the user to the list of users
+         *               Note : All users are created as users, an admin must promote them to admin
+         *               returns true if user was successfully created. 
+         *               Note : Also needs to create a user File to store recent searches, named same as username
+	 * Pre- 
+	 * Post -
+	 */
+	public boolean addUser(String name, String pass, String email)
+        {
+            return addUserWithType(name, pass, email, 0); 
+        }
+        
+        /**addUserWithType
+	 * Description - Given a new un / pw / email adds the user to the list of users
+         *               returns true if user was successfully created. 
+         *               Note : Also needs to create a user File to store recent searches, named same as username
+         *               Shows an error if you are only the user limit. 
+	 * Pre- 
+	 * Post -
+	 */
+	public boolean addUserWithType(String name, String pass, String email, int userType)
+        {
+            boolean addedSuccessfully = true; 
+            
+            if (getNames().size() <= MAX_USERS)
+            {
+                BufferedWriter writer = null;
+                try 
+                {
+                    String newUser = name + "|" + pass + "|" + email + "|" + userType;
+                    writer = new BufferedWriter(new FileWriter(USERFILE, true));
+                    writer.append(newUser);
+                    writer.newLine();
+                    writer.close();
+                } 
+                catch (IOException ex) 
+                {
+                    addedSuccessfully = false; 
+                } 
+            
+                // Then create the user's data file, but only they don't already have one: 
+                FileManager fm = new FileManager();
+                if (!fm.userFileExists(name)) fm.addUserFile(name);
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Maximun number of users reached", "Failure", JOptionPane.ERROR_MESSAGE);
+            }
+            return addedSuccessfully; 
+        }
+        
+        
+        
+	/**removeUser
+	 * Description- Given the userName, removes them from the file of users
+         *              Also, removes their file, if removeFile parameter is true.
+	 * Pre- 
+	 * Post -
+	 */
+	public void removeUser(String userName, boolean removeFile)
+        {
+            // Create a arraylist of all the users except for the one being removed. 
+            ArrayList<String> users = new ArrayList<String>();
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+  
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    if ( data[0].compareTo(userName) != 0 ) // This Line needs to be written to new file. 
+                    {
+                        users.add(userString);
+                    }
+                    else
+                    {
+                        //This is the user we want to detele, don't reprint. 
+                    }
+                }
+                br.close();
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            // Clear file and reAdd users 
+            BufferedWriter clearFile = null;
+            BufferedWriter rewriteFile = null;
+            try 
+            {
+                clearFile = new BufferedWriter(new FileWriter(USERFILE, false));
+                clearFile.append("");
+                clearFile.close();
+                
+                rewriteFile = new BufferedWriter(new FileWriter(USERFILE, true));
+                
+                for (int i = 0; i < users.size(); i++)
+                {
+                    rewriteFile.append(users.get(i));
+                    rewriteFile.newLine();
+                }
+                
+                rewriteFile.close();
+            } 
+            catch (IOException ex) 
+            {
+                //Err
+            } 
+           
+            // Delete File 
+            if (removeFile)
+            {
+                FileManager fileDel = new FileManager();
+                fileDel.removeUserFile(userName);
+            }
+        }
+        
+  
+        /**getEmail
+	 * Description- Given user name, return the users email
+	 * Pre- 
+	 * Post -
+	 */
+	public String getEmail(String userName)
+        {
+            //Spin through file, find user, grab email section :
+            String returnEmail = "";
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    if ( data[0].compareTo(userName) == 0 )
+                        returnEmail = data[2];
+                }
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return returnEmail;
+        }
+        
+        /**getPassword
+	 * Description- Given user name, return the users password
+	 * Pre- 
+	 * Post -
+	 */
+	public String getPassword(String userName)
+        {
+            //Spin through file, find user, grab password section :
+            String returnPass = "";
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    if ( data[0].compareTo(userName) == 0 )
+                        returnPass = data[1];
+                }
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+            	br.
+            }
+            
+            return returnPass;
+        }
+        
+        /**getType
+	 * Description- Given user name, returns the users is a user (0) or admin (1)
+	 * Pre- 
+	 * Post -
+	 */
+	public int getType(String userName)
+        {
+            //Spin through file, find user, grab password section :
+            String returnType = "";
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    if ( data[0].compareTo(userName) == 0 )
+                        returnType = data[3];
+                }
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return Integer.parseInt(returnType); 
+        }
+        
+        
+        /**ArrayList
+	 * Description - Returns an array list of all the user names. 
+	 * Pre- 
+	 * Post -
+	 */
+	public ArrayList<String> getNames()
+        {
+            ArrayList<String> names = new ArrayList<String>();
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    String un = data[0];
+                    names.add(un);
+                }
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            Collections.sort(names); //Get names in sorted order
+            
+            return names;
+        }
+        
+        /**updateUser
+	 * Description - Returns an arraylist of all the user names. 
+	 * Pre- 
+	 * Post -
+	 */
+	public void updateUser(String oldUserName, String userName, String userPass, String userEmail, int userType)
+        {
+            try 
+            {  
+                BufferedReader br = new BufferedReader(new FileReader(USERFILE));
+                String userString;
+                while ((userString = br.readLine()) != null)
+                {
+                    String[] data = userString.split("\\|");
+                    String un = data[0];
+                    if ( un.compareTo(oldUserName) == 0 ) // This is the user we want to edit
+                    {
+                        // Remove the user from the file
+                        removeUser(oldUserName, false); // Just remove uesr, NOT their file
+                        // Readd them to the end
+                        addUserWithType(userName, userPass, userEmail, userType);
+                    }
+                }
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(UserAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        /**userExists 
+	 * Description - Returns true if username is already taken 
+	 * Post - Returns if the username is already taken
+	 */
+	public boolean userExists(String userName)
+        {
+            ArrayList<String> names = getNames();
+            boolean exists = false; 
+            
+            if (names.contains(userName) || userName.compareTo("admin") == 0 ) // Note : admin is a resv. name
+                exists = true;
+            
+            return exists;    
+        }
+}

@@ -18,47 +18,97 @@
         <Style>
             <BalloonStyle/>
         </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
         <Placemark>
             <name>Shortest Path</name>
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-76.660366,40.288136 -76.729337,39.9618175 -75.7465003,40.8636993 -80.012344,40.4568579 -75.6751545,39.8711885</coordinates>
+                <coordinates>-77.0161664,38.8882143 -77.0227978,38.8880447 -77.0255154,38.8879505 -77.0274801,38.8881396 -77.030071,38.891583 -77.0352372,38.889463 -76.8558025,39.2224545 -76.6039894,39.2872746 -78.8297021,42.9574196 -77.0641479,38.9140633</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>Hershey's Chocolate World (0)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <name>National Museum of the American Indian  (0)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-76.660366,40.288136</coordinates>
+                <coordinates>-77.0161664,38.8882143</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Police Heritage Museum (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 08:25 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 23 miles</description>
+            <name>Hirshhorn Museum    (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-76.729337,39.9618175</coordinates>
+                <coordinates>-77.0227978,38.8880447</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Old Jail Museum (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 09:53 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 104 miles</description>
+            <name>National Museum of African Art    (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:01 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-75.7465003,40.8636993</coordinates>
+                <coordinates>-77.0255154,38.8879505</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Mattress Factory (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 01:59 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 329 miles</description>
+            <name>Freer Sackler Gallery of Smithsonian   (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:01 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-80.012344,40.4568579</coordinates>
+                <coordinates>-77.0274801,38.8881396</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Longwood Gardens (4)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 06:13 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 562 miles</description>
+            <name>National Museum of American History  (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:01 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-75.6751545,39.8711885</coordinates>
+                <coordinates>-77.030071,38.891583</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Washington Monument     (5)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:01 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <Point>
+                <coordinates>-77.0352372,38.889463</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>African Art Museum of Maryland     (6)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:29 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 25 miles</description>
+            <Point>
+                <coordinates>-76.8558025,39.2224545</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Reginald F. Lewis Museum     (7)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:44 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 39 miles</description>
+            <Point>
+                <coordinates>-76.6039894,39.2872746</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>UB Anderson Gallery  (8)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 01:48 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 318 miles</description>
+            <Point>
+                <coordinates>-78.8297021,42.9574196</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Dumbarton Oaks  (9)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 07:09 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 612 miles</description>
+            <Point>
+                <coordinates>-77.0641479,38.9140633</coordinates>
             </Point>
         </Placemark>
     </Document>

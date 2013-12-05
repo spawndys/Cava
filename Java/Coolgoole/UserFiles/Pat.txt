@@ -52,25 +52,3 @@ Virginia Air & Space Center   |   600 Settlers Landing Road   |   Hampton   |   
 UB Anderson Gallery   |   1 Martha Jackson Place   |   Buffalo   |   New York   | 42.9574196 | -78.8297021
 Yoder Rd   |   Yoder Road   |   Oakland   |   Maryland   | 39.34033 | -79.4121421
 ***endSearch
-StartTime 8.0
-Fire Museum of Maryland | 1301 York Road | Lutherville-Timonium | Maryland | 39.418906 | -76.613626
-Smithsonian American Art Museum | 800 G Street | Washington | District of Columbia | 38.8981861 | -77.0229423
-Yoder Rd | Yoder Road | Oakland | Maryland | 39.34033 | -79.4121421
-UB Anderson Gallery | 1 Martha Jackson Place | Buffalo | New York | 42.9574196 | -78.8297021
-Ford's Museum | 517 10th Street Northwest | Washington | DC | 38.8968174 | -77.0258121
-***endSearch
-StartTime 8.0
-Basilica of the National Shrine of the Immaculate Conception |  | Washington | District of Columbia | 38.9333701 | -77.0006558
-Renwick Gallery | 1661 Pennsylvania Avenue Northwest | Washington | DC | 38.8991098 | -77.038879
-The National Colonial Farm | 3400 Bryan Point Road | Accokeek | MD | 38.6932927 | -77.0654671
-Walters Art Museum | 600 N Charles St | Baltimore | MD | 39.2965947 | -76.6161201
-Police Heritage Museum | 54 West Market Street | York | Pennsylvania | 39.9618175 | -76.729337
-National Geographic Museum | 1145 17th Street Northwest | Washington | DC | 38.905197 | -77.0379892
-***endSearch
-StartTime 20.0
-Hershey's Chocolate World|251 Park Boulevard|Hershey|Pennsylvania|40.288136|-76.660366
-Police Heritage Museum|54 West Market Street|York|Pennsylvania|39.9618175|-76.729337
-Old Jail Museum|128 West Broadway|Jim Thorpe|Pennsylvania|40.8636993|-75.7465003
-Mattress Factory|500 Sampsonia Way|Pittsburgh|Pennsylvania|40.4568579|-80.012344
-Longwood Gardens|1001 Longwood Road|Kennett Square|Pennsylvania|39.8711885|-75.6751545
-***endSearch

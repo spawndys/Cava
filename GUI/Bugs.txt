@@ -1,0 +1,27 @@
+
+Things that need to be tested:
+*window flow
+*user authentication
+*add/edit/remove current/prev searchs
+*promo/demoteuser
+*Ensure all location in database are correct. (There's a few that aren't in the US)
+*Ensure there are over 100 locations in database (I think now we only have ~80) Also, ensure all locations are unique. 
+*Ensure all fields of previous searches are stored correctly. 
+
+
+Fixed : 
+* Ensure nothing is being printed to the screen, warnings should be shown in message boxes.  
+* Should display an "account successfully created" message when making a new account 
+* Searches are not marked as non optimal when they're changed.
+* When admins change user attributes, warning message "file already exists" 
+* No validation on Mod User screen from admin panel.
+* Switch to admin/user screens - should say the name of the user that's currently logged in.
+* Max Length of user names - 25 chars 
+* KML creater displays time incorrect around 12 noon. Ex : displays 0:30 instead of 12:30. Slight issues with mins not display correctly as well. 
+* Renaming a user clears their previous searches. 
+Note : Just removed the admin's ability to rename users. 
+* Erros when running a trip from the admin account.  
+* No way to log out 
+Note : Clicking x on main gui or admin gui now asks if you want to exit or just log out,. 
+* Cant save an edited prev search / After selecting a previous search from dropdown, dropdown defaults back to only having the "Custom Search" option. 
+* When searching for a new location to add, title of dialog is "Select an Option"; should be something better. Also, that message should be cleaner. 

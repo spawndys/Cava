@@ -1,14 +1,14 @@
 /*****************************************
 ** File: Search
 ** Team Name: Cava++
-** Date: 10/18/13
+*Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
 ** Xiaofei He <xiaofei2@umbc.edu>,
 ** Yo-Han Kim <ykim18@umbc.edu>,
 ** Jim Millican <jmill1@umbc.edu>
-** Description- Given a search, the searchManager sorts it into the shortest path
+** Decription- Given a search, the searchManager sorts it into the shortest path
 ***********************************************/
 package coolgle;
 
@@ -21,8 +21,9 @@ public class SearchManager
          * Description-  need valid search, sort locations start-end with shortest distance
          */
         
-        public static void sortShortestDistance(Search search)
+        public void sortShortestDistance(Search search)
         {
+        	//if search already calculated the shortest distance, don't have to go farther
         	if(search.hasShortest()) return;
                 //get start and end locations from search
                 //sort locations start-end with shortest distance

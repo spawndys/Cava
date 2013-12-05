@@ -1,3 +1,4 @@
+package coolgle;
 /*****************************************
  ** File: Main
  ** Team Name: Cava++
@@ -10,15 +11,14 @@
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- Main driver program for a user to use through
  ** a GUI
- ** Description : This should be the only class with a main function
- ** It creates a new UIManager which handles the UI. 
+Desc : This should be the only class with a main function
+* It creates a new UIManager which handles the UI. 
 ***********************************************/
-package coolgle;
-public class Driver 
-{
+public class Driver {
+
 	public static void main(String args[])
         {
-                UIManager UI = new UIManager();
+			UIManager UI = new UIManager();
         }
 
 }

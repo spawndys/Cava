@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
+    <Document>
+        <name>Search1.kml</name>
+        <open>1</open>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Style>
+            <BalloonStyle/>
+        </Style>
+        <Placemark>
+            <name>Shortest Path</name>
+            <LineString>
+                <extrude>0</extrude>
+                <tessellate>1</tessellate>
+                <coordinates>-76.660366,40.288136 -76.729337,39.9618175 -75.7465003,40.8636993 -80.012344,40.4568579 -75.6751545,39.8711885</coordinates>
+            </LineString>
+        </Placemark>
+        <Placemark>
+            <name>Hershey's Chocolate World (0)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <Point>
+                <coordinates>-76.660366,40.288136</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Police Heritage Museum (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:25 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 23 miles</description>
+            <Point>
+                <coordinates>-76.729337,39.9618175</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Old Jail Museum (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 09:53 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 104 miles</description>
+            <Point>
+                <coordinates>-75.7465003,40.8636993</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Mattress Factory (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 01:59 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 329 miles</description>
+            <Point>
+                <coordinates>-80.012344,40.4568579</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Longwood Gardens (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 06:13 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 562 miles</description>
+            <Point>
+                <coordinates>-75.6751545,39.8711885</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

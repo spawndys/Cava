@@ -1,4 +1,16 @@
+package coolgle;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 /*****************************************
+DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
  ** File: Location
  ** Team Name: Cava++
  *Date: 10/18/13
@@ -8,26 +20,12 @@
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Description- Class that represents a location for a search
- * DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
+ ** Decription- Class that represents a location for a search
  ***********************************************/
-
-package coolgle;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import javax.swing.JOptionPane;
-
-
-public class Location implements Comparable<Location>
+public class Location
 {
 	//class variables
 	private String name;
-	private char key;
 	private Coord coord;
 
 	private String address;
@@ -39,24 +37,15 @@ public class Location implements Comparable<Location>
 	 */
 	public Location()
 	{
-		name = "";
-		coord = new Coord(0,0);
-		city = "";
-		state = "";
-		address = "";
+		this("", "","","", new Coord(0,0));
 	}
 	/**
 	 * Clone Constructor for location object :
 	 */
 	public Location(Location loc)
 	{
-		this.name = loc.name;
-		this.coord = loc.coord;
-		this.city = loc.city;
-		this.state = loc.state;
-		this.address = loc.address;
+		this(loc.name, loc.city, loc.state, loc.address, loc.coord);
 	}
-
 
 	/**
 	 * Constructor - needs valid non null string;
@@ -70,9 +59,7 @@ public class Location implements Comparable<Location>
 		address = data[1];
 		city = data[2];
 		state = data[3];
-		coord = new Coord(0,0);
-		coord.setLatitude((Double.parseDouble(data[4])));
-		coord.setLongitude((Double.parseDouble(data[5])));
+		coord = new Coord((Double.parseDouble(data[4])),(Double.parseDouble(data[5])) );
 	}
 
 	/**
@@ -82,11 +69,7 @@ public class Location implements Comparable<Location>
 	public Location(String name, double latitude, double longitude, String city, 
 			String state, String address)
 	{
-		this.name = name;
-		coord = new Coord (latitude, longitude);
-		this.city = city;
-		this.state = state;
-		this.address = address;
+		this(name, address, city, state, new Coord(latitude, longitude));
 	}
 
 	/**
@@ -102,9 +85,6 @@ public class Location implements Comparable<Location>
 		this.address = address;
 	}
 
-
-	
-
 	/**
 	 * @return the name
 	 */
@@ -117,18 +97,7 @@ public class Location implements Comparable<Location>
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return the key
-	 */
-	public char getKey() {
-		return key;
-	}
-	/**
-	 * @param key the key to set
-	 */
-	public void setKey(char key) {
-		this.key = key;
-	}
+
 	/**
 	 * @return the coord
 	 */
@@ -229,15 +198,14 @@ public class Location implements Comparable<Location>
 	public String fileToString() //get shortest Coords()
 	{
 		String returnString = "";
-		returnString += getName().trim() + "|";
-		returnString += getAddress().trim() + "|";
-		returnString += getCity().trim() + "|";
-		returnString += getState().trim() + "|";
-		returnString += getLatitude() + "|";
+		returnString += getName() + " | ";
+		returnString += getAddress() + " | ";
+		returnString += getCity() + " | ";
+		returnString += getState() + " | ";
+		returnString += getLatitude() + " | ";
 		returnString += getLongitude();
 		return returnString;
 	}
-
 
 
 	/**
@@ -273,27 +241,22 @@ public class Location implements Comparable<Location>
 			}
 			else // Already in file, don't add it again, show warning.
 			{
-				JOptionPane.showMessageDialog(null, "This location is already in the database"
+				JOptionPane.showMessageDialog(null, "This location is already in the file"
 						, "Failure", JOptionPane.ERROR_MESSAGE);
 				success = false;
 			}
+			br.close();
 		}
 		catch (FileNotFoundException e)
 		{        
-			JOptionPane.showMessageDialog(null, "Location Database - FileNotFoundException"
-						, "Failure", JOptionPane.ERROR_MESSAGE);
-                        success = false;
+			JOptionPane.showMessageDialog(null, "Database file not found", "Failure", JOptionPane.ERROR_MESSAGE); 
 		}
 		catch (IOException e)
 		{
-			JOptionPane.showMessageDialog(null, "Location Database - IOException"
-						, "Failure", JOptionPane.ERROR_MESSAGE);
-                        success = false;
+			success = false;
 		}
 		return success;
 	}
-        
-        
 	/**
 	 * Description- Returns the distance in miles between the two locations
 	 */
@@ -311,7 +274,7 @@ public class Location implements Comparable<Location>
 				Math.cos(convertToRadians(theta));
 		distance = Math.acos(distance);
 		distance = convertToDegrees(distance);
-		distance = distance * 60 * 1.151515;
+		distance = distance * 60 * 1.1515;
 
 		return distance;
 	}
@@ -320,14 +283,14 @@ public class Location implements Comparable<Location>
 	 */
 	private double convertToRadians(double degrees)
 	{
-		return ( degrees * Math.PI / 180.0 );
+		return( degrees * Math.PI / 180.0 );
 	}
 	/**
 	 * Description- valid radians needed. Returns the degrees from degrees
 	 */
 	private double convertToDegrees(double radians)
 	{
-		return ( radians * 180 / Math.PI );
+		return( radians * 180 / Math.PI );
 	}
 
 	/**
@@ -345,20 +308,12 @@ public class Location implements Comparable<Location>
 
 		return same;
 	}
-        
-    /**
-     * Description- re-populates file system from admin gui
-     */
+	/**
+	 * Description- repopulates filesystem from admingui
+	 */
     public boolean printToFile(String fileName)
     {
         return printToFile(fileName, true);
     }
-    
-    /**
-     * Description - Comparable Function in order to sort location lists. 
-     */
-    public int compareTo(Location other) 
-    {
-        return this.getName().compareTo(other.getName());
-    }
 }
+    

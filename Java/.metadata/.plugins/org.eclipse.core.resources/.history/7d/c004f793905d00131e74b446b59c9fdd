@@ -1,0 +1,327 @@
+package coolgle;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+/*****************************************
+DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
+ ** File: Location
+ ** Team Name: Cava++
+ *Date: 10/18/13
+ ** E-mail: Daniel Brandes bradan1@umbc.edu,
+ ** Lizset Chavez <lizset1@umbc.edu>
+ ** Patrick Ritchie <ritc1@umbc.edu>,
+ ** Xiaofei He <xiaofei2@umbc.edu>,
+ ** Yo-Han Kim <ykim18@umbc.edu>,
+ ** Jim Millican <jmill1@umbc.edu>
+ ** Decription- Class that represents a location for a search
+ ***********************************************/
+public class Location
+{
+	//class variables
+	private String name;
+	private Coord coord;
+
+	private String address;
+	private String city;
+	private String state;
+
+	/**
+	 * Default Constructor for location object :
+	 */
+	public Location()
+	{
+		this("", "","","", new Coord(0,0));
+	}
+	/**
+	 * Clone Constructor for location object :
+	 */
+	public Location(Location loc)
+	{
+		this(loc.name, loc.city, loc.state, loc.address, loc.coord);
+	}
+
+	/**
+	 * Constructor - needs valid non null string;
+	 * Description parses input string
+	 */
+	public Location(String fileInput)
+	{
+		String[] data = fileInput.split("\\|");
+
+		name = data[0];
+		address = data[1];
+		city = data[2];
+		state = data[3];
+		coord = new Coord((Double.parseDouble(data[4])),(Double.parseDouble(data[5])) );
+	}
+
+	/**
+	 * Constructor - needs valid non null entries
+	 * Description creates search with param values(Coord created in constructor)
+	 */
+	public Location(String name, double latitude, double longitude, String city, 
+			String state, String address)
+	{
+		this.name = name;
+		coord = new Coord (latitude, longitude);
+		this.city = city;
+		this.state = state;
+		this.address = address;
+	}
+
+	/**
+	 * Constructor - needs valid non null entries
+	 * Description creates search with param values(Coord created out constructor)
+	 */
+	public Location(String name, String address, String city, String state, Coord coords)
+	{
+		this.name = name;
+		coord = new Coord(coords.getLatitude(), coords.getLongitude());
+		this.city = city;
+		this.state = state;
+		this.address = address;
+	}
+
+
+	
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the coord
+	 */
+	public Coord getCoord() {
+		return coord;
+	}
+	/**
+	 * @param coord the coord to set
+	 */
+	public void setCoord(Coord coord) {
+		this.coord = coord;
+	}
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+	/**
+	 * @param get latitude
+	 */
+	public double getLatitude()
+	{
+		return coord.getLatitude();
+	}
+	/**
+	 * @param get longitude
+	 */
+	public double getLongitude()
+	{
+		return coord.getLongitude();
+	}
+
+	/**
+	 * @param state the longitude to set
+	 */
+	public void setLongitude(double newLongitude)
+	{
+		coord.setLongitude(newLongitude);
+	}
+	/**
+	 * @param state the latitude to set
+	 */
+	public void setLatitude(double newLatitude)
+	{
+		coord.setLatitude(newLatitude);
+	}
+	
+	
+	/**
+	 * Description- Override of toString
+	 */
+	public String toString()
+	{
+		String returnString = "";
+		returnString += "Name : " + getName() + "\n";
+		returnString += "Address : " + getAddress() + "\n";
+		returnString += "City : " + getCity() + "\n";
+		returnString += "State : " + getState() + "\n";
+		returnString += "Latitude : " + getLatitude() + "\n";
+		returnString += "Longitude : " + getLongitude() + "\n";
+		return returnString;
+	}
+
+	/**
+	 * Description- toString for printing to database file
+	 */
+	public String fileToString() //get shortest Coords()
+	{
+		String returnString = "";
+		returnString += getName() + " | ";
+		returnString += getAddress() + " | ";
+		returnString += getCity() + " | ";
+		returnString += getState() + " | ";
+		returnString += getLatitude() + " | ";
+		returnString += getLongitude();
+		return returnString;
+	}
+
+
+
+	/**
+	 * Description- Returns true if no errors, false if otherwise
+	 */
+	public boolean printToFile(String fileName, boolean allowRepeats)
+	{
+		boolean success = true;
+
+		boolean alreadyInFile = false;
+		try
+		{
+			// Check the file to see if the location already exists :
+			BufferedReader br;
+
+			br = new BufferedReader(new FileReader("LocationDatabase.txt"));
+			String locationString;
+			while ((locationString = br.readLine()) != null)
+			{
+				Location newLocation = new Location(locationString);
+				if (isSame(newLocation)) // The location already exists in the file.
+				{
+					alreadyInFile = true;
+				}
+			}
+
+			if (!alreadyInFile || (alreadyInFile && allowRepeats))
+			{
+				BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+				writer.append(fileToString());
+				writer.newLine();
+				writer.close();
+			}
+			else // Already in file, don't add it again, show warning.
+			{
+				JOptionPane.showMessageDialog(null, "This location is already in the file"
+						, "Failure", JOptionPane.ERROR_MESSAGE);
+				success = false;
+			}
+			br.close();
+		}
+		catch (FileNotFoundException e)
+		{        
+			JOptionPane.showMessageDialog(null, "Database file not found", "Failure", JOptionPane.ERROR_MESSAGE); 
+		}
+		catch (IOException e)
+		{
+			success = false;
+		}
+		return success;
+	}
+	/**
+	 * Description- Returns the distance in miles between the two locations
+	 */
+	public double distanceTo(Location otherLocation)
+	{
+		double distance = 0.0;
+		double lon1 = getLongitude();
+		double lat1 = getLatitude();
+		double lon2 = otherLocation.getLongitude();
+		double lat2 = otherLocation.getLatitude();
+
+		double theta = lon1 - lon2;
+		distance = Math.sin(convertToRadians(lat1)) * Math.sin(convertToRadians(lat2)) +
+				Math.cos(convertToRadians(lat1)) * Math.cos(convertToRadians(lat2)) *
+				Math.cos(convertToRadians(theta));
+		distance = Math.acos(distance);
+		distance = convertToDegrees(distance);
+		distance = distance * 60 * 1.1515;
+
+		return distance;
+	}
+	/**
+	 * Description- valid degrees needed. Returns the radians from degrees
+	 */
+	private double convertToRadians(double degrees)
+	{
+		return( degrees * Math.PI / 180.0 );
+	}
+	/**
+	 * Description- valid radians needed. Returns the degrees from degrees
+	 */
+	private double convertToDegrees(double radians)
+	{
+		return( radians * 180 / Math.PI );
+	}
+
+	/**
+	 * Description- checks for same location within a search
+	 */
+	public boolean isSame(Location otherLocation)
+	{
+		boolean same = true;
+
+		//We only check the lat and long in case they changed the name
+		if ( coord.getLatitude() != otherLocation.getLatitude() )
+			same = false;
+		if ( coord.getLongitude() != otherLocation.getLongitude() )
+			same = false;
+
+		return same;
+	}
+	/**
+	 * Description- repopulates filesystem from admingui
+	 */
+    public boolean printToFile(String fileName)
+    {
+        return printToFile(fileName, true);
+    }
+}
+    

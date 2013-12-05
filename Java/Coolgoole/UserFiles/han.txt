@@ -1,0 +1,56 @@
+StartTime 8.0
+Maryland Institute College-Art  |  113 West North Avenue  |  Baltimore  |  Maryland  | 39.3105649 | -76.618504
+Reginald F. Lewis Museum  |  830 East Pratt Street  |  Baltimore  |  MD  | 39.2872746 | -76.6039894
+African Art Museum of Maryland  |  5430 Vantage Point Road  |  Columbia  |  Maryland  | 39.2224545 | -76.8558025
+Washington Monument  |  2 15th Street Northwest  |  Washington  |  District of Columbia  | 38.889463 | -77.0352372
+Annapolis Maritime Museum  |  723 2nd Street  |  Annapolis  |  Maryland  | 38.9688803 | -76.4763719
+Massey Aerodrome  |    |  Massey  |  MD  | 39.2999453 | -75.7989167
+***endSearch
+StartTime 8.0
+Maryland Institute College-Art   |   113 West North Avenue   |   Baltimore   |   Maryland   | 39.3105649 | -76.618504
+Reginald F. Lewis Museum   |   830 East Pratt Street   |   Baltimore   |   MD   | 39.2872746 | -76.6039894
+African Art Museum of Maryland   |   5430 Vantage Point Road   |   Columbia   |   Maryland   | 39.2224545 | -76.8558025
+Hirshhorn Museum  |  700 Independence Avenue Southwest  |  Washington  |  DC  | 38.8880447 | -77.0227978
+National Museum of African Art  |  950 Independence Avenue Southwest  |  Washington  |  District of Columbia  | 38.8879505 | -77.0255154
+Washington Monument   |   2 15th Street Northwest   |   Washington   |   District of Columbia   | 38.889463 | -77.0352372
+Annapolis Maritime Museum   |   723 2nd Street   |   Annapolis   |   Maryland   | 38.9688803 | -76.4763719
+Massey Aerodrome   |      |   Massey   |   MD   | 39.2999453 | -75.7989167
+***endSearch
+StartTime 8.0
+Maryland Institute College-Art    |    113 West North Avenue    |    Baltimore    |    Maryland    | 39.3105649 | -76.618504
+Reginald F. Lewis Museum    |    830 East Pratt Street    |    Baltimore    |    MD    | 39.2872746 | -76.6039894
+African Art Museum of Maryland    |    5430 Vantage Point Road    |    Columbia    |    Maryland    | 39.2224545 | -76.8558025
+Hirshhorn Museum   |   700 Independence Avenue Southwest   |   Washington   |   DC   | 38.8880447 | -77.0227978
+National Museum of African Art   |   950 Independence Avenue Southwest   |   Washington   |   District of Columbia   | 38.8879505 | -77.0255154
+Freer Sackler Gallery of Smithsonian  |    |  Washington  |  District of Columbia  | 38.8881396 | -77.0274801
+Washington Monument    |    2 15th Street Northwest    |    Washington    |    District of Columbia    | 38.889463 | -77.0352372
+Annapolis Maritime Museum    |    723 2nd Street    |    Annapolis    |    Maryland    | 38.9688803 | -76.4763719
+Massey Aerodrome    |        |    Massey    |    MD    | 39.2999453 | -75.7989167
+***endSearch
+StartTime 8.0
+Maryland Institute College-Art    |    113 West North Avenue    |    Baltimore    |    Maryland    | 39.3105649 | -76.618504
+Reginald F. Lewis Museum    |    830 East Pratt Street    |    Baltimore    |    MD    | 39.2872746 | -76.6039894
+African Art Museum of Maryland    |    5430 Vantage Point Road    |    Columbia    |    Maryland    | 39.2224545 | -76.8558025
+Hirshhorn Museum   |   700 Independence Avenue Southwest   |   Washington   |   DC   | 38.8880447 | -77.0227978
+National Museum of African Art   |   950 Independence Avenue Southwest   |   Washington   |   District of Columbia   | 38.8879505 | -77.0255154
+Washington Monument    |    2 15th Street Northwest    |    Washington    |    District of Columbia    | 38.889463 | -77.0352372
+Annapolis Maritime Museum    |    723 2nd Street    |    Annapolis    |    Maryland    | 38.9688803 | -76.4763719
+Massey Aerodrome    |        |    Massey    |    MD    | 39.2999453 | -75.7989167
+***endSearch
+StartTime 8.0
+Whitehouse  |    |    |  Maryland  | 39.6017709 | -76.7741419
+Thurgood Marshall Airport  |  7062 Elm Road  |  Baltimore  |  Maryland  | 39.180862 | -76.6675476
+The White House  |  1600 Pennsylvania Avenue Northwest  |  Washington  |  District of Columbia  | 38.8976831 | -77.0364972
+***endSearch
+StartTime 8.0
+National Museum of the American Indian  |  4th St & Independence Avenue  |  Washington  |  District of Columbia  | 38.8882143 | -77.0161664
+Hirshhorn Museum    |    700 Independence Avenue Southwest    |    Washington    |    DC    | 38.8880447 | -77.0227978
+National Museum of African Art    |    950 Independence Avenue Southwest    |    Washington    |    District of Columbia    | 38.8879505 | -77.0255154
+Freer Sackler Gallery of Smithsonian   |      |   Washington   |   District of Columbia   | 38.8881396 | -77.0274801
+National Museum of American History  |  14th St and Constitution Avenue NW  |  Washington  |  District of Columbia  | 38.891583 | -77.030071
+Washington Monument     |     2 15th Street Northwest     |     Washington     |     District of Columbia     | 38.889463 | -77.0352372
+African Art Museum of Maryland     |     5430 Vantage Point Road     |     Columbia     |     Maryland     | 39.2224545 | -76.8558025
+Reginald F. Lewis Museum     |     830 East Pratt Street     |     Baltimore     |     MD     | 39.2872746 | -76.6039894
+UB Anderson Gallery  |  1 Martha Jackson Place  |  Buffalo  |  New York  | 42.9574196 | -78.8297021
+Dumbarton Oaks  |  1703 32nd Street Northwest  |  Washington  |  DC  | 38.9140633 | -77.0641479
+***endSearch

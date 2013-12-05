@@ -1,21 +1,23 @@
+
+package coolgle;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
 /*****************************************
 ** File: Search
 ** Team Name: Cava++
-** Date: 10/18/13
+*Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
 ** Xiaofei He <xiaofei2@umbc.edu>,
 ** Yo-Han Kim <ykim18@umbc.edu>,
 ** Jim Millican <jmill1@umbc.edu>
-** Description- Class that represents a users search
+** Decription- Class that represents a users search
 ***********************************************/
-package coolgle;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-
 public class Search
 {
         //class variables
@@ -31,20 +33,13 @@ public class Search
 
         // How many locations you can add to a trip, NOT including starting and ending locations.
         private static final int TRIP_LIMIT = 30;
-        // This is the maximun len of the start/end location names it will show in the previous search dropdown
-        private static final int TO_STRING_LEN = 23;
         
         /**
          * constructor for SEARCH object
          */
         public Search()
         {
-            //Default Contructor
-            startTime = 8.00; // Default time in GUI
-            optimized = false;
-            start = new Location();
-            end = new Location();
-            userName = "";
+        	this("", new Location(), new Location(), new ArrayList<Location>());
         }
         
         /**
@@ -52,15 +47,17 @@ public class Search
          */
         public Search(String un)
         {
+        	this(un, new Location(), new Location(), new ArrayList<Location>());
             //Default Contructor
-            startTime = 8.00; // Default time in GUI
-            optimized = false;
-            start = new Location();
-            end = new Location();
-            userName = un;
         }
-        
    
+        /**
+         * Initialized constructor for creating  valid search (Coord not included) */
+        public Search(String userName, Location start, Location end,
+                        ArrayList<Location> locations)
+        {
+        	this("8.00", userName, start, end, locations, new ArrayList<Coord>());
+        }
         /**
          * Initialized constructor for creating  valid search (Coord included) */
         public Search(String startTime, String userName, Location start, Location end,
@@ -76,19 +73,6 @@ public class Search
                 optimized = false;
                 
         }
-        /**
-         * Initialized constructor for creating  valid search (Coord not included) 
-         */
-        public Search(String userName, Location start, Location end,
-                        ArrayList<Location> locations)
-        {
-                this.userName = userName;
-                this.start = start;
-                this.end = end;
-                this.locations = locations;
-                this.shortestPath = shortestPath;
-        }
-        
         
         /**
          * hasShortest
@@ -110,7 +94,7 @@ public class Search
         
         /**
          * getMidLocations
-         * Description - returns array list of mid locations.
+         * Description - returns arraylist of midlocations.
          */
         public ArrayList<Location> getMidLocations()
         {
@@ -151,7 +135,6 @@ public class Search
         public void setStart(Location newStart)
         {
             start = newStart;
-            optimized = false;
         }
         
         /**
@@ -170,7 +153,6 @@ public class Search
         public void setEnd(Location newEnd)
         {
             end = newEnd;
-            optimized = false;
         }
         /**
          * Description - getUserName
@@ -187,10 +169,8 @@ public class Search
         public void addLocation(Location newLocation)
         {
             // Add unless you're reached the limit.
-            if (locations.size() < TRIP_LIMIT){
+            if (locations.size() < TRIP_LIMIT)
                 locations.add(newLocation);
-                optimized = false;
-            }
             else
                 JOptionPane.showMessageDialog(null, "You have reached the maximun amount of \n"
                                               + "locations allowed per trip (" + TRIP_LIMIT + ")"
@@ -199,18 +179,17 @@ public class Search
         
         /**
          * removeLocation
-         * Description - Removes the given location from the array list of mid locations.
+         * Description - Removes the given location from the arraylist of mid locations.
          */
-        public boolean removeLocation(Location newLocation)
+        public boolean removeLocation(Location removeLocation)
         {
             //Search through the arraylist, if object exist remove it.
             boolean removed = false;
             for ( int i = 0; i < locations.size() && !removed; i++ )
             {
-                if (locations.get(i).isSame(newLocation))
+                if (locations.get(i).isSame(removeLocation))
                 {
                     locations.remove(i);
-                    optimized = false;
                     removed = true;
                 }
             }
@@ -225,7 +204,6 @@ public class Search
         public void removeAtPosition(int pos)
         {
             locations.remove(pos);
-            optimized = false;
         }
         
         /**
@@ -240,7 +218,7 @@ public class Search
         /**
          * isInSearch
          * Description - Returns whether or not the given location is in the
-         * array list of mid locations.
+         * arraylist of mid locations.
          */
         public boolean isInSearch(Location testLocation)
         {
@@ -281,12 +259,12 @@ public class Search
         }
         
         /** Description - Override of toString
-        // This should be used in the the pervious search drop down.*/
+        // This should be used in the the pervious search dropdown.*/
         public String toString()
         {
             String returnString = "";
-            returnString += "" + getStart().getName().substring(0, Math.min(getStart().getName().length(), TO_STRING_LEN)) + " -> ";
-            returnString += "" + getEnd().getName().substring(0, Math.min(getEnd().getName().length(), TO_STRING_LEN)) + " (";
+            returnString += "" + getStart().getName().substring(0, Math.min(getStart().getName().length(), 16)) + " -> ";
+            returnString += "" + getEnd().getName().substring(0, Math.min(getEnd().getName().length(), 16)) + " (";
             returnString += " +" + getNumMidLocations() + " Mid Points) ";
             return returnString;
         }
@@ -328,7 +306,6 @@ public class Search
         public void setLocations(ArrayList<Location> locations) 
         {
                 this.locations = locations;
-                optimized = false;
         }
         /**
          * setter for ShortestPath
@@ -344,12 +321,6 @@ public class Search
         public void setDistance(double distance) 
         {
                 this.distance = distance;
-        }
-        /**
-         * getter for distance
-         */
-        public double getDistance(){
-        	return distance;
         }
         /**
          * setter for userName
