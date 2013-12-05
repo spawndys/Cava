@@ -1,18 +1,4 @@
-package coolgle;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import javax.swing.JOptionPane;
-
 /*****************************************
-DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
  ** File: Location
  ** Team Name: Cava++
  *Date: 10/18/13
@@ -22,8 +8,21 @@ DistanceTo functions created with help from : http://www.geodatasource.com/devel
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Class that represents a location for a search
+ ** Description- Class that represents a location for a search
+ * DistanceTo functions created with help from : http://www.geodatasource.com/developers/java
  ***********************************************/
+
+package coolgle;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
+
 public class Location
 {
 	//class variables
@@ -274,21 +273,27 @@ public class Location
 			}
 			else // Already in file, don't add it again, show warning.
 			{
-				JOptionPane.showMessageDialog(null, "This location is already in the file"
+				JOptionPane.showMessageDialog(null, "This location is already in the database"
 						, "Failure", JOptionPane.ERROR_MESSAGE);
 				success = false;
 			}
 		}
 		catch (FileNotFoundException e)
 		{        
-			JOptionPane.showMessageDialog(null, "Database file not found", "Failure", JOptionPane.ERROR_MESSAGE); 
+			JOptionPane.showMessageDialog(null, "Location Database - FileNotFoundException"
+						, "Failure", JOptionPane.ERROR_MESSAGE);
+                        success = false;
 		}
 		catch (IOException e)
 		{
-			success = false;
+			JOptionPane.showMessageDialog(null, "Location Database - IOException"
+						, "Failure", JOptionPane.ERROR_MESSAGE);
+                        success = false;
 		}
 		return success;
 	}
+        
+        
 	/**
 	 * Description- Returns the distance in miles between the two locations
 	 */
@@ -306,7 +311,7 @@ public class Location
 				Math.cos(convertToRadians(theta));
 		distance = Math.acos(distance);
 		distance = convertToDegrees(distance);
-		distance = distance * 60 * 1.1515;
+		distance = distance * 60 * 1.151515;
 
 		return distance;
 	}
@@ -315,14 +320,14 @@ public class Location
 	 */
 	private double convertToRadians(double degrees)
 	{
-		return( degrees * Math.PI / 180.0 );
+		return ( degrees * Math.PI / 180.0 );
 	}
 	/**
 	 * Description- valid radians needed. Returns the degrees from degrees
 	 */
 	private double convertToDegrees(double radians)
 	{
-		return( radians * 180 / Math.PI );
+		return ( radians * 180 / Math.PI );
 	}
 
 	/**
@@ -341,7 +346,7 @@ public class Location
 		return same;
 	}
 	/**
-	 * Description- repopulates filesystem from admingui
+	 * Description- re-populates file system from admin gui
 	 */
     public boolean printToFile(String fileName)
     {

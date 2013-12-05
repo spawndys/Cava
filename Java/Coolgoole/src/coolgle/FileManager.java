@@ -1,9 +1,5 @@
-package coolgle;
-import java.io.*;
-import java.util.*;
-import javax.swing.JOptionPane;
 /*****************************************
- ** File: KMlCreator
+ ** File: FileManager
  ** Team Name: Cava++
  *Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
@@ -12,9 +8,16 @@ import javax.swing.JOptionPane;
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- File that Parses Search into a txt file
- ** and a txt File into search
+ ** Decription- File that Parses Search into a .txt file
+ ** and a .txt File into search
  ***********************************************/
+
+package coolgle;
+
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
 public class FileManager
 {
 	//class variables

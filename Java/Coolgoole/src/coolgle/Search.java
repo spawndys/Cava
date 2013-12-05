@@ -1,22 +1,21 @@
-
-package coolgle;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-
 /*****************************************
 ** File: Search
 ** Team Name: Cava++
-*Date: 10/18/13
+** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
 ** Xiaofei He <xiaofei2@umbc.edu>,
 ** Yo-Han Kim <ykim18@umbc.edu>,
 ** Jim Millican <jmill1@umbc.edu>
-** Decription- Class that represents a users search
+** Description- Class that represents a users search
 ***********************************************/
+package coolgle;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
 public class Search
 {
         //class variables
@@ -32,6 +31,8 @@ public class Search
 
         // How many locations you can add to a trip, NOT including starting and ending locations.
         private static final int TRIP_LIMIT = 30;
+        // This is the maximun len of the start/end location names it will show in the previous search dropdown
+        private static final int TO_STRING_LEN = 23;
         
         /**
          * constructor for SEARCH object
@@ -76,7 +77,8 @@ public class Search
                 
         }
         /**
-         * Initialized constructor for creating  valid search (Coord not included) */
+         * Initialized constructor for creating  valid search (Coord not included) 
+         */
         public Search(String userName, Location start, Location end,
                         ArrayList<Location> locations)
         {
@@ -108,7 +110,7 @@ public class Search
         
         /**
          * getMidLocations
-         * Description - returns arraylist of midlocations.
+         * Description - returns array list of mid locations.
          */
         public ArrayList<Location> getMidLocations()
         {
@@ -197,7 +199,7 @@ public class Search
         
         /**
          * removeLocation
-         * Description - Removes the given location from the arraylist of mid locations.
+         * Description - Removes the given location from the array list of mid locations.
          */
         public boolean removeLocation(Location newLocation)
         {
@@ -238,7 +240,7 @@ public class Search
         /**
          * isInSearch
          * Description - Returns whether or not the given location is in the
-         * arraylist of mid locations.
+         * array list of mid locations.
          */
         public boolean isInSearch(Location testLocation)
         {
@@ -279,12 +281,12 @@ public class Search
         }
         
         /** Description - Override of toString
-        // This should be used in the the pervious search dropdown.*/
+        // This should be used in the the pervious search drop down.*/
         public String toString()
         {
             String returnString = "";
-            returnString += "" + getStart().getName().substring(0, Math.min(getStart().getName().length(), 16)) + " -> ";
-            returnString += "" + getEnd().getName().substring(0, Math.min(getEnd().getName().length(), 16)) + " (";
+            returnString += "" + getStart().getName().substring(0, Math.min(getStart().getName().length(), TO_STRING_LEN)) + " -> ";
+            returnString += "" + getEnd().getName().substring(0, Math.min(getEnd().getName().length(), TO_STRING_LEN)) + " (";
             returnString += " +" + getNumMidLocations() + " Mid Points) ";
             return returnString;
         }

@@ -1,25 +1,19 @@
-/*
- * TODO : promote and demote users.
- */
-
 package coolgle;
 
 import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /*****************************************
- **original author rdg77_000
- ** File: KMlCreator
+ ** File: modifyUsersGui
  ** Team Name: Cava++
- *Date: 10/18/13
+ ** Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
  ** Lizset Chavez <lizset1@umbc.edu>
  ** Patrick Ritchie <ritc1@umbc.edu>,
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- To be created from the adminGui class, opens a window of user detials.
- ** 
+ ** Description- To be created from the adminGui class, opens a window of user details.
  ***********************************************/
 
 public class modifyUsersGui extends javax.swing.JFrame 

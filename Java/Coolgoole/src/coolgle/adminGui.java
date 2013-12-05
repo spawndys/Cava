@@ -1,5 +1,5 @@
 /*****************************************
-** File: KMlCreator
+** File: adminGui
 ** Team Name: Cava++
 ** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
@@ -8,7 +8,7 @@
 ** Xiaofei He <xiaofei2@umbc.edu>,
 ** Yo-Han Kim <ykim18@umbc.edu>,
 ** Jim Millican <jmill1@umbc.edu>
-** Decription- The admin console class. 
+** Description- The admin console class. 
  * Used to edit location database and commicate with 
  * User Authenication for user related queries. 
 ***********************************************/
@@ -229,7 +229,9 @@ public class adminGui extends javax.swing.JFrame
         welcomLabel2.setForeground(new java.awt.Color(153, 0, 0));
         welcomLabel2.setText("Coolgles Admin");
 
-        
+        label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label1.setText("<html>\nSelect a location or user name from the lists below <br>\nand use the buttons underneath to edit the object!\n</html>");
+ 
         switchUserBtn.setIcon(new javax.swing.ImageIcon("Images\\switch_to_user.jpg")); // NOI18N
 
         loModifyLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N

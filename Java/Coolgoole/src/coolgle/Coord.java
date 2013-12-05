@@ -1,7 +1,7 @@
 /*****************************************
- ** File: KMlCreator
+ ** File: Coord
  ** Team Name: Cava++
- *Date: 10/18/13
+ ** Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
  ** Lizset Chavez <lizset1@umbc.edu>
  ** Patrick Ritchie <ritc1@umbc.edu>,
@@ -9,7 +9,7 @@
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
  ** Decription- To only be used by location class, stores a coordinate 
- *Which is a pair of lats and longs
+ ** Which is a pair of lats and longs
  ***********************************************/
 package coolgle;
 
@@ -30,12 +30,13 @@ public class Coord
 	 * Initialized Constructor for coord
 	 * 
 	 */
-
 	public Coord(double latitude, double longitude)
 	{
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+        
+        
 	/**
 	 * Parsed Constructor for coord
 	 * 
@@ -51,6 +52,8 @@ public class Coord
 	{
 		return latitude;
 	}
+        
+        
 	/**
 	 * Description- getter for longitude
 	 */
@@ -58,6 +61,8 @@ public class Coord
 	{
 		return longitude;
 	}
+        
+        
 	/**
 	 * Description- setter for latitude
 	 */
@@ -65,6 +70,8 @@ public class Coord
 	{
 		latitude = newLat;
 	}
+        
+        
 	/**
 	 * Description- setter for longitude
 	 */
@@ -72,6 +79,7 @@ public class Coord
 	{
 		longitude = newLong;
 	}
+        
 
 	/**
 	 * Description- overridden text file for toString method

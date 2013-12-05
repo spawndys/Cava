@@ -9,19 +9,17 @@
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Used to create the kml file and display the data in google earth
+ ** Description- Used to create the kml file and display the data in google earth
  **             Once a arraylist of the places the user wishes to visit is created. 
-
 // Additional: To be used after user hits map it button, takes a search and actually 
- * maps it on google earth
-// Example use : - 
+// maps it on Google earth
+// Example use : 
 // KmlCreator newKml = new KmlCreator("Search1.kml");
 // newKml.openKml(newKml.FillKml(search));
-*/
+ ***********************************************/
 
 package coolgle;
 
-import de.micromata.opengis.kml.v_2_2_0.AltitudeMode;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,7 +30,6 @@ import java.util.List;
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
-import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LineString;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;

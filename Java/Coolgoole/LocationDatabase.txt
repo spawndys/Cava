@@ -81,3 +81,4 @@ The White House | 1600 Pennsylvania Avenue Northwest | Washington | District of 
 Anne Arundel Community College | Anne Arundel Com Col Road | Arnold | Maryland | 39.0500145 | -76.5092596
 Thurgood Marshall Airport | 7062 Elm Road | Baltimore | Maryland | 39.180862 | -76.6675476
 University of Maryland, Baltimore County | 1000 Hilltop Circle | Baltimore | Maryland | 39.2566151 | -76.7154264
+Maryland Science Center | 601 Light Street | Baltimore | Maryland | 39.2812561 | -76.6118842

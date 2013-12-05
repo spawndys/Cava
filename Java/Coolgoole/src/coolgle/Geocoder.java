@@ -1,5 +1,5 @@
 /*****************************************
- ** File: Gui
+ ** File: Geocoder
  ** Team Name: Cava++
  ** Date: 10/18/13
  ** E-mail: 
@@ -12,13 +12,13 @@
 * Description : This class is used to turn a string into a location object, 
 * grabbing the rest of the information from Google's geocoding service. 
 * Should only be called from AddLocationGui Class
-* ***********************************************/
-// NOTE : Makes use of the library found here : 
-// https://code.google.com/p/geocoder-java/
-// Example Code Found here : 
-// https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
-
-
+* ***********************************************
+* NOTE : Makes use of the library found here : 
+* https://code.google.com/p/geocoder-java/
+* Example Code Found here : 
+* https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476
+ ***********************************************/
+ 
 package coolgle;
 
 import java.net.HttpURLConnection;

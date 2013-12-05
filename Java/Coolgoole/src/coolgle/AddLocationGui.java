@@ -1,8 +1,7 @@
 /*****************************************
-**original author rdg77_000 
-** File: KMlCreator
+** File: AddLocationGui
 ** Team Name: Cava++
-*Date: 10/18/13
+** Date: 10/18/13
 ** E-mail: Daniel Brandes bradan1@umbc.edu,
 ** Lizset Chavez <lizset1@umbc.edu>
 ** Patrick Ritchie <ritc1@umbc.edu>,
@@ -321,15 +320,15 @@ public class AddLocationGui extends javax.swing.JFrame
                 else
                 {
                     // Ask the user if they really want to add the location the geocoder found. 
-                    int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : \n" + 
-                                        geoCoderInput + "\nFound : \n" + newLocation + "\nIs this the location you'd like to add? ");
+                    int comfirm = JOptionPane.showConfirmDialog(null, "Searching for : " + 
+                                        geoCoderInput + "\n\nResult : \n" + newLocation + "\n\nIs this the location you'd like to add?",
+                                        "Goecoder Search", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (comfirm == 0) // Yes
                     {
                         // Add location to database
                         if ( !newLocation.printToFile("LocationDatabase.txt", false) )
                         {
-                              JOptionPane.showMessageDialog(null, "Error occured printing location to database", "Failure", JOptionPane.ERROR_MESSAGE);
-                              returnToMain = false; 
+                             returnToMain = false; 
                         }
                         else
                             returnToMain = true; 

@@ -1,20 +1,19 @@
 /*****************************************
- ** File: KMlCreator
+ ** File: mainGui
  ** Team Name: Cava++
- *Date: 10/18/13
+ ** Date: 10/18/13
  ** E-mail: Daniel Brandes bradan1@umbc.edu,
  ** Lizset Chavez <lizset1@umbc.edu>
  ** Patrick Ritchie <ritc1@umbc.edu>,
  ** Xiaofei He <xiaofei2@umbc.edu>,
  ** Yo-Han Kim <ykim18@umbc.edu>,
  ** Jim Millican <jmill1@umbc.edu>
- ** Decription- Main Gui class, handles all the visual effects and backend code
+ ** Description- Main Gui class, handles all the visual effects and backend code
  * of creating a trip.
  ***********************************************/
 package coolgle;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,7 +23,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 
 public class mainGui extends javax.swing.JFrame 
@@ -756,7 +754,7 @@ public class mainGui extends javax.swing.JFrame
 	/**
 	 * 
 	 * Description-  Called when user selects a time in the starting time drop-down
-	 * Sets the starting time member vairable in the search and updates the right pane.
+	 * Sets the starting time member variable in the search and updates the right pane.
 	 * @param evt
 	 */
 	public void updateStartingTime()
@@ -936,9 +934,15 @@ public class mainGui extends javax.swing.JFrame
 					, "Failure", JOptionPane.ERROR_MESSAGE);
 			validTrip = false; 
 		}
-		if(search.getMidLocations().get(0).isSame(search.getStart())) search.getMidLocations().remove(0);
-		if(search.getMidLocations().get(search.getMidLocations().size()-1).isSame(search.getEnd())) search.getMidLocations().remove(search.getMidLocations().size()-1);
-
+                
+                if (search.getNumMidLocations() > 2) 
+                {
+                    if(search.getMidLocations().get(0).isSame(search.getStart())) 
+                            search.getMidLocations().remove(0);
+                    if(search.getMidLocations().get(search.getMidLocations().size() - 1).isSame(search.getEnd())) 
+                            search.getMidLocations().remove(search.getMidLocations().size() - 1);
+                }
+                
 		if (validTrip)
 			prepareTrip();
 	}
@@ -1012,9 +1016,7 @@ public class mainGui extends javax.swing.JFrame
 		// Update Previous Search Dropdown : 
 		FileManager fm1 = new FileManager();
 		
-                
                 // Save the current selection of the previous search dropdown : 
-                //int oldSelection = prevList.getSelectedIndex();
 
 		DefaultComboBoxModel comboModel;
                 
