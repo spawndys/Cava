@@ -23,7 +23,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
-public class Location
+public class Location implements Comparable<Location>
 {
 	//class variables
 	private String name;
@@ -229,11 +229,11 @@ public class Location
 	public String fileToString() //get shortest Coords()
 	{
 		String returnString = "";
-		returnString += getName() + " | ";
-		returnString += getAddress() + " | ";
-		returnString += getCity() + " | ";
-		returnString += getState() + " | ";
-		returnString += getLatitude() + " | ";
+		returnString += getName().trim() + "|";
+		returnString += getAddress().trim() + "|";
+		returnString += getCity().trim() + "|";
+		returnString += getState().trim() + "|";
+		returnString += getLatitude() + "|";
 		returnString += getLongitude();
 		return returnString;
 	}
@@ -345,12 +345,20 @@ public class Location
 
 		return same;
 	}
-	/**
-	 * Description- re-populates file system from admin gui
-	 */
+        
+    /**
+     * Description- re-populates file system from admin gui
+     */
     public boolean printToFile(String fileName)
     {
         return printToFile(fileName, true);
     }
-}
     
+    /**
+     * Description - Comparable Function in order to sort location lists. 
+     */
+    public int compareTo(Location other) 
+    {
+        return this.getName().compareTo(other.getName());
+    }
+}

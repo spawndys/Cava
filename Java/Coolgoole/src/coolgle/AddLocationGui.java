@@ -271,10 +271,16 @@ public class AddLocationGui extends javax.swing.JFrame
         {
             // Error if not all data filled in 
             if ((this.loNameText.getText().isEmpty() && this.loAddressText.getText().isEmpty()) ||
-                this.loLatText.getText().isEmpty() || this.loLongText.getText().isEmpty())
+                this.loLatText.getText().isEmpty() || this.loLongText.getText().isEmpty() )
             {
                 JOptionPane.showMessageDialog(null, "Locations cannot be saved unless the following fields contain data:"
                         + "\nLatitude\nLongitude\nName or Address", "Failure", JOptionPane.ERROR_MESSAGE);
+            }
+            // Also, don't allow | to be used, will break reading from file 
+            else if ( this.loNameText.getText().contains("|") || this.loCityText.getText().contains("|") ||
+                this.loStateText.getText().contains("|") || this.loAddressText.getText().contains("|"))
+            {
+                JOptionPane.showMessageDialog(null, "One or more fields contains an illegal character", "Failure", JOptionPane.ERROR_MESSAGE);
             }
             else
             {

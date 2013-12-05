@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -457,7 +458,12 @@ public class adminGui extends javax.swing.JFrame
                 {
                     Location newLocation = new Location(locationString);
                     locationlist.add(newLocation);
-                    listModel.addElement(newLocation.getName());
+                }
+                Collections.sort(locationlist);
+                
+                for (int j = 0; j < locationlist.size(); j++)
+                {
+                    listModel.addElement(locationlist.get(j).getName());
                 }
             }
             catch (FileNotFoundException ex)

@@ -23,42 +23,42 @@
             <LineString>
                 <extrude>0</extrude>
                 <tessellate>1</tessellate>
-                <coordinates>-77.0230529,38.8978692 -77.336036,38.863061 -76.5755377,37.1655975 -79.5427694,37.6285949 -76.613626,39.418906</coordinates>
+                <coordinates>-76.660366,40.288136 -76.729337,39.9618175 -75.7465003,40.8636993 -80.012344,40.4568579 -75.6751545,39.8711885</coordinates>
             </LineString>
         </Placemark>
         <Placemark>
-            <name>National Portrait Gallery  (0)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
+            <name>Hershey's Chocolate World (0)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:00 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 0 miles</description>
             <Point>
-                <coordinates>-77.0230529,38.8978692</coordinates>
+                <coordinates>-76.660366,40.288136</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>National Firearms Museum  (1)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 08:19 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 17 miles</description>
+            <name>Police Heritage Museum (1)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 08:25 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 23 miles</description>
             <Point>
-                <coordinates>-77.336036,38.863061</coordinates>
+                <coordinates>-76.729337,39.9618175</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>US Army Transportation Museum  (2)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 10:34 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 141 miles</description>
+            <name>Old Jail Museum (2)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 09:53 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 104 miles</description>
             <Point>
-                <coordinates>-76.5755377,37.1655975</coordinates>
+                <coordinates>-75.7465003,40.8636993</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Natural Bridge Wax Museum  (3)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 01:35 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 307 miles</description>
+            <name>Mattress Factory (3)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 01:59 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 329 miles</description>
             <Point>
-                <coordinates>-79.5427694,37.6285949</coordinates>
+                <coordinates>-80.012344,40.4568579</coordinates>
             </Point>
         </Placemark>
         <Placemark>
-            <name>Fire Museum of Maryland  (4)</name>
-            <description>Estimated Arrival Time :  &lt;br&gt; 05:14 PM&lt;br&gt;Distance Traveled : &lt;br&gt; 508 miles</description>
+            <name>Longwood Gardens (4)</name>
+            <description>Estimated Arrival Time :  &lt;br&gt; 06:13 AM&lt;br&gt;Distance Traveled : &lt;br&gt; 562 miles</description>
             <Point>
-                <coordinates>-76.613626,39.418906</coordinates>
+                <coordinates>-75.6751545,39.8711885</coordinates>
             </Point>
         </Placemark>
     </Document>

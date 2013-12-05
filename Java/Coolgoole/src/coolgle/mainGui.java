@@ -1007,6 +1007,7 @@ public class mainGui extends javax.swing.JFrame
                 // Set End Location
 		endLocationDisplay.setText(search.getEnd().getName());
 
+                // Set Mid Locations
 		DefaultListModel listModel;
 		listModel = new DefaultListModel();
 		midLocationsList.setModel(listModel);
@@ -1017,7 +1018,6 @@ public class mainGui extends javax.swing.JFrame
 		FileManager fm1 = new FileManager();
 		
                 // Save the current selection of the previous search dropdown : 
-
 		DefaultComboBoxModel comboModel;
                 
 		comboModel = new DefaultComboBoxModel();
